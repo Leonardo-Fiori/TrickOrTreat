@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 25152bbc5ed5c6d4ba3e89b5190455ee
+timeCreated: 1521733032
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - mappa: {instanceID: 0}
+  - tileSet: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
