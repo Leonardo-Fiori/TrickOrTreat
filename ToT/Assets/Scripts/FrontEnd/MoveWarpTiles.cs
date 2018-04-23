@@ -2,111 +2,203 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveWarpTiles : MonoBehaviour {
-    private int x = 0;
-    private int y = 0;
-    private Vector3 originalPos;
-    int playerX;
-    int playerY;
+public class MoveWarpTiles : EventListener {
+
     int dim;
+    public int x;
+    public int y;
+
+    bool tileLatoDestro;
+    bool tileLatoSinistro;
+    bool tileLatoSopra;
+    bool tileLatoSotto;
+
+    Vector3 originalPosition;
+
+    bool warped = false;
+    Vector2 warpedTo;
+    public static bool animating = false;
+
+    Dictionary<MoveWarpTiles, Vector3> opposti;
 
     private void Start()
     {
-        originalPos = transform.position;
-        x = GetComponent<TileMovement>().GetTileX();
-        y = GetComponent<TileMovement>().GetTileY();
+        warpedTo = new Vector2();
+
         dim = GameManager.mapInstance.dim - 1;
+        originalPosition = transform.position;
+
+        x = TileCoords.GetX(gameObject);
+        y = TileCoords.GetY(gameObject);
+
+        tileLatoDestro = (x == dim && y >= 0 && y <= dim);
+        tileLatoSinistro = (x == 0 && y >= 0 && y <= dim);
+        tileLatoSopra = (x >= 0 && x <= dim && y == dim);
+        tileLatoSotto = (x >= 0 && x <= dim && y == 0);
+
+        Invoke("InitializeOpposites", 2f);
     }
 
-    public void WarpToMe()
+    private void InitializeOpposites()
     {
-        GameObject[] oppositeTile = null;
-        int dim = GameManager.mapInstance.dim;
-        dim--;
-        //print(dim);
-        //return;
-
-        oppositeTile = new GameObject[2];
-        oppositeTile[0] = null;
-        oppositeTile[1] = null;
-
-        if (x == 0 && y == 0) // si trova in angolo in basso a sx
-        {
-            oppositeTile[0] = GameManager.frontEndTileManagerInstance.GetFrontEndTile(dim, 0).gameObject; // tile da muovere a sx
-            oppositeTile[0].GetComponent<MoveWarpTiles>().WarpMeTo(transform.position, Rotation.sinistra);
-            oppositeTile[1] = GameManager.frontEndTileManagerInstance.GetFrontEndTile(0, dim).gameObject; // tile da muovere sotto
-            oppositeTile[1].GetComponent<MoveWarpTiles>().WarpMeTo(transform.position, Rotation.giu);
-        }
-        else if(x == dim && y == dim) // si trova in angolo in alto a dx
-        {
-            oppositeTile[0] = GameManager.frontEndTileManagerInstance.GetFrontEndTile(0, dim).gameObject; // tile da muovere a dx
-            oppositeTile[0].GetComponent<MoveWarpTiles>().WarpMeTo(transform.position, Rotation.destra);
-            oppositeTile[1] = GameManager.frontEndTileManagerInstance.GetFrontEndTile(dim, 0).gameObject; // tile da muovere sopra
-            oppositeTile[1].GetComponent<MoveWarpTiles>().WarpMeTo(transform.position, Rotation.su);
-        }
-        else if(x == 0 && y == dim) // si trova in angolo in alto a sx
-        {
-            oppositeTile[0] = GameManager.frontEndTileManagerInstance.GetFrontEndTile(dim, dim).gameObject; // tile da muovere a sx
-            oppositeTile[0].GetComponent<MoveWarpTiles>().WarpMeTo(transform.position, Rotation.sinistra);
-            oppositeTile[1] = GameManager.frontEndTileManagerInstance.GetFrontEndTile(0, 0).gameObject; // tile da muovere sopra
-            oppositeTile[1].GetComponent<MoveWarpTiles>().WarpMeTo(transform.position, Rotation.su);
-        }
-        else if(x == dim && y == 0) // si trova in angolo in basso a dx
-        {
-            oppositeTile[0] = GameManager.frontEndTileManagerInstance.GetFrontEndTile(0, 0).gameObject; // tile da muovere a dx
-            oppositeTile[0].GetComponent<MoveWarpTiles>().WarpMeTo(transform.position, Rotation.destra);
-            oppositeTile[1] = GameManager.frontEndTileManagerInstance.GetFrontEndTile(dim, dim).gameObject; // tile da muovere sotto
-            oppositeTile[1].GetComponent<MoveWarpTiles>().WarpMeTo(transform.position, Rotation.giu);
-        }
-        else if(x == 0 && y >= 0 && y <= dim) // si trova lungo il lato sinistro
-        {
-            oppositeTile[0] = GameManager.frontEndTileManagerInstance.GetFrontEndTile(dim, y).gameObject;
-            oppositeTile[0].GetComponent<MoveWarpTiles>().WarpMeTo(transform.position, Rotation.sinistra);
-        }
-        else if(x == dim && y >= 0 && y <= dim) // si trova lungo il lato destro
-        {
-            oppositeTile[0] = GameManager.frontEndTileManagerInstance.GetFrontEndTile(0, y).gameObject;
-            oppositeTile[0].GetComponent<MoveWarpTiles>().WarpMeTo(transform.position, Rotation.destra);
-        }
-        else if(y == 0 && x >= 0 && x <= dim) // si trova lungo la base
-        {
-            oppositeTile[0] = GameManager.frontEndTileManagerInstance.GetFrontEndTile(x, dim).gameObject;
-            oppositeTile[0].GetComponent<MoveWarpTiles>().WarpMeTo(transform.position, Rotation.giu);
-        }
-        else if(y == dim && x >= 0 && x <= dim) // si trova lungo il lato in alto
-        {
-            oppositeTile[0] = GameManager.frontEndTileManagerInstance.GetFrontEndTile(x, 0).gameObject;
-            oppositeTile[0].GetComponent<MoveWarpTiles>().WarpMeTo(transform.position, Rotation.su);
-        }
-        
+        if(tileLatoSotto || tileLatoSopra || tileLatoSinistro || tileLatoDestro)
+            opposti = FindOppositeTiles();
+        return;
     }
 
-    public void WarpMeTo(Vector3 destinationTilePos, Rotation rot)
+    private Dictionary<MoveWarpTiles, Vector3> FindOppositeTiles()
     {
-        transform.position = destinationTilePos;
+        Dictionary<MoveWarpTiles, Vector3> res = new Dictionary<MoveWarpTiles, Vector3>();
 
-        if(rot == Rotation.su)
+        if(tileLatoSopra && tileLatoSinistro) // Angolo in alto a sinistra
         {
-            transform.position += Vector3.forward;
+            MoveWarpTiles sopra = GameManager.GetFrontEndTile(0, 0).GetComponent<MoveWarpTiles>();
+            Vector3 posizioneSopra = transform.position + GameManager.tileDistance * Vector3.forward;
+            res.Add(sopra, posizioneSopra);
+
+            MoveWarpTiles sinistra = GameManager.GetFrontEndTile(dim, dim).GetComponent<MoveWarpTiles>();
+            Vector3 posizioneSinistra = transform.position + GameManager.tileDistance * Vector3.left;
+            res.Add(sinistra, posizioneSinistra);
+
+            return res;
         }
-        else if (rot == Rotation.giu)
+        else if(tileLatoSinistro && tileLatoSotto) // Angolo in basso a sinistra
         {
-            transform.position += Vector3.back;
+            MoveWarpTiles sotto = GameManager.GetFrontEndTile(0, dim).GetComponent<MoveWarpTiles>();
+            Vector3 posizioneSotto = transform.position + GameManager.tileDistance * Vector3.back;
+            res.Add(sotto, posizioneSotto);
+
+            MoveWarpTiles sinistra = GameManager.GetFrontEndTile(dim, 0).GetComponent<MoveWarpTiles>();
+            Vector3 posizioneSinistra = transform.position + GameManager.tileDistance * Vector3.left;
+            res.Add(sinistra, posizioneSinistra);
+
+            return res;
         }
-        else if (rot == Rotation.destra)
+        else if (tileLatoSotto && tileLatoDestro) // Angolo in basso a destra
         {
-            transform.position += Vector3.right;
+            MoveWarpTiles sotto = GameManager.GetFrontEndTile(dim, dim).GetComponent<MoveWarpTiles>();
+            Vector3 posizioneSotto = transform.position + GameManager.tileDistance * Vector3.back;
+            res.Add(sotto, posizioneSotto);
+
+            MoveWarpTiles destra = GameManager.GetFrontEndTile(0, 0).GetComponent<MoveWarpTiles>();
+            Vector3 posizioneDestra = transform.position + GameManager.tileDistance * Vector3.right;
+            res.Add(destra, posizioneDestra);
+
+            return res;
         }
-        else if (rot == Rotation.sinistra)
+        else if(tileLatoDestro && tileLatoSopra) // Angolo in alto a destra
         {
-            transform.position += Vector3.left;
+            MoveWarpTiles sopra = GameManager.GetFrontEndTile(dim, 0).GetComponent<MoveWarpTiles>();
+            Vector3 posizioneSopra = transform.position + GameManager.tileDistance * Vector3.forward;
+            res.Add(sopra, posizioneSopra);
+
+            MoveWarpTiles destra = GameManager.GetFrontEndTile(0, dim).GetComponent<MoveWarpTiles>();
+            Vector3 posizioneDestra = transform.position + GameManager.tileDistance * Vector3.right;
+            res.Add(destra, posizioneDestra);
+
+            return res;
+        }
+        else if (tileLatoDestro)
+        {
+            MoveWarpTiles destra = GameManager.GetFrontEndTile(0, y).GetComponent<MoveWarpTiles>();
+            Vector3 posizioneDestra = transform.position + GameManager.tileDistance * Vector3.right;
+            res.Add(destra, posizioneDestra);
+
+            return res;
+        }
+        else if (tileLatoSinistro)
+        {
+            MoveWarpTiles sinistra = GameManager.GetFrontEndTile(dim, y).GetComponent<MoveWarpTiles>();
+            Vector3 posizioneSinitra = transform.position + GameManager.tileDistance * Vector3.left;
+            res.Add(sinistra, posizioneSinitra);
+
+            return res;
+        }
+        else if (tileLatoSopra)
+        {
+            MoveWarpTiles sopra = GameManager.GetFrontEndTile(x, 0).GetComponent<MoveWarpTiles>();
+            Vector3 posizioneSopra = transform.position + GameManager.tileDistance * Vector3.forward;
+            res.Add(sopra, posizioneSopra);
+
+            return res;
+        }
+        else if (tileLatoSotto)
+        {
+            MoveWarpTiles sotto = GameManager.GetFrontEndTile(x, dim).GetComponent<MoveWarpTiles>();
+            Vector3 posizioneSotto = transform.position + GameManager.tileDistance * Vector3.back;
+            res.Add(sotto, posizioneSotto);
+
+            return res;
         }
 
-        Invoke("WarpMeBack", 3f);
+        throw new System.Exception("Non è stato possibile trovare il tile o i tile opposti! " + x + " " + y);
     }
 
-    private void WarpMeBack()
+    private void MoveMeTo(Vector3 destination)
     {
-        transform.position = originalPos;
+        //transform.position = destination;
+        //StopCoroutine("TileWarpAnimation");
+        StartCoroutine(TileWarpAnimation(destination));
+        warped = true;
+    }
+
+    private void MoveMeBack()
+    {
+        //transform.position = originalPosition;
+        //StopCoroutine("TileWarpAnimation");
+        StartCoroutine(TileWarpAnimation(originalPosition));
+        warped = false;
+    }
+
+    private void MoveMyOppositesToMe()
+    {
+        foreach (KeyValuePair<MoveWarpTiles, Vector3> coppia in opposti)
+        {
+            coppia.Key.MoveMeTo(coppia.Value);
+            coppia.Key.warpedTo.x = x;
+            coppia.Key.warpedTo.y = y;
+        }
+    }
+
+    public void PlayerMoved()
+    {
+        int playerX = GameManager.playerInstance.getX();
+        int playerY = GameManager.playerInstance.getY();
+
+        bool latoDestro = (playerX == dim && playerY >= 0 && playerY <= dim);
+        bool latoSinistro = (playerX == 0 && playerY >= 0 && playerY <= dim);
+        bool latoSopra = (playerX >= 0 && playerX <= dim && playerY == dim);
+        bool latoSotto = (playerX >= 0 && playerX <= dim && playerY == 0);
+
+        if (warped && (playerX != warpedTo.x || playerY != warpedTo.y))
+        {
+            MoveMeBack();
+        }
+
+        if((latoDestro || latoSinistro || latoSopra || latoSotto) && (playerX == x && playerY == y))
+        {
+            MoveMyOppositesToMe();
+        }
+    }
+
+    private IEnumerator TileWarpAnimation(Vector3 destination)
+    {
+        Vector3 originalScale = transform.localScale;
+
+        animating = true;
+        while(transform.localScale.x > 0.1f)
+        {
+            transform.localScale = transform.localScale * 0.9f;
+            yield return null;
+        }
+
+        transform.position = destination;
+
+        while(transform.localScale.x < originalScale.x)
+        {
+            transform.localScale = transform.localScale / 0.9f;
+            yield return null;
+        }
+        animating = false;
     }
 }

@@ -19,21 +19,23 @@ public class TileMovement : MonoBehaviour
         StartCoroutine(TileRotation(angleRot, dir));
     }
 
+    /* FUNZIONI WRAPPER PER RETROCOMPATIBILITA' CON ALTRI SCRIPT */
+    /* TILE X E TILE Y SONO STATI SPOSTATI DENTRO LO SCRIPT TileCoords */
     public int GetTileX()
     {
-        return tileX;
+        return TileCoords.GetX(gameObject);
     }
     public int GetTileY()
     {
-        return tileY;
+        return TileCoords.GetY(gameObject);
     }
     public void SetTileX(int x)
     {
-        tileX = x;
+        TileCoords.SetX(gameObject, x);
     }
     public void SetTileY(int y)
     {
-        tileY = y;
+        TileCoords.SetY(gameObject, y);
     }
 
     //Animazione Tile
@@ -44,12 +46,35 @@ public class TileMovement : MonoBehaviour
         Vector3 startPosition = transform.position;
         Vector3 endPosition = startPosition + Vector3.up * height;
 
-        // la tile sale
-        while (Vector3.Distance(transform.position, endPosition) > 0.5f)
-        {
-            // print("Primo while");
+        GameObject playerPrefab = GameManager.playerPrefabInstance;
+        Vector3 playerPosition = playerPrefab.transform.position;
+        float playerTileGapY = playerPosition.y - transform.position.y;
 
-            transform.position = Vector3.Lerp(transform.position, endPosition, speed * Time.deltaTime);
+        bool playerIsOnTile = (GameManager.playerInstance.getX() == TileCoords.GetX(gameObject) && GameManager.playerInstance.getY() == TileCoords.GetY(gameObject));
+
+        float counter = 0f;
+
+        // la tile sale
+        while (transform.position != endPosition)
+        {
+            counter += Time.deltaTime;
+
+            float y = Mathf.Lerp(transform.position.y, endPosition.y, counter);
+
+            Vector3 newTransform = new Vector3(transform.position.x, y, transform.position.z);
+
+            if (Mathf.Abs(Vector3.Distance(newTransform, endPosition)) <= 0.01f)
+            {
+                transform.position = endPosition;
+            }
+            else
+            {
+                transform.position = newTransform;
+            }
+
+            if (playerIsOnTile)
+                playerPrefab.transform.position = new Vector3(playerPosition.x, transform.position.y + playerTileGapY, playerPosition.z);
+
             yield return new WaitForFixedUpdate();
         }
 
@@ -63,16 +88,34 @@ public class TileMovement : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        // Torna in posizione
-        while (Vector3.Distance(transform.position, startPosition) >= 0.1)
-        {
-            //print("while di ritorno");
-            transform.position = Vector3.Lerp(transform.position, startPosition, returnSpeed * Time.deltaTime);
-            yield return new WaitForFixedUpdate();
+        counter = 0f;
 
+        // Torna in posizione
+        while (transform.position != startPosition)
+        {
+            counter += Time.deltaTime;
+
+            float y = Mathf.Lerp(transform.position.y, startPosition.y, counter);
+
+            Vector3 newTransform = new Vector3(transform.position.x, y, transform.position.z);
+
+            //print(Mathf.Abs(Vector3.Distance(newTransform, startPosition)));
+
+            if (Mathf.Abs(Vector3.Distance(newTransform, startPosition)) <= 0.01f)
+            {
+                transform.position = startPosition;
+            }
+            else
+            {
+                transform.position = newTransform;
+            }
+
+            if (playerIsOnTile)
+                playerPrefab.transform.position = new Vector3(playerPosition.x, transform.position.y + playerTileGapY, playerPosition.z);
+
+            yield return new WaitForFixedUpdate();
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, startPosition, 1);
         canRot = true;
     }
 }

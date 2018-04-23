@@ -14,6 +14,7 @@ public class MovePlayer : MonoBehaviour {
     public float offsetY = 1f;
     public float raiseSpeed = 1f;
     public float raiseHeight = 3f;
+    public static bool moving;
 
     // Sposta il prefab del giocatore di tot factor in direzione dir
 
@@ -23,7 +24,7 @@ public class MovePlayer : MonoBehaviour {
 
         Vector3 originalPos = transform.position;
 
-        GameManager.moving = true;
+        moving = true;
         // Solleva il giocatore se necessario
         if (Mathf.Abs(originalPos.x - finalPos.x) > 2 * factor || Mathf.Abs(originalPos.z - finalPos.z) > 2 * factor)
         {
@@ -40,13 +41,21 @@ public class MovePlayer : MonoBehaviour {
         {
             counter += Time.deltaTime;
 
-            float x = Mathf.Lerp(transform.position.x, finalPos.x, Mathf.Abs(Mathf.Sin(counter)));//Mathf.MoveTowards(transform.position.x, finalPos.x, speed);
-            float z = Mathf.Lerp(transform.position.z, finalPos.z, Mathf.Abs(Mathf.Sin(counter)));//Mathf.MoveTowards(transform.position.z, finalPos.z, speed);
+            float x = Mathf.Lerp(transform.position.x, finalPos.x, counter * 2f);//Mathf.MoveTowards(transform.position.x, finalPos.x, speed);
+            float z = Mathf.Lerp(transform.position.z, finalPos.z, counter * 2f);//Mathf.MoveTowards(transform.position.z, finalPos.z, speed);
 
             Vector3 newTransform = new Vector3(x, transform.position.y, z);
-            transform.position = newTransform;
 
-            yield return null;
+            if (Mathf.Abs(Vector3.Distance(transform.position, newTransform)) <= 0.01f)
+            {
+                transform.position = finalPos;
+            }
+            else
+            {
+                transform.position = newTransform;
+            }
+            
+            yield return new WaitForEndOfFrame();
         }
         // Abbassalo
         if (Mathf.Abs(originalPos.x - finalPos.x) > 2 * factor || Mathf.Abs(originalPos.z - finalPos.z) > 2 * factor)
@@ -57,17 +66,19 @@ public class MovePlayer : MonoBehaviour {
                 yield return null;
             }
         }
-        GameManager.moving = false;
+        moving = false;
     }
 
-    public void move(int x, int z, bool teleport)
+    public void move(int x, int z, Movement mov)
     {
-        if (teleport)
+        if (mov == Movement.teleport)
         {
             transform.position = new Vector3(x * factor, offsetY, z * factor);
             return;
         }
-
-        StartCoroutine(moveTowards(new Vector3(x * factor, transform.position.y, z * factor)));
+        else if(mov == Movement.smooth)
+        {
+            StartCoroutine(moveTowards(new Vector3(x * factor, transform.position.y, z * factor)));
+        }
     }
 }

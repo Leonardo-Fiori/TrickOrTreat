@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /* Richiede un Tileset per generare la mappa ed un Giocatore (scriptable object)
  * Prepara la partita generando la mappa e posizionando il giocatore
@@ -12,24 +13,36 @@ public class GameManager : MonoBehaviour {
     // Riferimenti statici pubblici ai componenti
     public static Mappa mapInstance;
     public static MovementManager movementManagerInstance;
+
     public static Giocatore playerInstance;
     public static GameObject playerPrefabInstance;
-    public static bool moving = false;
-    public static FrontEndTileManager frontEndTileManagerInstance;
+
     public static GameObject witchPrefabInstance;
     public static Strega witchInstance;
+
     public static Turno turno;
+
+    public static SOEvent playerMovementEvent;
+
+    public static float tileDistance;
 
     // Valori pubblici di configurazione
     public int dimensioneMappa = 7;
     public Tileset tileset;
-    public Giocatore statGiocatore;
+
+    public Giocatore giocatore;
     public GameObject prefabGiocatore;
+
     public float distanzaTraTile;
     public float scalaTiles;
+
     public static bool debugMode;
+    public static bool cheatMode;
+
     public GameObject prefabStrega;
     public Strega strega;
+
+    public SOEvent eventoMovimento;
 
     // Prefabs per generazione mappa
     public GameObject prefabQuadrivia;
@@ -37,26 +50,38 @@ public class GameManager : MonoBehaviour {
     public GameObject prefabTrivia;
     public GameObject prefabAngolo;
 
+    // Lista dei prefab front end delle tile
+    private static GameObject[] frontEndTileInstances;
+
     void Start () {
-        playerInstance = statGiocatore;
+        tileDistance = distanzaTraTile;
+
+        playerMovementEvent = eventoMovimento;
+
+        // Inizializzo il player
+        playerInstance = giocatore;
         playerPrefabInstance = prefabGiocatore;
+        playerInstance.SetFrontEndPrefab(playerPrefabInstance);
         playerPrefabInstance.SetActive(false);
 
+        // Inizializzo la strega
         witchInstance = strega;
         witchPrefabInstance = prefabStrega;
         witchInstance.SetFrontEndPrefab(witchPrefabInstance);
         witchPrefabInstance.SetActive(false);
 
+        // Inizializzo la mappa
         mapInstance = new Mappa(dimensioneMappa);
 
+        // Inizializzo il movement manager
         movementManagerInstance = new MovementManager();
 
+        // Imposto la mappa
         mapInstance.setTileSet(tileset);
         mapInstance.randomize();
 
+        // Spawno il front end della mappa
         spawnFrontEnd();
-
-        frontEndTileManagerInstance = gameObject.AddComponent<FrontEndTileManager>();
     }
 
     // Spawna il frontend dopo aver preparato il back end
@@ -95,19 +120,29 @@ public class GameManager : MonoBehaviour {
                 GameObject tile = Instantiate(prefab, posizione, rotazione);
                 mapInstance.getTile(i, j).setPrefab(tile);
 
-                TileMovement tm = tile.GetComponent<TileMovement>();
-                tm.SetTileX(i);
-                tm.SetTileY(j);
+                TileCoords.SetX(tile, i);
+                TileCoords.SetY(tile, j);
+
+                //print(tm.GetTileX() + " " + tm.GetTileY());
 
                 mapInstance.getTile(i, j).setFog(true);
             }
         }
 
-        playerPrefabInstance.GetComponent<MovePlayer>().move(playerInstance.getX(), playerInstance.getY(), true);
+        frontEndTileInstances = GameObject.FindGameObjectsWithTag("Tile");
+
+        playerInstance.move((mapInstance.dim / 2), (mapInstance.dim / 2), Movement.teleport);
+        playerInstance.ResetMosseFatte();
         playerPrefabInstance.SetActive(true);
 
         strega.Spawn();
         witchPrefabInstance.SetActive(true);
+
+        /* Se disattivo una singola nebbia all'interno di questa funzione 
+         * o prima che questa finisca (chiamata interna ad un altra funzione), 
+         * tutte le nebbie vengono disattivate.
+         * Dunque uso la invoke... mah! DA RIVEDERE, BUG
+         */
 
         Invoke("deactivateSpawnFog", 1f);
     }
@@ -119,6 +154,21 @@ public class GameManager : MonoBehaviour {
         mapInstance.getTile(playerInstance.getX() - 1, playerInstance.getY()).setFog(false);
         mapInstance.getTile(playerInstance.getX(), playerInstance.getY() + 1).setFog(false);
         mapInstance.getTile(playerInstance.getX(), playerInstance.getY() - 1).setFog(false);
+    }
+
+    public static GameObject GetFrontEndTile(int x, int y)
+    {
+        foreach (GameObject tile in frontEndTileInstances)
+        {
+            if (TileCoords.GetX(tile) == x && TileCoords.GetY(tile) == y)
+            {
+                //print("trovato " + x + " " + y);
+                return tile;
+            }
+        }
+
+        Debug.Log("Front end tile manager: tile cercato non trovato");
+        return null;
     }
 
     private void Update()
@@ -143,6 +193,21 @@ public class GameManager : MonoBehaviour {
                 {
                     tf.SetFog(true);
                 }
+            }
+
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                cheatMode = !cheatMode;
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene("Main");
+            }
+
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                witchPrefabInstance.GetComponent<MoveWitch>().InvokeMovement(1f);
             }
         }
 

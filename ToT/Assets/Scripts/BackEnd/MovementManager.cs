@@ -11,20 +11,17 @@ using UnityEngine;
 public class MovementManager {
     public Mappa map = GameManager.mapInstance;
     public Giocatore player = GameManager.playerInstance;
-    public MovePlayer playerPrefabMover;
+
+    private MoveWitch witchMover;
 
     public MovementManager()
     {
-        // Ottieni lo script del prefab frontend
-        playerPrefabMover = GameManager.playerPrefabInstance.GetComponent<MovePlayer>();
-        // Centra il player
-        //Debug.Log(map.dim / 2);
-        player.move((map.dim / 2), (map.dim / 2));
+        witchMover = GameManager.witchPrefabInstance.GetComponent<MoveWitch>();
     }
 
     // Ottiene in modo circolare la prossima tile partendo da x,y in direzione dir
 
-    private MapTile getNextTile(int x, int y, Direction dir)
+    public MapTile getNextTile(int x, int y, Direction dir)
     {
         if (dir == Direction.nord)
         {
@@ -107,7 +104,9 @@ public class MovementManager {
 
     public void movePlayer(Direction dir)
     {
-        if (GameManager.moving || !TileMovement.canRot || !PlayerOnTileMovement.canRot) return;
+        if (GameManager.turno == Turno.strega) return;
+        if (MovePlayer.moving || !TileMovement.canRot || MoveWarpTiles.animating) return;
+        //Debug.Log("Ciao");
 
         int x = player.getX();
         int y = player.getY();
@@ -133,27 +132,36 @@ public class MovementManager {
 
             if (y == -1) y = map.dim-1;
             if (x == -1) x = map.dim-1;
-            //Debug.Log(x + " " + y);
-
-            // Back end
-            player.move(x, y);
-            // Front end
-            playerPrefabMover.move(x, y, false);
 
             // Scopri i tile
-            getNextTile(x, y, Direction.nord).setFog(false);
-            getNextTile(x, y, Direction.sud).setFog(false);
-            getNextTile(x, y, Direction.est).setFog(false);
-            getNextTile(x, y, Direction.ovest).setFog(false);
 
-            // Se il player è sul bordo muovi il tile opposto solo in front end
-            if (x == 0 || x == map.dim-1 || y == 0 || y == map.dim-1)
+            GameManager.movementManagerInstance.getNextTile(x, y, Direction.nord).setFog(false);
+            GameManager.movementManagerInstance.getNextTile(x, y, Direction.sud).setFog(false);
+            GameManager.movementManagerInstance.getNextTile(x, y, Direction.est).setFog(false);
+            GameManager.movementManagerInstance.getNextTile(x, y, Direction.ovest).setFog(false);
+
+            // Muovi il giocatore
+
+            player.move(x, y, Movement.smooth);
+
+
+            if (!GameManager.cheatMode)
+                player.IncrementaMosseFatte();
+
+            GameManager.playerMovementEvent.Raise();
+
+            // Se è il momento, switcha il turno
+
+            if(player.GetMosseFatte() >= player.GetMossePerTurno())
             {
-                map.getTile(x, y).getPrefab().GetComponent<MoveWarpTiles>().WarpToMe();
-            }
+                GameManager.turno = Turno.strega;
+                player.ResetMosseFatte();
+                //Debug.Log("Giocatore: turno della strega...");
 
-            GameManager.turno = Turno.strega;
-            GameManager.witchInstance.Move();
+                // uso il prefab per chiamare il movimento nel back end perchè essendo un mono beahviour ha la invoke!
+                // InvokeMovement -> Move backend -> Move -> InvokeMovement
+                GameManager.witchPrefabInstance.GetComponent<MoveWitch>().InvokeMovement(0.5f);
+            }
         }
 
         return;

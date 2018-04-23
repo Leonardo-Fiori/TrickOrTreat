@@ -13,14 +13,53 @@ public class Giocatore : ScriptableObject {
     private int x;
     private int y;
 
-    private int mosseDisponibili;
-    private int chiaviRaccolte;
-    private bool powerup;
-    private int caramelleRaccolte;
+    private int mosseFatte;
+    [HideInInspector] public int chiaviRaccolte;
+    [HideInInspector] public bool powerup;
+    [HideInInspector] public int caramelleRaccolte;
 
-    public int mossePerTurno;
-    public int caramelleNecessarie;
-    public int chiaviNecessarie;
+    [SerializeField] private int mossePerTurno;
+    [SerializeField] private int caramelleNecessarie;
+    [SerializeField] private int chiaviNecessarie;
+
+    private GameObject frontEndPrefab;
+    private MovePlayer playerMover;
+
+    public void SetFrontEndPrefab(GameObject prefab)
+    {
+        frontEndPrefab = prefab;
+        playerMover = prefab.GetComponent<MovePlayer>();
+    }
+
+    public void ResetMosseFatte()
+    {
+        mosseFatte = 0;
+    }
+
+    public void IncrementaMosseFatte()
+    {
+        mosseFatte++;
+    }
+
+    public int GetMosseFatte()
+    {
+        return mosseFatte;
+    }
+
+    public int GetMossePerTurno()
+    {
+        return mossePerTurno;
+    }
+
+    public int GetCaramelleNecessarie()
+    {
+        return caramelleNecessarie;
+    }
+
+    public int GetChiaviNecessarie()
+    {
+        return chiaviNecessarie;
+    }
 
     public int getX()
     {
@@ -32,9 +71,12 @@ public class Giocatore : ScriptableObject {
         return y;
     }
 
-    public void move(int newX, int newY)
+    public void move(int newX, int newY, Movement mov)
     {
         x = newX;
         y = newY;
+
+        // Front end
+        playerMover.move(x, y, mov);
     }
 }

@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b53bcc72309806418860d5c55d86f7b, type: 3}
   m_Name: StregaDefault
   m_EditorClassIdentifier: 
-  mossePerTurno: 0
+  mossePerTurno: 2

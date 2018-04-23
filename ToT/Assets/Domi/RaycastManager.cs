@@ -19,7 +19,7 @@ public class RaycastManager : MonoBehaviour
     // dir va cambiato perchè mi fa sia da controllo sia da velocità di rotazione
     void FixedUpdate()
     {
-        if ((Input.GetMouseButtonDown(0) || (Input.GetMouseButtonDown(1))) && TileMovement.canRot && PlayerOnTileMovement.canRot && !GameManager.moving)
+        if ((Input.GetMouseButtonDown(0) || (Input.GetMouseButtonDown(1))) && TileMovement.canRot && PlayerOnTileMovement.canRot && !MovePlayer.moving)
         {
             bool clockwise = false;
 
@@ -51,7 +51,7 @@ public class RaycastManager : MonoBehaviour
 
                 TileMovement clickedTile = hit.transform.GetComponent<TileMovement>();
 
-                print(clickedTile.GetTileX() + " " + clickedTile.GetTileY());
+                //print(clickedTile.GetTileX() + " " + clickedTile.GetTileY());
 
                 bool equalX = (clickedTile.GetTileX() == GameManager.playerInstance.getX());
                 bool equalY = (clickedTile.GetTileY() == GameManager.playerInstance.getY());
@@ -60,9 +60,6 @@ public class RaycastManager : MonoBehaviour
                 if ((equalX && equalY) || GameManager.debugMode == true)
                 {
                     clickedTile.StartTileRotation(angleRot, dir);
-
-                    if ((equalX && equalY))
-                        StartCoroutine(playerPrefabRot.PlayerRotation(angleRot, dir));
 
                     GameManager.mapInstance.getTile(clickedTile.GetTileX(), clickedTile.GetTileY()).rotate(clockwise);
 

@@ -10,6 +10,12 @@ using UnityEngine;
  *  Usati dalle altre classi / oggetti.
 */
 
+public enum Movement
+{
+    teleport,
+    smooth
+}
+
 public enum Turno
 {
     giocatore,
