@@ -56,12 +56,17 @@ public class RaycastManager : MonoBehaviour
                 bool equalX = (clickedTile.GetTileX() == GameManager.playerInstance.getX());
                 bool equalY = (clickedTile.GetTileY() == GameManager.playerInstance.getY());
 
+                MapTile tileBackEnd = GameManager.mapInstance.getTile(clickedTile.GetTileX(), clickedTile.GetTileY());
+
                 // VUOLE RUOTARE, O E' IN MODALITA' DEBUG
                 if ((equalX && equalY) || GameManager.debugMode == true)
                 {
-                    clickedTile.StartTileRotation(angleRot, dir);
+                    if(tileBackEnd.getTileType() != TileType.quadrivio)
+                    {
+                        clickedTile.StartTileRotation(angleRot, dir);
 
-                    GameManager.mapInstance.getTile(clickedTile.GetTileX(), clickedTile.GetTileY()).rotate(clockwise);
+                        tileBackEnd.rotate(clockwise);
+                    }
 
                     return;
                 }

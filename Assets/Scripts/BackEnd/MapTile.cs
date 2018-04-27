@@ -226,6 +226,8 @@ public class MapTile
                 rotation = Rotation.su;
         }
 
+        GameManager.playerInstance.IncrementaMosseFatte();
+
         //Debug.Log(rotation);
     }
 }

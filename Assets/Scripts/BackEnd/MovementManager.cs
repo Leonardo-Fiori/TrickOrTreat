@@ -152,7 +152,7 @@ public class MovementManager {
 
             // Se è il momento, switcha il turno
 
-            if(player.GetMosseFatte() >= player.GetMossePerTurno())
+            /*if(player.GetMosseFatte() >= player.GetMossePerTurno()) // SPOSTATO NEL PLAYER BACK END
             {
                 GameManager.turno = Turno.strega;
                 player.ResetMosseFatte();
@@ -161,7 +161,7 @@ public class MovementManager {
                 // uso il prefab per chiamare il movimento nel back end perchè essendo un mono beahviour ha la invoke!
                 // InvokeMovement -> Move backend -> Move -> InvokeMovement
                 GameManager.witchPrefabInstance.GetComponent<MoveWitch>().InvokeMovement(0.5f);
-            }
+            }*/
         }
 
         return;

@@ -39,6 +39,15 @@ public class Giocatore : ScriptableObject {
     public void IncrementaMosseFatte()
     {
         mosseFatte++;
+        if (mosseFatte >= mossePerTurno)
+        {
+            GameManager.turno = Turno.strega;
+            mosseFatte = 0;
+
+            // uso il prefab per chiamare il movimento nel back end perchè essendo un mono beahviour ha la invoke!
+            // InvokeMovement -> Move backend -> Move -> InvokeMovement
+            GameManager.witchPrefabInstance.GetComponent<MoveWitch>().InvokeMovement(0.5f);
+        }
     }
 
     public int GetMosseFatte()
