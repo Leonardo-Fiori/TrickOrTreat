@@ -17,7 +17,7 @@ public class RaycastManager : MonoBehaviour
     }
 
     // dir va cambiato perchè mi fa sia da controllo sia da velocità di rotazione
-    void FixedUpdate()
+    void Update()
     {
         if ((Input.GetMouseButtonDown(0) || (Input.GetMouseButtonDown(1))) && TileMovement.canRot && PlayerOnTileMovement.canRot && !MovePlayer.moving)
         {
@@ -39,13 +39,13 @@ public class RaycastManager : MonoBehaviour
                 angleRot = -90;
                 dir = -2;
             }
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
             {
-                //print(hit.collider.name);
 
                 //print("raycast  dir" + dir);
 
@@ -66,6 +66,8 @@ public class RaycastManager : MonoBehaviour
                         clickedTile.StartTileRotation(angleRot, dir);
 
                         tileBackEnd.rotate(clockwise);
+
+                        GameManager.playerInstance.IncrementaMosseFatte();
                     }
 
                     return;

@@ -16,6 +16,7 @@ public class MovementManager {
 
     public MovementManager()
     {
+        //Debug.Log("movement manager initialized");
         witchMover = GameManager.witchPrefabInstance.GetComponent<MoveWitch>();
     }
 
@@ -56,6 +57,9 @@ public class MovementManager {
         //Debug.Log("Il player si trova su un " + playerTile.getTileType() + " " + playerTile.getTileRotation());
         MapTile nextTile = getNextTile(player.getX(), player.getY(), dir);
         //Debug.Log("E vuole andare su un " + nextTile.getTileType() + " " + nextTile.getTileRotation());
+
+        if(nextTile.getX() == GameManager.witchInstance.GetX() && nextTile.getY() == GameManager.witchInstance.GetY())
+            return false;
 
         // Se la strada nel tile attuale è sbarrata
         //if (!playerTile.getDirection(dir)) Debug.Log("Il playertile è chiuso a " + dir);
@@ -104,9 +108,9 @@ public class MovementManager {
 
     public void movePlayer(Direction dir)
     {
+        //Debug.Log(GameManager.turno+" "+TileMovement.canRot + " " + MoveWarpTiles.animating);
         if (GameManager.turno == Turno.strega) return;
         if (MovePlayer.moving || !TileMovement.canRot || MoveWarpTiles.animating) return;
-        //Debug.Log("Ciao");
 
         int x = player.getX();
         int y = player.getY();
@@ -135,18 +139,17 @@ public class MovementManager {
 
             // Scopri i tile
 
-            GameManager.movementManagerInstance.getNextTile(x, y, Direction.nord).setFog(false);
-            GameManager.movementManagerInstance.getNextTile(x, y, Direction.sud).setFog(false);
-            GameManager.movementManagerInstance.getNextTile(x, y, Direction.est).setFog(false);
-            GameManager.movementManagerInstance.getNextTile(x, y, Direction.ovest).setFog(false);
+            getNextTile(x, y, Direction.nord).setFog(false);
+            getNextTile(x, y, Direction.sud).setFog(false);
+            getNextTile(x, y, Direction.est).setFog(false);
+            getNextTile(x, y, Direction.ovest).setFog(false);
 
-            // Muovi il giocatore
+            // Muovi il giocatore back end (muove da solo il front end)
 
             player.move(x, y, Movement.smooth);
 
-
-            if (!GameManager.cheatMode)
-                player.IncrementaMosseFatte();
+            //if (!GameManager.cheatMode)
+            player.IncrementaMosseFatte();
 
             GameManager.playerMovementEvent.Raise();
 

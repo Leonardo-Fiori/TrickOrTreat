@@ -5,28 +5,36 @@ using UnityEngine;
 public class CameraManagerIsometric : MonoBehaviour
 {
 
-    public GameObject player;
+    public GameObject subject;
     public float scrollSpeed = 10f;
     public float cameraDistance = 5f;
 
+    public float snappyness = 10f;
+
     Vector3 startPosition;
     Camera cam;
+
+    private GameObject fantoccio;
 
     private void Start()
     {
         cam = GetComponent<Camera>();
         startPosition = transform.position;
+        fantoccio = new GameObject();
+        fantoccio.transform.position = subject.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        transform.LookAt(player.transform);
+        //transform.LookAt(subject.transform);
+        fantoccio.transform.position = Vector3.Lerp(fantoccio.transform.position, subject.transform.position, Time.deltaTime * snappyness);
+        transform.LookAt(fantoccio.transform);
 
 
         // Da migliorare! Se la camera si avvicina troppo si blocca, questo è un tappo temporaneo per non farla buggare
-        if (transform.position == player.transform.position)
+        if (transform.position == subject.transform.position)
         {
             transform.position = startPosition;
         }

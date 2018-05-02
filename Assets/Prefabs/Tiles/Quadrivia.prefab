@@ -311,6 +311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5787d19002c3a5f4b9b12dec99a61d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x: 0
+  y: 0
 --- !u!114 &114512451565629194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -323,7 +325,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fogPrefab: {fileID: 1734745612233654, guid: 7641ebaaf6889e84592dc8fcb1864dc0, type: 2}
-  spotLight: {fileID: 1966719508460678, guid: ce7f547e0e324534995fb31c21e79031, type: 2}
 --- !u!114 &114818012871874576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -352,3 +353,5 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  x: 0
+  y: 0

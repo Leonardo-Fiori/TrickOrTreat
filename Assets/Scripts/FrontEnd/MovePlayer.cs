@@ -20,6 +20,13 @@ public class MovePlayer : MonoBehaviour {
 
     IEnumerator moveTowards(Vector3 finalPos)
     {
+
+        GameObject temp = new GameObject();
+        temp.transform.position = finalPos;
+        transform.LookAt(temp.transform);
+        transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
+        Destroy(temp);
+
         float counter = 0f;
 
         Vector3 originalPos = transform.position;

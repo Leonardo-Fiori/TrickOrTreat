@@ -29,8 +29,13 @@ public class TileHghlight : MonoBehaviour {
         bool est = (GameManager.movementManagerInstance.getNextTile(playerX, playerY, Direction.est).getPrefab() == gameObject);
         bool ovest = (GameManager.movementManagerInstance.getNextTile(playerX, playerY, Direction.ovest).getPrefab() == gameObject);
 
+        bool canMoveNord = GameManager.movementManagerInstance.canMove(Direction.nord);
+        bool canMoveSud = GameManager.movementManagerInstance.canMove(Direction.sud);
+        bool canMoveEst = GameManager.movementManagerInstance.canMove(Direction.est);
+        bool canMoveOvest = GameManager.movementManagerInstance.canMove(Direction.ovest);
+
         if (!tf.GetStatus())
-            if(on || sud || est || ovest || nord)
+            if(on || sud && canMoveSud || est && canMoveEst || ovest && canMoveOvest || nord && canMoveNord)
                 mr.material.color = destinationColor;
     }
 

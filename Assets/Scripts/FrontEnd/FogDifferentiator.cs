@@ -6,6 +6,7 @@ public class FogDifferentiator : MonoBehaviour {
 
     private static int luciAttive = 0;
     public int maxLuciAttive = 2;
+    public bool hasLights = true;
 
 	// Use this for initialization
 	void Start () {
@@ -20,16 +21,19 @@ public class FogDifferentiator : MonoBehaviour {
             transform.localScale *= Random.Range(1.1f, 1.2f);
         }
 
-        GameObject luci = transform.GetChild(0).gameObject;
+        if(hasLights == true)
+        {
+            GameObject luci = transform.GetChild(0).gameObject;
 
-        if (Random.Range(0f, 100f) > 80f && luciAttive < maxLuciAttive)
-        {
-            luci.SetActive(true);
-            luciAttive++;
-        }
-        else
-        {
-            luci.SetActive(false);
+            if (Random.Range(0f, 100f) > 80f && luciAttive < maxLuciAttive && luci != null)
+            {
+                luci.SetActive(true);
+                luciAttive++;
+            }
+            else
+            {
+                luci.SetActive(false);
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "Strega", menuName = "Strega", order = 3)]
 public class Strega : ScriptableObject {
@@ -14,6 +15,11 @@ public class Strega : ScriptableObject {
     private MoveWitch witchMover;
 
     /* Funzioni Get() e Set() */
+
+    public void ResetMosseFatte()
+    {
+        mosseFatte = 0;
+    }
 
     public int GetMossePerTurno()
     {
@@ -70,15 +76,30 @@ public class Strega : ScriptableObject {
 
     public void Move()
     {
+        if (GameManager.cheatMode)
+        {
+            mosseFatte = 0;
 
-        //Debug.Log(mosseFatte);
-        // gestiscila come ti pare, basta che io possa chiamare questa funzione dal gamemanager o dal movementmanager
+            GameManager.cameraManagerInstance.subject = GameManager.playerPrefabInstance;
 
-        // <-- INSERT YOUR CODE HERE DODOZ, SHOW ME YOUR SKILLZ <3
+            GameManager.turno = Turno.giocatore;
+
+            return;
+        }
 
         // coordinate del player
         int playerX = GameManager.playerInstance.getX();
         int playerY = GameManager.playerInstance.getY();
+
+        if (x == playerX && y == playerY) // Il giocatore ha perso
+        {
+            GameManager.instance.Restart();
+            return;
+        }
+
+        // gestiscila come ti pare, basta che io possa chiamare questa funzione dal gamemanager o dal movementmanager
+
+        // <-- INSERT YOUR CODE HERE DODOZ, SHOW ME YOUR SKILLZ <3
 
         // mi salvo temporaneamente queste tile per il check del movimento strega
         MapTile nord = GameManager.movementManagerInstance.getNextTile(x, y, Direction.nord);
@@ -153,9 +174,20 @@ public class Strega : ScriptableObject {
 
         witchMover.Move(x, y, Movement.smooth); // Alla fine, aggiorna il front end con questa chiamata
 
-        if(mosseFatte >= mossePerTurno)
+        if (x == playerX && y == playerY) // Il giocatore ha perso
+        {
+            GameManager.turno = Turno.giocatore;
+            mosseFatte = 0;
+            SceneManager.LoadScene("Main");
+            return;
+        }
+
+        if (mosseFatte >= mossePerTurno)
         {
             mosseFatte = 0;
+
+            GameManager.cameraManagerInstance.subject = GameManager.playerPrefabInstance;
+
             GameManager.turno = Turno.giocatore;
             //Debug.Log("Strega: turno del giocatore");
         }

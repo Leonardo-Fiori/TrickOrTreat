@@ -83,6 +83,8 @@ public class TileMovement : MonoBehaviour
         for(float i = 0; i < rotationSpeed; i++)
         {
             transform.Rotate(0f, angleRot / rotationSpeed, 0f);
+            if(playerIsOnTile)
+                playerPrefab.transform.Rotate(0f, angleRot / rotationSpeed, 0f);
             yield return new WaitForFixedUpdate();
         }
 

@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     // Riferimenti statici pubblici ai componenti
+    public static GameManager instance;
+
     public static Mappa mapInstance;
     public static MovementManager movementManagerInstance;
 
@@ -25,6 +27,8 @@ public class GameManager : MonoBehaviour {
     public static SOEvent playerMovementEvent;
 
     public static float tileDistance;
+
+    public static CameraManagerIsometric cameraManagerInstance;
 
     // Valori pubblici di configurazione
     public int dimensioneMappa = 7;
@@ -44,6 +48,8 @@ public class GameManager : MonoBehaviour {
 
     public SOEvent eventoMovimento;
 
+    public CameraManagerIsometric cameraManager;
+
     // Prefabs per generazione mappa
     public GameObject prefabQuadrivia;
     public GameObject prefabCorridoio;
@@ -54,6 +60,11 @@ public class GameManager : MonoBehaviour {
     private static GameObject[] frontEndTileInstances;
 
     void Start () {
+
+        instance = this;
+
+        cameraManagerInstance = cameraManager;
+
         tileDistance = distanzaTraTile;
 
         playerMovementEvent = eventoMovimento;
@@ -84,6 +95,54 @@ public class GameManager : MonoBehaviour {
         spawnFrontEnd();
     }
 
+    public void Restart()
+    {
+        playerInstance.ResetMosseFatte();
+        witchInstance.ResetMosseFatte();
+        turno = Turno.giocatore;
+        MovePlayer.moving = false;
+
+        foreach(GameObject tile in frontEndTileInstances)
+        {
+            Destroy(tile);
+        }
+
+        SceneManager.LoadScene("Main");
+    }
+
+    public GameObject GetFrontEndTilePrefab(TileType tileType)
+    {
+        GameObject prefab = null;
+
+        if (tileType == TileType.quadrivio)
+            prefab = prefabQuadrivia;
+        if (tileType == TileType.trivio)
+            prefab = prefabTrivia;
+        if (tileType == TileType.angolo)
+            prefab = prefabAngolo;
+        if (tileType == TileType.corridoio)
+            prefab = prefabCorridoio;
+
+        return prefab;
+    }
+
+    public Quaternion GetFrontEndTileRotation(GameObject prefab, Rotation tileRotation)
+    {
+        Quaternion rotazione = prefab.transform.rotation;
+
+        float rotazioneY = Mathf.Floor(prefab.transform.rotation.eulerAngles.y / 10f) * 10f;
+        if (tileRotation == Rotation.su)
+            rotazione = prefab.transform.rotation;
+        if (tileRotation == Rotation.giu)
+            rotazione = Quaternion.Euler(0, rotazioneY + 180, 0);
+        if (tileRotation == Rotation.destra)
+            rotazione = Quaternion.Euler(0, rotazioneY + 90, 0);
+        if (tileRotation == Rotation.sinistra)
+            rotazione = Quaternion.Euler(0, rotazioneY - 90, 0);
+
+        return rotazione;
+    }
+
     // Spawna il frontend dopo aver preparato il back end
     private void spawnFrontEnd()
     {
@@ -96,29 +155,14 @@ public class GameManager : MonoBehaviour {
 
                 Vector3 posizione = new Vector3(i * distanzaTraTile, 0f, j * distanzaTraTile);
 
-                GameObject prefab = null;
-                if (tileType == TileType.quadrivio)
-                    prefab = prefabQuadrivia;
-                if (tileType == TileType.trivio)
-                    prefab = prefabTrivia;
-                if (tileType == TileType.angolo)
-                    prefab = prefabAngolo;
-                if (tileType == TileType.corridoio)
-                    prefab = prefabCorridoio;
+                GameObject prefab = GetFrontEndTilePrefab(tileType);
 
-                Quaternion rotazione = prefab.transform.rotation;
-                float rotazioneY = Mathf.Floor(prefab.transform.rotation.eulerAngles.y/10f)*10f;
-                if (tileRotation == Rotation.su)
-                    rotazione = prefab.transform.rotation;
-                if (tileRotation == Rotation.giu)
-                    rotazione = Quaternion.Euler(0, rotazioneY + 180, 0);
-                if (tileRotation == Rotation.destra)
-                    rotazione = Quaternion.Euler(0, rotazioneY + 90, 0);
-                if (tileRotation == Rotation.sinistra)
-                    rotazione = Quaternion.Euler(0, rotazioneY - 90, 0);
+                Quaternion rotazione = GetFrontEndTileRotation(prefab, tileRotation);
 
+                //print(prefab + " " + rotazione + " " + posizione);
                 GameObject tile = Instantiate(prefab, posizione, rotazione);
                 mapInstance.getTile(i, j).setPrefab(tile);
+                //print(tile);
 
                 TileCoords.SetX(tile, i);
                 TileCoords.SetY(tile, j);
@@ -202,7 +246,8 @@ public class GameManager : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                SceneManager.LoadScene("Main");
+                Restart();
+                return;
             }
 
             if (Input.GetKeyDown(KeyCode.W))

@@ -13,6 +13,8 @@ public class MoveWarpTiles : EventListener {
     bool tileLatoSopra;
     bool tileLatoSotto;
 
+    GameObject fantoccio;
+
     Vector3 originalPosition;
 
     bool warped = false;
@@ -138,6 +140,14 @@ public class MoveWarpTiles : EventListener {
     {
         //transform.position = destination;
         //StopCoroutine("TileWarpAnimation");
+        TileType tileType = GameManager.mapInstance.getTile(x, y).getTileType();
+        Rotation tileRotation = GameManager.mapInstance.getTile(x, y).getTileRotation();
+
+        GameObject tile = GameManager.instance.GetFrontEndTilePrefab(tileType);
+        Quaternion rotation = GameManager.instance.GetFrontEndTileRotation(tile, tileRotation);
+
+        //fantoccio = Instantiate(tile, transform.position, rotation);
+
         StartCoroutine(TileWarpAnimation(destination));
         warped = true;
     }
@@ -172,6 +182,7 @@ public class MoveWarpTiles : EventListener {
 
         if (warped && (playerX != warpedTo.x || playerY != warpedTo.y))
         {
+            //Destroy(fantoccio);
             MoveMeBack();
         }
 

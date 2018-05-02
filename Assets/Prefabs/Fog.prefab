@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198774220156185694}
   - component: {fileID: 199066866902024304}
   - component: {fileID: 108231663736623674}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle Lights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 198435075561634104}
   - component: {fileID: 199151636781428448}
   - component: {fileID: 114363662535209396}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLuciAttive: 2
+  hasLights: 1
 --- !u!198 &198435075561634104
 ParticleSystem:
   m_ObjectHideFlags: 1

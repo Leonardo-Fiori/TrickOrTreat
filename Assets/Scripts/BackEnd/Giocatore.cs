@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 /* Mantiene i dati pubblici e privati del giocatore,
  * è instanziabile come scriptable obj dall'editor, deve essere passato al gameManager per far iniziare la partita.
@@ -46,7 +47,9 @@ public class Giocatore : ScriptableObject {
 
             // uso il prefab per chiamare il movimento nel back end perchè essendo un mono beahviour ha la invoke!
             // InvokeMovement -> Move backend -> Move -> InvokeMovement
-            GameManager.witchPrefabInstance.GetComponent<MoveWitch>().InvokeMovement(0.5f);
+            GameManager.cameraManagerInstance.subject = GameManager.witchPrefabInstance;
+
+            GameManager.witchPrefabInstance.GetComponent<MoveWitch>().InvokeMovement(.8f);
         }
     }
 
@@ -87,5 +90,11 @@ public class Giocatore : ScriptableObject {
 
         // Front end
         playerMover.move(x, y, mov);
+
+        if (GameManager.mapInstance.getTile(x, y).IsUscita())
+        {
+            GameManager.instance.Restart();
+            return;
+        }
     }
 }

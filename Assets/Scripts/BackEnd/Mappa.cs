@@ -17,6 +17,8 @@ namespace UnityEngine
         private Tileset tileSet;
         public int dim;
         private const int DEF_DIM = 7;
+        private int uscitaX = -1;
+        private int uscitaY = -1;
 
         public Mappa(int size)
         {
@@ -104,6 +106,8 @@ namespace UnityEngine
 
         public void randomize()
         {
+            // Spawn mappa
+
             Random.InitState((int)System.DateTime.Now.Ticks);
             for (int i = 0; i < dim; i++)
             {
@@ -116,7 +120,43 @@ namespace UnityEngine
             int center = (dim / 2);
             tiles[center, center] = new MapTile(center, center, TileType.quadrivio, Rotation.su);
 
-            //Debug.Log(show());
+            // Anti lockdown spawn
+
+            while (!tiles[center + 1, center].getDirection(Direction.ovest))
+            {
+                tiles[center + 1, center].rotate(true);
+            }
+
+            while (!tiles[center - 1, center].getDirection(Direction.est))
+            {
+                tiles[center - 1, center].rotate(true);
+            }
+
+            while (!tiles[center, center + 1].getDirection(Direction.sud))
+            {
+                tiles[center, center + 1].rotate(true);
+            }
+
+            while (!tiles[center, center - 1].getDirection(Direction.nord))
+            {
+                tiles[center, center - 1].rotate(true);
+            }
+
+
+            // Posizionamento uscita
+
+            uscitaX = Random.Range(0, dim - 1);
+            uscitaY = Random.Range(0, dim - 1);
+            while (uscitaX >= center - 1 && uscitaX <= center + 1 && uscitaY >= center - 1 && uscitaY <= center + 1)
+            {
+                uscitaX = Random.Range(0, dim - 1);
+                uscitaY = Random.Range(0, dim - 1);
+            }
+
+            tiles[uscitaX, uscitaY].SetUscita(true);
+
+            Debug.Log("USCITA: " + uscitaX + " " + uscitaY);
+
         }
 
         // Restituisce uno specifico tile

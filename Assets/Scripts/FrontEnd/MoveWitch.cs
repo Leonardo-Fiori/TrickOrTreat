@@ -16,13 +16,11 @@ public class MoveWitch : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.P))
             {
-                transform.localScale = new Vector3(1f, 3f, 1f);
-                transform.GetChild(0).gameObject.SetActive(true);
+                
             }
             if (Input.GetKeyDown(KeyCode.O))
             {
-                transform.localScale = new Vector3(1f, 1f, 1f);
-                transform.GetChild(0).gameObject.SetActive(false);
+                
             }
         }
     }
@@ -32,6 +30,13 @@ public class MoveWitch : MonoBehaviour {
         float counter = 0f;
 
         Vector3 originalPos = transform.position;
+
+        // DA RIVEDERE, PROVA, ORIENTA LA STREGA VERSO DESTINAZIONE
+        GameObject temp = new GameObject();
+        temp.transform.position = finalPos;
+        transform.LookAt(temp.transform);
+        transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
+        Destroy(temp);
 
         moving = true;
         while (transform.position != finalPos)
@@ -84,5 +89,4 @@ public class MoveWitch : MonoBehaviour {
             Invoke("MoveBackEnd", traQuanto);
         }
     }
-
 }

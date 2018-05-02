@@ -11,11 +11,23 @@ public class MapTile
     private int x;
     private int y;
 
+    private bool uscita = false;
+
     private Rotation rotation;
     private TileType type;
 
     private bool fog = true;
     private GameObject frontEndPrefab;
+
+    public void SetUscita(bool isUscita)
+    {
+        uscita = isUscita;
+    }
+
+    public bool IsUscita()
+    {
+        return uscita;
+    }
 
     public void setPrefab(GameObject prefab)
     {
@@ -225,8 +237,6 @@ public class MapTile
             else if (rotation == Rotation.destra)
                 rotation = Rotation.su;
         }
-
-        GameManager.playerInstance.IncrementaMosseFatte();
 
         //Debug.Log(rotation);
     }
