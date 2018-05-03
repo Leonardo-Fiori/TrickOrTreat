@@ -11,10 +11,14 @@ public class CameraManagerIsometric : MonoBehaviour
     private Turno turno;
     public float scrollSpeed = 10f;
     public float cameraDistance = 5f;
+    public float rotationSpeed = 1f;
 
+    public bool canRotate = true;
+    public bool canUpDown = false;  // sconsiglio caldamente l'attivazione ( buggatino)
     public float snappyness = 10f;
 
     Vector3 startPosition;
+    Vector3 cameraOffset;
     Camera cam;
 
     private GameObject fantoccio;
@@ -47,25 +51,45 @@ public class CameraManagerIsometric : MonoBehaviour
         startPosition = transform.position;
         fantoccio = new GameObject();
         fantoccio.transform.position = subject.transform.position;
+        cameraOffset = transform.position - fantoccio.transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
+        // check per far ruotare la camera
+        if (Input.GetMouseButton(2) && canRotate)
+        {
+            CameraRotation();
+        }
 
-        //transform.LookAt(subject.transform);
+        if (transform.position.y <= 2) transform.position = new Vector3(transform.position.x, 2.1f, transform.position.z);  // check perche la telecamera non rotei troppo in basso
+
+        transform.LookAt(subject.transform);
         fantoccio.transform.position = Vector3.Lerp(fantoccio.transform.position, subject.transform.position, Time.deltaTime * snappyness);
         transform.LookAt(fantoccio.transform);
-
-
-        // Da migliorare! Se la camera si avvicina troppo si blocca, questo è un tappo temporaneo per non farla buggare
-        if (transform.position == subject.transform.position)
-        {
-            transform.position = startPosition;
-        }
 
         cam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * scrollSpeed;
         if (cam.orthographicSize <= 0) cam.orthographicSize = 0.1f;
 
+    }
+
+    void CameraRotation()
+    {
+
+        Quaternion camTurnY = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotationSpeed, Vector3.up);   // ruota la camera in base alla posizione del mouse
+        
+        if (canUpDown)
+        {
+            Quaternion camTurnX = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * rotationSpeed, Vector3.right);   // questo è quello per farla andare su e giù
+            cameraOffset = camTurnY * camTurnX * cameraOffset;  // usa questa se voglio poter roteare anche su o giu (booleana modificabile solo da editor)
+        }
+        else
+        {
+            cameraOffset = camTurnY * cameraOffset; // altrimenti roteo solo intorno al giocatore
+        }
+        Vector3 newPos = fantoccio.transform.position + cameraOffset;
+
+        transform.position = Vector3.Lerp(transform.position, newPos, rotationSpeed);
     }
 }
