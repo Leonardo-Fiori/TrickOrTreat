@@ -107,6 +107,9 @@ public class GameManager : MonoBehaviour {
         turno = Turno.giocatore;
         Giocatore.chiaviRaccolte = 0;
         MovePlayer.moving = false;
+        MoveWitch.moving = false;
+        TileMovement.canRot = true;
+        MoveWarpTiles.animating = false;
 
         foreach (GameObject tile in frontEndTileInstances)
         {
@@ -248,6 +251,7 @@ public class GameManager : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.C))
             {
                 cheatMode = !cheatMode;
+                print("Cheatmode: " + cheatMode);
             }
 
             if (Input.GetKeyDown(KeyCode.R))
