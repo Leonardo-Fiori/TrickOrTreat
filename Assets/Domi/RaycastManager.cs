@@ -19,7 +19,7 @@ public class RaycastManager : MonoBehaviour
     // dir va cambiato perchè mi fa sia da controllo sia da velocità di rotazione
     void Update()
     {
-        if ((Input.GetMouseButtonDown(0) || (Input.GetMouseButtonDown(1))) && TileMovement.canRot && PlayerOnTileMovement.canRot && !MovePlayer.moving)
+        if ((Input.GetMouseButtonUp(0) || (Input.GetMouseButtonUp(1))) && TileMovement.canRot && PlayerOnTileMovement.canRot && !MovePlayer.moving)
         {
             bool clockwise = false;
 
@@ -27,13 +27,13 @@ public class RaycastManager : MonoBehaviour
             // dir va cambiato perchè mi fa sia da controllo sia da velocità di rotazione
 
             int dir = 0;
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonUp(0))
             {
                 clockwise = true;
                 angleRot = 90;
                 dir = 2;
             }
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonUp(1))
             {
                 clockwise = false;
                 angleRot = -90;
