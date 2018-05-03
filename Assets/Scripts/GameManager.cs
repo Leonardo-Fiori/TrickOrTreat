@@ -97,12 +97,17 @@ public class GameManager : MonoBehaviour {
 
     public void Restart()
     {
+        Invoke("ReloadScene", 1f);
+    }
+
+    private void ReloadScene()
+    {
         playerInstance.ResetMosseFatte();
         witchInstance.ResetMosseFatte();
         turno = Turno.giocatore;
         MovePlayer.moving = false;
 
-        foreach(GameObject tile in frontEndTileInstances)
+        foreach (GameObject tile in frontEndTileInstances)
         {
             Destroy(tile);
         }

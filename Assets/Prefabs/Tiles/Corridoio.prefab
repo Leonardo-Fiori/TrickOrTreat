@@ -214,6 +214,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fogPrefab: {fileID: 1734745612233654, guid: 7641ebaaf6889e84592dc8fcb1864dc0, type: 2}
+  prefabUscita: {fileID: 1678658033164876, guid: 309bf1da01c83cc409b782908e59ab47,
+    type: 2}
 --- !u!114 &114290742117843300
 MonoBehaviour:
   m_ObjectHideFlags: 1

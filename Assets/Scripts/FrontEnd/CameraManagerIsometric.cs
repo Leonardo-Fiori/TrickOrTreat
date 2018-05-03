@@ -5,7 +5,10 @@ using UnityEngine;
 public class CameraManagerIsometric : MonoBehaviour
 {
 
-    public GameObject subject;
+    public GameObject subject1;
+    public GameObject subject2;
+    private GameObject subject;
+    private Turno turno;
     public float scrollSpeed = 10f;
     public float cameraDistance = 5f;
 
@@ -16,8 +19,30 @@ public class CameraManagerIsometric : MonoBehaviour
 
     private GameObject fantoccio;
 
+    private void Switch()
+    {
+        if (turno == Turno.strega)
+        {
+            turno = Turno.giocatore;
+            subject = subject1;
+        }
+        else
+        {
+            turno = Turno.strega;
+            subject = subject2;
+        }
+    }
+
+    public void SwitchSubject()
+    {
+        Invoke("Switch", .5f);
+    }
+
     private void Start()
     {
+        turno = Turno.giocatore;
+        subject = subject1;
+
         cam = GetComponent<Camera>();
         startPosition = transform.position;
         fantoccio = new GameObject();

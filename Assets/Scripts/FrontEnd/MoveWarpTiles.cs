@@ -148,7 +148,7 @@ public class MoveWarpTiles : EventListener {
 
         //fantoccio = Instantiate(tile, transform.position, rotation);
 
-        StartCoroutine(TileWarpAnimation(destination));
+        StartCoroutine(TileWarpMoveAnimation(destination));
         warped = true;
     }
 
@@ -156,7 +156,7 @@ public class MoveWarpTiles : EventListener {
     {
         //transform.position = originalPosition;
         //StopCoroutine("TileWarpAnimation");
-        StartCoroutine(TileWarpAnimation(originalPosition));
+        StartCoroutine(TileWarpMoveAnimation(originalPosition));
         warped = false;
     }
 
@@ -190,6 +190,86 @@ public class MoveWarpTiles : EventListener {
         {
             MoveMyOppositesToMe();
         }
+    }
+
+    private IEnumerator TileWarpMoveAnimation(Vector3 destination)
+    {
+        animating = true;
+
+        Vector3 endPosition = transform.position + (Vector3.up * 2f);
+
+        float counter = 0f;
+
+        while (transform.position != endPosition)
+        {
+            counter += Time.deltaTime;
+
+            float y = Mathf.Lerp(transform.position.y, endPosition.y, counter);
+
+            Vector3 newTransform = new Vector3(transform.position.x, y, transform.position.z);
+
+            if (Mathf.Abs(Vector3.Distance(newTransform, endPosition)) <= 0.01f)
+            {
+                transform.position = endPosition;
+            }
+            else
+            {
+                transform.position = newTransform;
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        destination.y = endPosition.y;
+        endPosition = destination;
+
+        counter = 0f;
+
+        while (transform.position != endPosition)
+        {
+            counter += Time.deltaTime;
+
+            float y = Mathf.Lerp(transform.position.y, endPosition.y, counter);
+
+            Vector3 newTransform = Vector3.Lerp(transform.position, endPosition, counter);
+
+            if (Mathf.Abs(Vector3.Distance(newTransform, endPosition)) <= 0.01f)
+            {
+                transform.position = endPosition;
+            }
+            else
+            {
+                transform.position = newTransform;
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        endPosition = transform.position + (Vector3.down * 2f);
+
+        counter = 0f;
+
+        while (transform.position != endPosition)
+        {
+            counter += Time.deltaTime;
+
+            float y = Mathf.Lerp(transform.position.y, endPosition.y, counter);
+
+            Vector3 newTransform = Vector3.Lerp(transform.position, endPosition, counter);
+
+            if (Mathf.Abs(Vector3.Distance(newTransform, endPosition)) <= 0.01f)
+            {
+                transform.position = endPosition;
+            }
+            else
+            {
+                transform.position = newTransform;
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        animating = false;
     }
 
     private IEnumerator TileWarpAnimation(Vector3 destination)

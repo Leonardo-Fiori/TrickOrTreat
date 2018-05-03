@@ -31,19 +31,6 @@ public class MovePlayer : MonoBehaviour {
 
         Vector3 originalPos = transform.position;
 
-        moving = true;
-        // Solleva il giocatore se necessario
-        if (Mathf.Abs(originalPos.x - finalPos.x) > 2 * factor || Mathf.Abs(originalPos.z - finalPos.z) > 2 * factor)
-        {
-            while (transform.position.y < offsetY + raiseHeight)
-            {
-                transform.position += Vector3.up * Time.deltaTime * raiseSpeed;
-                yield return null;
-            }
-
-            finalPos.y = transform.position.y;
-        }
-        // Spostalo a destinazione
         while (transform.position != finalPos)
         {
             counter += Time.deltaTime;
@@ -61,18 +48,88 @@ public class MovePlayer : MonoBehaviour {
             {
                 transform.position = newTransform;
             }
-            
-            yield return new WaitForEndOfFrame();
+
+            yield return new WaitForFixedUpdate();
         }
-        // Abbassalo
-        if (Mathf.Abs(originalPos.x - finalPos.x) > 2 * factor || Mathf.Abs(originalPos.z - finalPos.z) > 2 * factor)
+    }
+
+    IEnumerator warpTowards(Vector3 destination)
+    {
+        moving = true;
+
+        Vector3 endPosition = transform.position + (Vector3.up * 2f);
+
+        float counter = 0f;
+
+        while (transform.position != endPosition)
         {
-            while (transform.position.y > offsetY)
+            counter += Time.deltaTime;
+
+            float y = Mathf.Lerp(transform.position.y, endPosition.y, counter);
+
+            Vector3 newTransform = new Vector3(transform.position.x, y, transform.position.z);
+
+            if (Mathf.Abs(Vector3.Distance(newTransform, endPosition)) <= 0.01f)
             {
-                transform.position -= Vector3.up * Time.deltaTime * raiseSpeed;
-                yield return null;
+                transform.position = endPosition;
             }
+            else
+            {
+                transform.position = newTransform;
+            }
+
+            yield return new WaitForFixedUpdate();
         }
+
+        destination.y = endPosition.y;
+        endPosition = destination;
+
+        counter = 0f;
+
+        while (transform.position != endPosition)
+        {
+            counter += Time.deltaTime;
+
+            float y = Mathf.Lerp(transform.position.y, endPosition.y, counter);
+
+            Vector3 newTransform = Vector3.Lerp(transform.position, endPosition, counter);
+
+            if (Mathf.Abs(Vector3.Distance(newTransform, endPosition)) <= 0.01f)
+            {
+                transform.position = endPosition;
+            }
+            else
+            {
+                transform.position = newTransform;
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        endPosition = transform.position + (Vector3.down * 2f);
+
+        counter = 0f;
+
+        while (transform.position != endPosition)
+        {
+            counter += Time.deltaTime;
+
+            float y = Mathf.Lerp(transform.position.y, endPosition.y, counter);
+
+            Vector3 newTransform = Vector3.Lerp(transform.position, endPosition, counter);
+
+            if (Mathf.Abs(Vector3.Distance(newTransform, endPosition)) <= 0.01f)
+            {
+                transform.position = endPosition;
+            }
+            else
+            {
+                transform.position = newTransform;
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+
         moving = false;
     }
 
@@ -85,7 +142,16 @@ public class MovePlayer : MonoBehaviour {
         }
         else if(mov == Movement.smooth)
         {
-            StartCoroutine(moveTowards(new Vector3(x * factor, transform.position.y, z * factor)));
+            Vector3 destination = new Vector3(x * factor, transform.position.y, z * factor);
+
+            if(Mathf.Abs(Vector3.Distance(destination,transform.position)) >= 2 * factor)
+            {
+                StartCoroutine(warpTowards(destination));
+            }
+            else
+            {
+                StartCoroutine(moveTowards(destination));
+            }
         }
     }
 }

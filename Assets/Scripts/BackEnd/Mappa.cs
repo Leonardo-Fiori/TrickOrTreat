@@ -20,6 +20,16 @@ namespace UnityEngine
         private int uscitaX = -1;
         private int uscitaY = -1;
 
+        public int GetUscitaX()
+        {
+            return uscitaX;
+        }
+
+        public int GetUscitaY()
+        {
+            return uscitaY;
+        }
+
         public Mappa(int size)
         {
             dim = size;
@@ -120,7 +130,8 @@ namespace UnityEngine
             int center = (dim / 2);
             tiles[center, center] = new MapTile(center, center, TileType.quadrivio, Rotation.su);
 
-            // Anti lockdown spawn
+            // Anti lockdown 
+
 
             while (!tiles[center + 1, center].getDirection(Direction.ovest))
             {

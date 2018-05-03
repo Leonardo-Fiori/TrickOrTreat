@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   factor: 1
-  offsetY: 3
+  offsetY: 2
   eventEndAnim: {fileID: 11400000, guid: 31aaa2618d8b6624cb265430de8ea891, type: 2}
 --- !u!1 &661585421 stripped
 GameObject:
@@ -1052,7 +1052,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f9d607c6e7abb42aaf95271e2188b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subject: {fileID: 823130481}
+  subject1: {fileID: 823130481}
+  subject2: {fileID: 359589256}
   scrollSpeed: 65
   cameraDistance: 5
   snappyness: 10
@@ -1081,8 +1082,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 1
   quality: 1
-  blurArea: 10
-  maxBlurSize: 15
+  blurArea: 4.5
+  maxBlurSize: 10
   downsample: 0
   tiltShiftShader: {fileID: 4800000, guid: bf34d2a25450349699e8ae6456fa7ca9, type: 3}
 --- !u!1 &1857398067
@@ -1210,15 +1211,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 60e30185183fa7e4cb339f11a9899c5e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.005
+      value: 0.0035
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 60e30185183fa7e4cb339f11a9899c5e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.005
+      value: 0.0035
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 60e30185183fa7e4cb339f11a9899c5e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.005
+      value: 0.0035
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60e30185183fa7e4cb339f11a9899c5e, type: 3}

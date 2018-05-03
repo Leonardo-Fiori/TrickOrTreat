@@ -65,8 +65,8 @@ public class Strega : ScriptableObject {
     public void Spawn()
     {
         // da rivedere la posizione iniziale!
-        x = 0;
-        y = 0;
+        x = GameManager.mapInstance.GetUscitaX();
+        y = GameManager.mapInstance.GetUscitaY();
 
         // Aggiorno front end
         witchMover.Move(x, y, Movement.teleport);
@@ -80,7 +80,7 @@ public class Strega : ScriptableObject {
         {
             mosseFatte = 0;
 
-            GameManager.cameraManagerInstance.subject = GameManager.playerPrefabInstance;
+            GameManager.cameraManagerInstance.SwitchSubject();
 
             GameManager.turno = Turno.giocatore;
 
@@ -176,9 +176,7 @@ public class Strega : ScriptableObject {
 
         if (x == playerX && y == playerY) // Il giocatore ha perso
         {
-            GameManager.turno = Turno.giocatore;
-            mosseFatte = 0;
-            SceneManager.LoadScene("Main");
+            GameManager.instance.Restart();
             return;
         }
 
@@ -186,7 +184,7 @@ public class Strega : ScriptableObject {
         {
             mosseFatte = 0;
 
-            GameManager.cameraManagerInstance.subject = GameManager.playerPrefabInstance;
+            GameManager.cameraManagerInstance.SwitchSubject();
 
             GameManager.turno = Turno.giocatore;
             //Debug.Log("Strega: turno del giocatore");

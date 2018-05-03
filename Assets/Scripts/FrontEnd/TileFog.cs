@@ -83,10 +83,25 @@ public class TileFog : MonoBehaviour {
         }
     }
 
-    // Spawna la nebbia
-	void Start () {
+    public GameObject prefabUscita;
+
+    void SpawnUscita()
+    {
+        Instantiate(prefabUscita, transform.position, Quaternion.identity);
+    }
+
+    // Spawna la nebbia e il portale se è l'uscita
+    void Start () {
+
         x = TileCoords.GetX(gameObject);
         y = TileCoords.GetY(gameObject);
+
+        MapTile tile = GameManager.mapInstance.getTile(x, y);
+
+        if (tile.IsUscita())
+        {
+            SpawnUscita();
+        }
 
         transform.localScale = new Vector3(0f, 0f, 0f);
 

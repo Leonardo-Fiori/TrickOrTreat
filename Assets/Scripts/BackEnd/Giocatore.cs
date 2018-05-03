@@ -47,7 +47,7 @@ public class Giocatore : ScriptableObject {
 
             // uso il prefab per chiamare il movimento nel back end perchè essendo un mono beahviour ha la invoke!
             // InvokeMovement -> Move backend -> Move -> InvokeMovement
-            GameManager.cameraManagerInstance.subject = GameManager.witchPrefabInstance;
+            GameManager.cameraManagerInstance.SwitchSubject();
 
             GameManager.witchPrefabInstance.GetComponent<MoveWitch>().InvokeMovement(.8f);
         }
