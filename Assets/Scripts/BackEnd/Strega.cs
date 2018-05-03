@@ -8,6 +8,7 @@ public class Strega : ScriptableObject {
     private int x;
     private int y;
     private int mosseFatte;
+    public SOEvent eventoMovimento;
 
     [SerializeField] private int mossePerTurno;
 
@@ -189,6 +190,8 @@ public class Strega : ScriptableObject {
             GameManager.turno = Turno.giocatore;
             //Debug.Log("Strega: turno del giocatore");
         }
+
+        eventoMovimento.Raise();
 
         //Debug.Log("Strega: muovo...");
     }

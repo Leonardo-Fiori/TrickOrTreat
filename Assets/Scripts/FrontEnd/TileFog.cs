@@ -84,10 +84,17 @@ public class TileFog : MonoBehaviour {
     }
 
     public GameObject prefabUscita;
+    public GameObject prefabKey;
 
     void SpawnUscita()
     {
         Instantiate(prefabUscita, transform.position, Quaternion.identity);
+    }
+
+    void SpawnKey()
+    {
+        GameObject key = Instantiate(prefabKey, transform.position, Quaternion.identity);
+        key.GetComponent<KeyAnimation>().Initialize(x, y);
     }
 
     // Spawna la nebbia e il portale se è l'uscita
@@ -101,6 +108,11 @@ public class TileFog : MonoBehaviour {
         if (tile.IsUscita())
         {
             SpawnUscita();
+        }
+
+        if (tile.HasKey())
+        {
+            SpawnKey();
         }
 
         transform.localScale = new Vector3(0f, 0f, 0f);

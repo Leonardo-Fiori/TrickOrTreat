@@ -12,12 +12,23 @@ public class MapTile
     private int y;
 
     private bool uscita = false;
+    private bool key = false;
 
     private Rotation rotation;
     private TileType type;
 
     private bool fog = true;
     private GameObject frontEndPrefab;
+
+    public void SetKey(bool hasKey)
+    {
+        key = hasKey;
+    }
+
+    public bool HasKey()
+    {
+        return key;
+    }
 
     public void SetUscita(bool isUscita)
     {

@@ -8,8 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b53bcc72309806418860d5c55d86f7b, type: 3}
-  m_Name: StregaDefault
+  m_Script: {fileID: 11500000, guid: cb9947364c89ab944b0faa8e07812311, type: 3}
+  m_Name: WitchMoved
   m_EditorClassIdentifier: 
-  eventoMovimento: {fileID: 11400000, guid: ae830f143e6b4d54cbad27339ace55bc, type: 2}
-  mossePerTurno: 2
+  listeners: []

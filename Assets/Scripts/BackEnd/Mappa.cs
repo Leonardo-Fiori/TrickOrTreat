@@ -19,6 +19,8 @@ namespace UnityEngine
         private const int DEF_DIM = 7;
         private int uscitaX = -1;
         private int uscitaY = -1;
+        private bool[,] keys;
+        private int quanteChiavi = 2;
 
         public int GetUscitaX()
         {
@@ -36,6 +38,7 @@ namespace UnityEngine
             //Debug.Log(dim);
             if ((dim % 2) == 0) throw new Exception("Errore! Lato mappa non dispari!");
             tiles = new MapTile[dim, dim];
+            keys = new bool[dim, dim];
         }
 
         public Mappa() : this(DEF_DIM) { }
@@ -167,6 +170,22 @@ namespace UnityEngine
             tiles[uscitaX, uscitaY].SetUscita(true);
 
             Debug.Log("USCITA: " + uscitaX + " " + uscitaY);
+
+
+            // Spawna le chiavi
+
+            for(int i = 0; i < quanteChiavi; i++)
+            {
+                int y = Random.Range(0, dim - 1);
+                int x = Random.Range(0, dim - 1);
+                while ((x > ((dim / 2) - 1) && x < ((dim / 2) + 1)) && (y > ((dim / 2) - 1) && y < ((dim / 2) + 1)))
+                {
+                    y = Random.Range(0, dim - 1);
+                    x = Random.Range(0, dim - 1);
+                }
+                keys[x, y] = true;
+                tiles[x, y].SetKey(true);
+            }
 
         }
 

@@ -20,7 +20,7 @@ public class MovePlayer : MonoBehaviour {
 
     IEnumerator moveTowards(Vector3 finalPos)
     {
-
+        moving = true;
         GameObject temp = new GameObject();
         temp.transform.position = finalPos;
         transform.LookAt(temp.transform);
@@ -51,6 +51,7 @@ public class MovePlayer : MonoBehaviour {
 
             yield return new WaitForFixedUpdate();
         }
+        moving = false;
     }
 
     IEnumerator warpTowards(Vector3 destination)

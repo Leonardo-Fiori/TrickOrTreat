@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour {
         playerInstance.ResetMosseFatte();
         witchInstance.ResetMosseFatte();
         turno = Turno.giocatore;
+        Giocatore.chiaviRaccolte = 0;
         MovePlayer.moving = false;
 
         foreach (GameObject tile in frontEndTileInstances)

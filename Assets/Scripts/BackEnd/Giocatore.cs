@@ -15,9 +15,9 @@ public class Giocatore : ScriptableObject {
     private int y;
 
     private int mosseFatte;
-    [HideInInspector] public int chiaviRaccolte;
-    [HideInInspector] public bool powerup;
-    [HideInInspector] public int caramelleRaccolte;
+    public static int chiaviRaccolte;
+    public bool powerup;
+    public int caramelleRaccolte;
 
     [SerializeField] private int mossePerTurno;
     [SerializeField] private int caramelleNecessarie;
@@ -28,6 +28,7 @@ public class Giocatore : ScriptableObject {
 
     public void SetFrontEndPrefab(GameObject prefab)
     {
+        Debug.Log(chiaviRaccolte);
         frontEndPrefab = prefab;
         playerMover = prefab.GetComponent<MovePlayer>();
     }
@@ -91,7 +92,7 @@ public class Giocatore : ScriptableObject {
         // Front end
         playerMover.move(x, y, mov);
 
-        if (GameManager.mapInstance.getTile(x, y).IsUscita())
+        if (GameManager.mapInstance.getTile(x, y).IsUscita() && chiaviRaccolte >= chiaviNecessarie)
         {
             GameManager.instance.Restart();
             return;
