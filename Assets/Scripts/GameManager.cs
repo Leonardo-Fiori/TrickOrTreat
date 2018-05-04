@@ -100,6 +100,18 @@ public class GameManager : MonoBehaviour {
         Invoke("ReloadScene", 1f);
     }
 
+    public void Quit()  
+    {
+#if UNITY_EDITOR       
+
+        UnityEditor.EditorApplication.isPlaying = false;        // levo la playermode se fossi da editor
+#else
+     
+        Application.Quit();
+
+#endif
+    }
+
     private void ReloadScene()
     {
         playerInstance.ResetMosseFatte();
@@ -228,6 +240,17 @@ public class GameManager : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.D)) debugMode = !debugMode;
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Restart();
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Quit();
+        }
+
         if (debugMode)
         {
             if(Input.GetKeyDown(KeyCode.F))
@@ -254,11 +277,7 @@ public class GameManager : MonoBehaviour {
                 print("Cheatmode: " + cheatMode);
             }
 
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                Restart();
-                return;
-            }
+            
 
             if (Input.GetKeyDown(KeyCode.W))
             {

@@ -651,6 +651,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1002084998 stripped
+MeshRenderer:
+  m_PrefabParentObject: {fileID: 23285566046554338, guid: b34011cc938092541a4f6252c7da7653,
+    type: 2}
+  m_PrefabInternal: {fileID: 725383542}
 --- !u!1 &1269652166
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,6 +980,7 @@ GameObject:
   - component: {fileID: 1769690662}
   - component: {fileID: 1769690661}
   - component: {fileID: 1769690663}
+  - component: {fileID: 1769690664}
   m_Layer: 0
   m_Name: Camera Isometric
   m_TagString: MainCamera
@@ -1056,6 +1062,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f9d607c6e7abb42aaf95271e2188b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  renderers: {fileID: 1002084998}
   subject1: {fileID: 823130481}
   subject2: {fileID: 359589256}
   scrollSpeed: 65
@@ -1093,6 +1101,17 @@ MonoBehaviour:
   maxBlurSize: 10
   downsample: 0
   tiltShiftShader: {fileID: 4800000, guid: bf34d2a25450349699e8ae6456fa7ca9, type: 3}
+--- !u!114 &1769690664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1769690656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87aa69b93031b24459236d762160508c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1857398067
 GameObject:
   m_ObjectHideFlags: 0

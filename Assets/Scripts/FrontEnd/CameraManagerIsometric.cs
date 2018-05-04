@@ -12,7 +12,7 @@ public class CameraManagerIsometric : MonoBehaviour
     public float scrollSpeed = 10f;
     public float cameraDistance = 5f;
     public float rotationSpeed = 1f;
-
+    
     public bool canRotate = true;
     public bool canUpDown = false;  // sconsiglio caldamente l'attivazione ( buggatino)
     public float snappyness = 10f;
@@ -44,6 +44,8 @@ public class CameraManagerIsometric : MonoBehaviour
 
     private void Start()
     {
+        
+
         turno = Turno.giocatore;
         subject = subject1;
 
@@ -57,6 +59,7 @@ public class CameraManagerIsometric : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        
         // check per far ruotare la camera
         if (Input.GetMouseButton(2) && canRotate)
         {
