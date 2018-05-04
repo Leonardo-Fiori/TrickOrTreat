@@ -44,8 +44,6 @@ public class CameraManagerIsometric : MonoBehaviour
 
     private void Start()
     {
-        
-
         turno = Turno.giocatore;
         subject = subject1;
 
@@ -68,18 +66,19 @@ public class CameraManagerIsometric : MonoBehaviour
 
         if (transform.position.y <= 2) transform.position = new Vector3(transform.position.x, 2.1f, transform.position.z);  // check perche la telecamera non rotei troppo in basso
 
-        transform.LookAt(subject.transform);
+        //transform.LookAt(subject.transform);
         fantoccio.transform.position = Vector3.Lerp(fantoccio.transform.position, subject.transform.position, Time.deltaTime * snappyness);
         transform.LookAt(fantoccio.transform);
 
         cam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * scrollSpeed;
         if (cam.orthographicSize <= 0) cam.orthographicSize = 0.1f;
+        if (cam.orthographicSize >= 6) cam.orthographicSize = 6f;
 
     }
 
     void CameraRotation()
     {
-
+        
         Quaternion camTurnY = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotationSpeed, Vector3.up);   // ruota la camera in base alla posizione del mouse
         
         if (canUpDown)
@@ -91,8 +90,24 @@ public class CameraManagerIsometric : MonoBehaviour
         {
             cameraOffset = camTurnY * cameraOffset; // altrimenti roteo solo intorno al giocatore
         }
+
         Vector3 newPos = fantoccio.transform.position + cameraOffset;
 
         transform.position = Vector3.Lerp(transform.position, newPos, rotationSpeed);
+
+        /*
+        transform.RotateAround(fantoccio.transform.position, Vector3.up, rotationSpeed * Time.deltaTime * Input.GetAxis("Mouse X"));
+        transform.RotateAround(fantoccio.transform.position, Vector3.forward, -(rotationSpeed * Time.deltaTime * Input.GetAxis("Mouse Y"))/4f);
+        transform.RotateAround(fantoccio.transform.position, Vector3.back, (rotationSpeed * Time.deltaTime * Input.GetAxis("Mouse Y"))/2f);
+        transform.RotateAround(fantoccio.transform.position, Vector3.right, -(rotationSpeed * Time.deltaTime * Input.GetAxis("Mouse Y"))/4f);
+        transform.RotateAround(fantoccio.transform.position, Vector3.left, (rotationSpeed * Time.deltaTime * Input.GetAxis("Mouse Y"))/4f);
+        print(transform.rotation.eulerAngles.x);
+        if (transform.rotation.eulerAngles.x <= 360 && transform.rotation.eulerAngles.x >= 350)
+        {
+            print("ciao");
+            transform.rotation = Quaternion.Euler(new Vector3(0f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z));
+        }
+
+        //print(Input.GetAxis("Mouse X"));*/
     }
 }
