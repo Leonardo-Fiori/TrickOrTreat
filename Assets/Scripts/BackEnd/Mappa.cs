@@ -20,7 +20,12 @@ namespace UnityEngine
         private int uscitaX = -1;
         private int uscitaY = -1;
         private bool[,] keys;
-        private int quanteChiavi = 2;
+        private int quanteChiavi;
+
+        public int GetQuanteChiavi()
+        {
+            return quanteChiavi;
+        }
 
         public int GetUscitaX()
         {
@@ -49,6 +54,7 @@ namespace UnityEngine
             tileSet.quantiAngoli = set.quantiAngoli;
             tileSet.quantiCorridoi = set.quantiCorridoi;
             tileSet.quantiTrivia = set.quantiTrivia;
+            quanteChiavi = set.quanteChiavi;
         }
 
         public string show()
@@ -178,7 +184,7 @@ namespace UnityEngine
             {
                 int y = Random.Range(0, dim - 1);
                 int x = Random.Range(0, dim - 1);
-                while ((x > ((dim / 2) - 1) && x < ((dim / 2) + 1)) && (y > ((dim / 2) - 1) && y < ((dim / 2) + 1)))
+                while (!KeyLocationIsOk(x,y))
                 {
                     y = Random.Range(0, dim - 1);
                     x = Random.Range(0, dim - 1);
@@ -187,6 +193,20 @@ namespace UnityEngine
                 tiles[x, y].SetKey(true);
             }
 
+        }
+
+        private bool KeyLocationIsOk(int x, int y)
+        {
+            if ((x > ((dim / 2) - 2) && x < ((dim / 2) + 2)) && (y > ((dim / 2) - 2) && y < ((dim / 2) + 2)))
+                return false;
+
+            if (keys[x, y])
+                return false;
+
+            if (uscitaX == x && uscitaY == y)
+                return false;
+
+            return true;
         }
 
         // Restituisce uno specifico tile

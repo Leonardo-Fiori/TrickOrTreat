@@ -13,4 +13,5 @@ public class Tileset : ScriptableObject
     public int quantiCorridoi = 12;
     public int quantiAngoli = 12;
     public int quantiTrivia = 25;
+    public int quanteChiavi = 2;
 }

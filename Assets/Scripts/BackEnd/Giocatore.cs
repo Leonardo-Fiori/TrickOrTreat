@@ -15,13 +15,10 @@ public class Giocatore : ScriptableObject {
     private int y;
 
     private int mosseFatte;
-    public static int chiaviRaccolte;
-    public bool powerup;
-    public int caramelleRaccolte;
+    private int chiaviRaccolte;
 
     [SerializeField] private int mossePerTurno;
     [SerializeField] private int caramelleNecessarie;
-    [SerializeField] private int chiaviNecessarie;
 
     private GameObject frontEndPrefab;
     private MovePlayer playerMover;
@@ -36,6 +33,21 @@ public class Giocatore : ScriptableObject {
     public void ResetMosseFatte()
     {
         mosseFatte = 0;
+    }
+
+    public void ResetChiavi()
+    {
+        chiaviRaccolte = 0;
+    }
+
+    public void IncrementaChiavi()
+    {
+        chiaviRaccolte++;
+    }
+
+    public int GetChiavi()
+    {
+        return chiaviRaccolte;
     }
 
     public void IncrementaMosseFatte()
@@ -71,7 +83,7 @@ public class Giocatore : ScriptableObject {
 
     public int GetChiaviNecessarie()
     {
-        return chiaviNecessarie;
+        return GameManager.mapInstance.GetQuanteChiavi();
     }
 
     public int getX()
@@ -92,7 +104,7 @@ public class Giocatore : ScriptableObject {
         // Front end
         playerMover.move(x, y, mov);
 
-        if (GameManager.mapInstance.getTile(x, y).IsUscita() && chiaviRaccolte >= chiaviNecessarie)
+        if (GameManager.mapInstance.getTile(x, y).IsUscita() && chiaviRaccolte >= GameManager.mapInstance.GetQuanteChiavi())
         {
             GameManager.instance.Restart();
             return;

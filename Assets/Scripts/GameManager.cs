@@ -102,14 +102,15 @@ public class GameManager : MonoBehaviour {
 
     public void Quit()  
     {
-#if UNITY_EDITOR       
+        #if UNITY_EDITOR       
 
         UnityEditor.EditorApplication.isPlaying = false;        // levo la playermode se fossi da editor
-#else
+        
+        #else
      
         Application.Quit();
 
-#endif
+        #endif
     }
 
     private void ReloadScene()
@@ -117,7 +118,7 @@ public class GameManager : MonoBehaviour {
         playerInstance.ResetMosseFatte();
         witchInstance.ResetMosseFatte();
         turno = Turno.giocatore;
-        Giocatore.chiaviRaccolte = 0;
+        playerInstance.ResetChiavi();
         MovePlayer.moving = false;
         MoveWitch.moving = false;
         TileMovement.canRot = true;

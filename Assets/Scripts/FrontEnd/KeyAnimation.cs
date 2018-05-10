@@ -17,8 +17,7 @@ public class KeyAnimation : MonoBehaviour
             yield return null;
         }
 
-        Giocatore.chiaviRaccolte++;
-        Debug.Log(Giocatore.chiaviRaccolte);
+        GameManager.playerInstance.IncrementaChiavi();
         Destroy(gameObject);
     }
 
