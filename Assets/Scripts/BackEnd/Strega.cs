@@ -15,6 +15,9 @@ public class Strega : ScriptableObject {
     private GameObject frontEndPrefab;
     private MoveWitch witchMover;
 
+    // Serve per l'ai, non toccare
+    private bool[,] visitedTiles;
+
     /* Funzioni Get() e Set() */
 
     public void ResetMosseFatte()
@@ -71,6 +74,12 @@ public class Strega : ScriptableObject {
 
         // Aggiorno front end
         witchMover.Move(x, y, Movement.teleport);
+
+        int dim = GameManager.mapInstance.dim;
+        visitedTiles = new bool[dim,dim];
+        for (int i = 0; i < dim; i++)
+            for (int j = 0; j < dim; j++)
+                visitedTiles[i, j] = false;
     }
 
     /* Chiamo la move per muovere la strega, gestisce l'AI */
@@ -171,6 +180,9 @@ public class Strega : ScriptableObject {
         x = bestTileX;
         y = bestTileY;
 
+        int dim = GameManager.mapInstance.dim;
+        //Debug.Log(CalcDistanceToPlayer(GameManager.mapInstance.getTile(x,y)));
+
         mosseFatte++;
 
         witchMover.Move(x, y, Movement.smooth); // Alla fine, aggiorna il front end con questa chiamata
@@ -195,4 +207,25 @@ public class Strega : ScriptableObject {
 
         //Debug.Log("Strega: muovo...");
     }
+
+    /*
+    private int CalcDistanceToPlayer(MapTile tile)
+    {
+        int playerX = GameManager.playerInstance.getX();
+        int playerY = GameManager.playerInstance.getY();
+
+        if (tile.getX() == playerX && tile.getY() == playerY)
+            return 0;
+
+        if (visitedTiles[tile.getX(), tile.getY()]) return 1;
+        visitedTiles[tile.getX(), tile.getY()] = true;
+
+        int distanceNord = CalcDistanceToPlayer(GameManager.movementManagerInstance.getNextTile(x, y, Direction.nord));
+        int distanceSud = CalcDistanceToPlayer(GameManager.movementManagerInstance.getNextTile(x, y, Direction.sud));
+        int distanceEst = CalcDistanceToPlayer(GameManager.movementManagerInstance.getNextTile(x, y, Direction.est));
+        int distanceOvest = CalcDistanceToPlayer(GameManager.movementManagerInstance.getNextTile(x, y, Direction.ovest));
+
+        return 1 + Mathf.Min(distanceNord, distanceSud, distanceEst, distanceOvest);
+    }
+    */
 }

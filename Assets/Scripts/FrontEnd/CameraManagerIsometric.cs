@@ -16,6 +16,8 @@ public class CameraManagerIsometric : MonoBehaviour
     public bool canRotate = true;
     public bool canUpDown = false;  // sconsiglio caldamente l'attivazione ( buggatino)
     public float snappyness = 10f;
+    public float minZoom = 6f;
+    public float maxZoom = 2f;
 
     Vector3 startPosition;
     Vector3 cameraOffset;
@@ -71,8 +73,8 @@ public class CameraManagerIsometric : MonoBehaviour
         transform.LookAt(fantoccio.transform);
 
         cam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * scrollSpeed;
-        if (cam.orthographicSize <= 0) cam.orthographicSize = 0.1f;
-        if (cam.orthographicSize >= 6) cam.orthographicSize = 6f;
+        if (cam.orthographicSize <= maxZoom) cam.orthographicSize = maxZoom;
+        if (cam.orthographicSize >= minZoom) cam.orthographicSize = minZoom;
 
     }
 
