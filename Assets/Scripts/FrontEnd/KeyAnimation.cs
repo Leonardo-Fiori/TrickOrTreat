@@ -9,6 +9,8 @@ public class KeyAnimation : MonoBehaviour
     protected int y;
     private bool spawned;
 
+    public SOEvent eventoChiavePresa;
+
     IEnumerator despawnAnimation()
     {
         while (transform.localScale.x >= 0.1f)
@@ -57,6 +59,7 @@ public class KeyAnimation : MonoBehaviour
 
         if (x == wX && y == wY)
         {
+            eventoChiavePresa.Raise();
             Despawn();
         }
     }

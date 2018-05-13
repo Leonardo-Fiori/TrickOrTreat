@@ -8,10 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aa51ac8e6eeac5449d317dfb847f1cb, type: 3}
-  m_Name: TilesetDefault
+  m_Script: {fileID: 11500000, guid: cb9947364c89ab944b0faa8e07812311, type: 3}
+  m_Name: DangerousTilesUpdated
   m_EditorClassIdentifier: 
-  quantiCorridoi: 12
-  quantiAngoli: 12
-  quantiTrivia: 25
-  quanteChiavi: 2
+  listeners: []

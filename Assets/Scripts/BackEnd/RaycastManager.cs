@@ -47,6 +47,8 @@ public class RaycastManager : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
 
+                if (hit.transform.tag != "Tile") return;
+
                 //print("raycast  dir" + dir);
 
                 TileMovement clickedTile = hit.transform.GetComponent<TileMovement>();

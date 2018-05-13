@@ -38,11 +38,11 @@ public class WitchDangerAlert : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Enable();
+            Enable(true);
         }
         if (Input.GetKeyDown(KeyCode.AltGr))
         {
-            Disable();
+            Disable(true);
         }
     }
 
@@ -66,12 +66,12 @@ public class WitchDangerAlert : MonoBehaviour {
         if (nord || sud || est || ovest || (witchX == playerX && witchY == playerY))
         {
             print("on");
-            Enable();
+            Enable(true);
         }
         else
         {
             print("off");
-            Disable();
+            Disable(true);
         }
 	}
 
@@ -103,24 +103,60 @@ public class WitchDangerAlert : MonoBehaviour {
         }
     }
 
-    private void Disable()
+    private void Disable(bool instant)
     {
-        colorDest = colorStd;
-        vignetteDest = vignetteStd;
-        aberrDest = aberrStd;
-        grainDest = grainStd;
+        if (instant)
+        {
+            vignette.intensity = vignetteDanger;
+            aberr.intensity = aberrDanger;
+            vignette.color = colorDanger;
+            grain.intensity = grainDanger;
 
-        StartCoroutine(Anim());
+            pp.vignette.settings = vignette;
+            pp.chromaticAberration.settings = aberr;
+            pp.grain.settings = grain;
+
+            return;
+        }
+        else
+        {
+            colorDest = colorStd;
+            vignetteDest = vignetteStd;
+            aberrDest = aberrStd;
+            grainDest = grainStd;
+
+            StartCoroutine(Anim());
+
+            return;
+        }
     }
 
-    private void Enable()
+    private void Enable(bool instant)
     {
-        colorDest = colorDanger;
-        vignetteDest = vignetteDanger;
-        aberrDest = aberrDanger;
-        grainDest = grainDanger;
+        if (instant)
+        {
+            vignette.intensity = vignetteDanger;
+            aberr.intensity = aberrDanger;
+            vignette.color = colorDanger;
+            grain.intensity = grainDanger;
 
-        StartCoroutine(Anim());
+            pp.vignette.settings = vignette;
+            pp.chromaticAberration.settings = aberr;
+            pp.grain.settings = grain;
+
+            return;
+        }
+        else
+        {
+            colorDest = colorDanger;
+            vignetteDest = vignetteDanger;
+            aberrDest = aberrDanger;
+            grainDest = grainDanger;
+
+            StartCoroutine(Anim());
+
+            return;
+        }
     }
 
     private void OnDisable()

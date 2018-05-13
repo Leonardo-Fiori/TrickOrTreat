@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114540179919224464}
   - component: {fileID: 114290742117843300}
   - component: {fileID: 114726803398578098}
+  - component: {fileID: 114627181939857152}
   m_Layer: 0
   m_Name: Corridoio
   m_TagString: Tile
@@ -228,6 +229,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291fd5af556a8694b8f12b5353fb8ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  witchDangerColor: {r: 0, g: 1, b: 0.006896496, a: 0}
+  hilightColor: {r: 1, g: 0, b: 0, a: 0}
+  multiplier: 0.5
 --- !u!114 &114540179919224464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,6 +262,34 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   x: 0
   y: 0
+--- !u!114 &114627181939857152
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1395155642615840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd637ca8f1ad2be459f8ba321b1cc37c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventToListen: {fileID: 11400000, guid: aff7a233ca783844fae726b16ee64b19, type: 2}
+  whatToDo:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114290742117843300}
+        m_MethodName: OnDangerousTilesUpdated
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114726803398578098
 MonoBehaviour:
   m_ObjectHideFlags: 1

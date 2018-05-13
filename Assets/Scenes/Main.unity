@@ -51,7 +51,7 @@ LightmapSettings:
     m_AlbedoBoost: 1
     m_TemporalCoherenceThreshold: 1
     m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 1
+    m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
     serializedVersion: 9
@@ -59,14 +59,14 @@ LightmapSettings:
     m_BakeResolution: 40
     m_TextureWidth: 1024
     m_TextureHeight: 1024
-    m_AO: 1
+    m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
     m_Padding: 2
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
-    m_TextureCompression: 1
+    m_TextureCompression: 0
     m_FinalGather: 0
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 256
@@ -144,6 +144,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 359589263}
+        m_MethodName: OnWitchMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &359589258
@@ -164,6 +175,35 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 60e30185183fa7e4cb339f11a9899c5e, type: 3}
   m_PrefabInternal: {fileID: 1931778986}
+--- !u!114 &359589263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 359589256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d547830bcaeda8d41bee2db7c727401c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dangerousTilesUpdatedEvent: {fileID: 11400000, guid: aff7a233ca783844fae726b16ee64b19,
+    type: 2}
+  mouseOverWitch: 0
+  toggled: 0
+--- !u!64 &359589264
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 359589256}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 60e30185183fa7e4cb339f11a9899c5e, type: 3}
 --- !u!1001 &725383542
 Prefab:
   m_ObjectHideFlags: 0
@@ -718,10 +758,10 @@ MonoBehaviour:
   strega: {fileID: 11400000, guid: 7b78542fcd6cb494f9fed506bd9463ab, type: 2}
   giocatore: {fileID: 11400000, guid: 0309e24288c4c2747ac3b20f96e9fdb6, type: 2}
   pp: {fileID: 11400000, guid: f72eaca0e0ca4e548a7723853f6aad2c, type: 2}
-  grainDanger: 0
-  vignetteDanger: 0
-  aberrDanger: 0
-  colorDanger: {r: 0, g: 0, b: 0, a: 0}
+  grainDanger: 0.9
+  vignetteDanger: 0.9
+  aberrDanger: 0.9
+  colorDanger: {r: 1, g: 0, b: 0, a: 0}
   grainStd: 0.001
   vignetteStd: 0.3
   aberrStd: 0.001
@@ -732,7 +772,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1769690656}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd637ca8f1ad2be459f8ba321b1cc37c, type: 3}
   m_Name: 
@@ -760,7 +800,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1769690656}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd637ca8f1ad2be459f8ba321b1cc37c, type: 3}
   m_Name: 
@@ -807,11 +847,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 60e30185183fa7e4cb339f11a9899c5e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 60e30185183fa7e4cb339f11a9899c5e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 60e30185183fa7e4cb339f11a9899c5e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -832,6 +872,14 @@ Prefab:
     - target: {fileID: 400000, guid: 60e30185183fa7e4cb339f11a9899c5e, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.0035
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 60e30185183fa7e4cb339f11a9899c5e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 60e30185183fa7e4cb339f11a9899c5e, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60e30185183fa7e4cb339f11a9899c5e, type: 3}

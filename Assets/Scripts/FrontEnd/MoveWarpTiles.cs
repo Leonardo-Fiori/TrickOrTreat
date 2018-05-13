@@ -23,8 +23,14 @@ public class MoveWarpTiles : EventListener {
 
     Dictionary<MoveWarpTiles, Vector3> opposti;
 
+    Color original;
+    MeshRenderer mr;
+
     private void Start()
     {
+        mr = GetComponent<MeshRenderer>();
+        original = mr.material.GetColor("_Color");
+
         warpedTo = new Vector2();
 
         dim = GameManager.mapInstance.dim - 1;
@@ -136,6 +142,12 @@ public class MoveWarpTiles : EventListener {
         throw new System.Exception("Non è stato possibile trovare il tile o i tile opposti! " + x + " " + y);
     }
 
+    private void MakeGhost()
+    {
+        Color transparent = new Color(original.r, original.g, original.b, 0.1f);
+        GetComponent<MeshRenderer>().material.SetColor("_Color",transparent);
+    }
+
     private void MoveMeTo(Vector3 destination)
     {
         //transform.position = destination;
@@ -147,6 +159,9 @@ public class MoveWarpTiles : EventListener {
         Quaternion rotation = GameManager.instance.GetFrontEndTileRotation(tile, tileRotation);
 
         //fantoccio = Instantiate(tile, transform.position, rotation);
+
+        // tile fantasma
+        MakeGhost();
 
         StartCoroutine(TileWarpMoveAnimation(destination));
         warped = true;

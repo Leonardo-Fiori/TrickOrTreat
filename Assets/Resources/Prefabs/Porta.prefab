@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4593156406827570}
   - component: {fileID: 114199931248389676}
   - component: {fileID: 114163803496291718}
+  - component: {fileID: 114406139046188168}
+  - component: {fileID: 114898272888237834}
   m_Layer: 0
   m_Name: Porta
   m_TagString: Untagged
@@ -210,3 +212,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77112aa7a4684c4d9a01c1bc5bc496e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114406139046188168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1431255955593858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e51bd7a01dfa644dab2704a712506be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114898272888237834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1431255955593858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd637ca8f1ad2be459f8ba321b1cc37c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventToListen: {fileID: 11400000, guid: 677fb50a6ce110949a5fc0776e0c2ef4, type: 2}
+  whatToDo:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114406139046188168}
+        m_MethodName: Think
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

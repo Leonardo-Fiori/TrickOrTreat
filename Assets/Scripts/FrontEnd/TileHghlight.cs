@@ -3,17 +3,60 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TileHghlight : MonoBehaviour {
+    public Color witchDangerColor;
+    public Color hilightColor;
+    public float multiplier = 0.5f;
+
     MeshRenderer mr;
-    Color originalColor;
-    Color destinationColor;
     TileFog tf;
+    TilesInDanger tiles;
+    private bool mouseOver = false;
+    private bool canMoveHere = false;
+    private bool inDanger = false;
+
+    private void Update()
+    {
+        Color dest = Color.black;
+
+        if (canMoveHere && mouseOver)
+        {
+            dest += hilightColor;
+        }
+
+        if (inDanger && (tiles.mouseOverWitch || tiles.toggled))
+        {
+            dest += witchDangerColor;
+        }
+
+        mr.material.SetColor("_EmissionColor", dest * multiplier);
+    }
 
     private void Start()
     {
         tf = GetComponent<TileFog>();
         mr = GetComponent<MeshRenderer>();
-        originalColor = mr.material.color;
-        destinationColor = mr.material.color + Color.red;
+        tiles = GameManager.witchPrefabInstance.GetComponent<TilesInDanger>();
+    }
+
+    public void OnDangerousTilesUpdated()
+    {
+        int x = TileCoords.GetX(gameObject);
+        int y = TileCoords.GetY(gameObject);
+
+        List<MapTile> tilesInDanger = tiles.tilesInDanger;
+
+        foreach(MapTile tile in tilesInDanger)
+        {
+            if(tile.getPrefab() == this.gameObject)
+            {
+                inDanger = true;
+                break;
+            }
+            else
+            {
+                inDanger = false;
+            }
+        }
     }
 
     private void OnMouseOver()
@@ -35,12 +78,22 @@ public class TileHghlight : MonoBehaviour {
         bool canMoveOvest = GameManager.movementManagerInstance.canMove(Direction.ovest);
 
         if (!tf.GetStatus())
-            if(on || sud && canMoveSud || est && canMoveEst || ovest && canMoveOvest || nord && canMoveNord)
-                mr.material.color = destinationColor;
+        {
+            if (on || sud && canMoveSud || est && canMoveEst || ovest && canMoveOvest || nord && canMoveNord)
+            {
+                canMoveHere = true;
+            }
+            else
+            {
+                canMoveHere = false;
+            }
+        }
+
+        mouseOver = true;
     }
 
     private void OnMouseExit()
     {
-        mr.material.color = originalColor;
+        mouseOver = false;
     }
 }

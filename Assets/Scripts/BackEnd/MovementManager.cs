@@ -48,6 +48,116 @@ public class MovementManager {
         return map.getTile(x,y);
     }
 
+    public List<MapTile> getNextTiles(int x, int y, Direction dir, int howMany)
+    {
+        List<MapTile> res = new List<MapTile>();
+
+        for(int i = 0; i < howMany; i++)
+        {
+            if (dir == Direction.nord)
+            {
+                y = (y + 1) % map.dim;
+            }
+            else if (dir == Direction.sud)
+            {
+                y = (y - 1) % map.dim;
+            }
+            else if (dir == Direction.est)
+            {
+                x = (x + 1) % map.dim;
+            }
+            else if (dir == Direction.ovest)
+            {
+                x = (x - 1) % map.dim;
+            }
+
+            if (y == -1) y = map.dim - 1;
+            if (x == -1) x = map.dim - 1;
+
+            res.Add(map.getTile(x, y));
+        }
+
+        return res;
+    }
+
+    public int[] TileDistance(int x1, int y1, int x2, int y2)
+    {
+        int xDist = 0;
+        int yDist = 0;
+        int left = 0;
+        int right = 0;
+        int countLeft = 0;
+        int countRight = 0;
+        int up = 0;
+        int down = 0;
+        int countUp = 0;
+        int countDown = 0;
+
+        // Conta orizzontalmente
+
+        right = x1;
+        while(right != x2)
+        {
+            if (right == x2)
+                break;
+
+            right = (right + 1) % map.dim;
+
+            if (right == -1) right = map.dim - 1;
+
+            countRight++;
+        }
+
+        left = x1;
+        while (left != x2)
+        {
+            if (left == x2)
+                break;
+
+            left = (left - 1) % map.dim;
+
+            if (left == -1) left = map.dim - 1;
+
+            countLeft++;
+        }
+
+        xDist = Mathf.Min(countLeft, countRight);
+
+        // Conta verticalmente
+
+        up = y1;
+        while (up != y2)
+        {
+            if (up == y2)
+                break;
+
+            up = (up + 1) % map.dim;
+
+            if (up == -1) up = map.dim - 1;
+
+            countUp++;
+        }
+
+        down = y1;
+        while (down != y2)
+        {
+            if (down == y2)
+                break;
+
+            down = (down - 1) % map.dim;
+
+            if (down == -1) down = map.dim - 1;
+
+            countDown++;
+        }
+
+        yDist = Mathf.Min(countDown, countUp);
+
+        int[] res = { xDist, yDist };
+
+        return res;
+    }
+
     // Controlla se il giocatore si può muovere in direzione dir
 
     public bool canMove(Direction dir)
