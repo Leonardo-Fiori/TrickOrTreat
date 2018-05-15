@@ -11,6 +11,8 @@ public class TileFog : MonoBehaviour {
 
     public GameObject fogPrefab;
 
+    public SOEvent fogDisappearedEvent;
+
     //public GameObject spotLight;
     //private float lightIntensity;
     //private Light lightComponent;
@@ -47,6 +49,8 @@ public class TileFog : MonoBehaviour {
             //StartCoroutine(RaiseTile());
 
         StartCoroutine(InflateTile());
+
+        fogDisappearedEvent.Raise();
 
         return;
     }
@@ -85,6 +89,7 @@ public class TileFog : MonoBehaviour {
 
     public GameObject prefabUscita;
     public GameObject prefabKey;
+    public GameObject prefabCaramella;
 
     void SpawnUscita()
     {
@@ -95,6 +100,12 @@ public class TileFog : MonoBehaviour {
     {
         GameObject key = Instantiate(prefabKey, transform.position, Quaternion.identity);
         key.GetComponent<KeyAnimation>().Initialize(x, y);
+    }
+
+    void SpawnCaramella()
+    {
+        GameObject caramella = Instantiate(prefabCaramella, transform.position, Quaternion.identity);
+        caramella.GetComponent<CaramellaAnimation>().Initialize(x, y);
     }
 
     // Spawna la nebbia e il portale se è l'uscita
@@ -115,14 +126,15 @@ public class TileFog : MonoBehaviour {
             SpawnKey();
         }
 
+        if (tile.HasCaramella())
+        {
+            SpawnCaramella();
+        }
+
         transform.localScale = new Vector3(0f, 0f, 0f);
 
         fogPrefab = Instantiate(fogPrefab, transform);
 
-        //spotLight = Instantiate(spotLight, transform);
-        //lightComponent = spotLight.GetComponent<Light>();
-        //lightIntensity = lightComponent.intensity;
-        //lightComponent.intensity = 0f;
 	}
 
 }

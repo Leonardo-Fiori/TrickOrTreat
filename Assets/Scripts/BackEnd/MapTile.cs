@@ -13,12 +13,23 @@ public class MapTile
 
     private bool uscita = false;
     private bool key = false;
+    private bool caramella = false;
 
     private Rotation rotation;
     private TileType type;
 
     private bool fog = true;
     private GameObject frontEndPrefab;
+
+    public void SetCaramella(bool hasCaramella)
+    {
+        caramella = hasCaramella;
+    }
+
+    public bool HasCaramella()
+    {
+        return caramella;
+    }
 
     public void SetKey(bool hasKey)
     {
@@ -54,6 +65,11 @@ public class MapTile
     {
         fog = active;
         frontEndPrefab.GetComponent<TileFog>().SetFog(fog);
+    }
+    
+    public bool Fog()
+    {
+        return fog;
     }
 
     public MapTile(int x, int y, TileType type, Rotation rotation)

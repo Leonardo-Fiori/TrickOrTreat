@@ -16,12 +16,34 @@ public class Giocatore : ScriptableObject {
 
     private int mosseFatte;
     private int chiaviRaccolte;
+    private int caramelleRaccolte;
 
     [SerializeField] private int mossePerTurno;
     [SerializeField] private int caramelleNecessarie;
+    public int incrementoMosse = 0;
 
     private GameObject frontEndPrefab;
     private MovePlayer playerMover;
+
+    public void Reset()
+    {
+        mosseFatte = 0;
+        chiaviRaccolte = 0;
+        caramelleRaccolte = 0;
+        incrementoMosse = 0;
+    }
+
+    public void RaccogliCaramella()
+    {
+        caramelleRaccolte++;
+
+        if (caramelleRaccolte >= caramelleNecessarie)
+        {
+            incrementoMosse++;
+            Debug.Log("Mosse per turno incrementate: " + mossePerTurno + " " + incrementoMosse);
+            caramelleRaccolte = 0;
+        }
+    }
 
     public void SetFrontEndPrefab(GameObject prefab)
     {
@@ -53,7 +75,7 @@ public class Giocatore : ScriptableObject {
     public void IncrementaMosseFatte()
     {
         mosseFatte++;
-        if (mosseFatte >= mossePerTurno)
+        if (mosseFatte >= mossePerTurno + incrementoMosse)
         {
             GameManager.turno = Turno.strega;
             mosseFatte = 0;
@@ -73,7 +95,7 @@ public class Giocatore : ScriptableObject {
 
     public int GetMossePerTurno()
     {
-        return mossePerTurno;
+        return mossePerTurno + incrementoMosse;
     }
 
     public int GetCaramelleNecessarie()

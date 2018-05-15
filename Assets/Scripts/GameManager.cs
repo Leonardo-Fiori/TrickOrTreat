@@ -113,16 +113,20 @@ public class GameManager : MonoBehaviour {
         #endif
     }
 
-    private void ReloadScene()
+    private void ResetComponents()
     {
-        playerInstance.ResetMosseFatte();
         witchInstance.ResetMosseFatte();
         turno = Turno.giocatore;
-        playerInstance.ResetChiavi();
+        playerInstance.Reset();
         MovePlayer.moving = false;
         MoveWitch.moving = false;
         TileMovement.canRot = true;
         MoveWarpTiles.animating = false;
+    }
+
+    private void ReloadScene()
+    {
+        ResetComponents();
 
         foreach (GameObject tile in frontEndTileInstances)
         {
@@ -276,13 +280,16 @@ public class GameManager : MonoBehaviour {
             {
                 cheatMode = !cheatMode;
                 print("Cheatmode: " + cheatMode);
-            }
-
-            
+            }         
 
             if (Input.GetKeyDown(KeyCode.W))
             {
                 witchPrefabInstance.GetComponent<MoveWitch>().InvokeMovement(1f);
+            }
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                playerInstance.RaccogliCaramella();
             }
         }
 
@@ -305,5 +312,10 @@ public class GameManager : MonoBehaviour {
                 movementManagerInstance.movePlayer(Direction.sud);
             }
         }
+    }
+
+    private void OnDisable()
+    {
+        ResetComponents();
     }
 }

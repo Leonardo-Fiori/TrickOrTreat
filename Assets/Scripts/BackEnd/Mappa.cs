@@ -21,6 +21,10 @@ namespace UnityEngine
         private int uscitaY = -1;
         private bool[,] keys;
         private int quanteChiavi;
+        private bool[,] caramelle;
+        private int quanteCaramelle;
+
+        #region"Getter e Setter"
 
         public int GetQuanteChiavi()
         {
@@ -37,6 +41,8 @@ namespace UnityEngine
             return uscitaY;
         }
 
+        #endregion
+
         public Mappa(int size)
         {
             dim = size;
@@ -44,6 +50,7 @@ namespace UnityEngine
             if ((dim % 2) == 0) throw new Exception("Errore! Lato mappa non dispari!");
             tiles = new MapTile[dim, dim];
             keys = new bool[dim, dim];
+            caramelle = new bool[dim, dim];
         }
 
         public Mappa() : this(DEF_DIM) { }
@@ -55,6 +62,7 @@ namespace UnityEngine
             tileSet.quantiCorridoi = set.quantiCorridoi;
             tileSet.quantiTrivia = set.quantiTrivia;
             quanteChiavi = set.quanteChiavi;
+            quanteCaramelle = set.quanteCaramelle;
         }
 
         public string show()
@@ -77,57 +85,51 @@ namespace UnityEngine
                 res += "\n";
             }
             return res;
-        }
-
-        private bool aviableTiles()
-        {
-            return tileSet.quantiCorridoi > 0 || tileSet.quantiAngoli > 0 || tileSet.quantiTrivia > 0;
-        }
-
-        // Basandosi sul tileset restituisce un tile random
-
-        private TileType randomTileType()
-        {
-            while (aviableTiles())
-            {
-                int type = Random.Range(0, 4);
-                //Debug.Log(type);
-
-                if (type == 0 && tileSet.quantiCorridoi > 0)
-                {
-                    tileSet.quantiCorridoi--;
-                    return (TileType)type;
-                }
-                else if(type == 1 && tileSet.quantiAngoli > 0)
-                {
-                    tileSet.quantiAngoli--;
-                    return (TileType)type;
-                }
-                else if (type == 2 && tileSet.quantiTrivia > 0)
-                {
-                    tileSet.quantiTrivia--;
-                    return (TileType)type;
-                }
-            }
-            throw new Exception("Errore! Tiles nel TileSet esauriti.");
-        }
-        
-        // Restituisce una rotazione random tra su giu destra sinistra
-
-        private Rotation randomRotation()
-        {
-            Rotation rot = (Rotation)Random.Range(0, 4); // da zero a tre, quattro rotazioni
-            //Debug.Log(rot);
-            return rot;
-        }
-
-        // Genera la mappa randomicamente basandosi sul tileset
+        }       
 
         public void randomize()
         {
-            // Spawn mappa
-
             Random.InitState((int)System.DateTime.Now.Ticks);
+
+            // Spawn mappa
+            SpawnMappa();
+
+            // Anti lockdown 
+            AntiLockdown();
+
+            // Posizionamento uscita
+            SpawnUscita();
+
+            // Spawna le chiavi
+            SpawnChiavi();
+
+            // Spawna caramelle
+            SpawnCaramelle();
+
+        }
+
+        private void SpawnCaramelle()
+        {
+            for (int i = 0; i < quanteCaramelle; i++)
+            {
+                int y = Random.Range(0, dim - 1);
+                int x = Random.Range(0, dim - 1);
+                while (!LocationIsOk(x, y))
+                {
+                    y = Random.Range(0, dim - 1);
+                    x = Random.Range(0, dim - 1);
+                }
+                caramelle[x, y] = true;
+                tiles[x, y].SetCaramella(true);
+            }
+
+            return;
+        }
+
+        private void SpawnMappa()
+        {
+            int center = (dim / 2);
+
             for (int i = 0; i < dim; i++)
             {
                 for (int j = 0; j < dim; j++)
@@ -136,11 +138,48 @@ namespace UnityEngine
                 }
             }
 
-            int center = (dim / 2);
+
             tiles[center, center] = new MapTile(center, center, TileType.quadrivio, Rotation.su);
+        }
 
-            // Anti lockdown 
+        private void SpawnChiavi()
+        {
+            for (int i = 0; i < quanteChiavi; i++)
+            {
+                int y = Random.Range(0, dim - 1);
+                int x = Random.Range(0, dim - 1);
+                while (!LocationIsOk(x, y))
+                {
+                    y = Random.Range(0, dim - 1);
+                    x = Random.Range(0, dim - 1);
+                }
+                keys[x, y] = true;
+                tiles[x, y].SetKey(true);
+            }
 
+            return;
+        }
+
+        private void SpawnUscita()
+        {
+            int center = (dim / 2);
+
+            uscitaX = Random.Range(0, dim - 1);
+            uscitaY = Random.Range(0, dim - 1);
+            while (uscitaX >= center - 1 && uscitaX <= center + 1 && uscitaY >= center - 1 && uscitaY <= center + 1)
+            {
+                uscitaX = Random.Range(0, dim - 1);
+                uscitaY = Random.Range(0, dim - 1);
+            }
+
+            tiles[uscitaX, uscitaY].SetUscita(true);
+
+            Debug.Log("USCITA: " + uscitaX + " " + uscitaY);
+        }
+
+        private void AntiLockdown()
+        {
+            int center = (dim / 2);
 
             while (!tiles[center + 1, center].getDirection(Direction.ovest))
             {
@@ -162,40 +201,10 @@ namespace UnityEngine
                 tiles[center, center - 1].rotate(true);
             }
 
-
-            // Posizionamento uscita
-
-            uscitaX = Random.Range(0, dim - 1);
-            uscitaY = Random.Range(0, dim - 1);
-            while (uscitaX >= center - 1 && uscitaX <= center + 1 && uscitaY >= center - 1 && uscitaY <= center + 1)
-            {
-                uscitaX = Random.Range(0, dim - 1);
-                uscitaY = Random.Range(0, dim - 1);
-            }
-
-            tiles[uscitaX, uscitaY].SetUscita(true);
-
-            Debug.Log("USCITA: " + uscitaX + " " + uscitaY);
-
-
-            // Spawna le chiavi
-
-            for(int i = 0; i < quanteChiavi; i++)
-            {
-                int y = Random.Range(0, dim - 1);
-                int x = Random.Range(0, dim - 1);
-                while (!KeyLocationIsOk(x,y))
-                {
-                    y = Random.Range(0, dim - 1);
-                    x = Random.Range(0, dim - 1);
-                }
-                keys[x, y] = true;
-                tiles[x, y].SetKey(true);
-            }
-
+            return;
         }
 
-        private bool KeyLocationIsOk(int x, int y)
+        private bool LocationIsOk(int x, int y)
         {
             if ((x > ((dim / 2) - 2) && x < ((dim / 2) + 2)) && (y > ((dim / 2) - 2) && y < ((dim / 2) + 2)))
                 return false;
@@ -209,7 +218,43 @@ namespace UnityEngine
             return true;
         }
 
-        // Restituisce uno specifico tile
+        private bool aviableTiles()
+        {
+            return tileSet.quantiCorridoi > 0 || tileSet.quantiAngoli > 0 || tileSet.quantiTrivia > 0;
+        }
+
+        private Rotation randomRotation()
+        {
+            Rotation rot = (Rotation)Random.Range(0, 4); // da zero a tre, quattro rotazioni
+            //Debug.Log(rot);
+            return rot;
+        }
+
+        private TileType randomTileType()
+        {
+            while (aviableTiles())
+            {
+                int type = Random.Range(0, 4);
+                //Debug.Log(type);
+
+                if (type == 0 && tileSet.quantiCorridoi > 0)
+                {
+                    tileSet.quantiCorridoi--;
+                    return (TileType)type;
+                }
+                else if (type == 1 && tileSet.quantiAngoli > 0)
+                {
+                    tileSet.quantiAngoli--;
+                    return (TileType)type;
+                }
+                else if (type == 2 && tileSet.quantiTrivia > 0)
+                {
+                    tileSet.quantiTrivia--;
+                    return (TileType)type;
+                }
+            }
+            throw new Exception("Errore! Tiles nel TileSet esauriti.");
+        }
 
         public MapTile getTile(int x, int y)
         {

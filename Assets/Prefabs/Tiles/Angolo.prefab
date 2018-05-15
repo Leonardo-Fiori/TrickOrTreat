@@ -287,9 +287,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fogPrefab: {fileID: 1734745612233654, guid: 7641ebaaf6889e84592dc8fcb1864dc0, type: 2}
+  fogDisappearedEvent: {fileID: 11400000, guid: 026b3c4905c26ba4d80e884bf534d562,
+    type: 2}
   prefabUscita: {fileID: 1431255955593858, guid: e73b3803cbbd54848b43a62bf93faf76,
     type: 2}
   prefabKey: {fileID: 1866261375336496, guid: 7509eb4b73f8521419cbc92e976bb157, type: 2}
+  prefabCaramella: {fileID: 1518281925748922, guid: 3a9f2e258bdfa914da15f80e1262dabb,
+    type: 2}
 --- !u!114 &114313800407082004
 MonoBehaviour:
   m_ObjectHideFlags: 1
