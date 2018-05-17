@@ -23,6 +23,8 @@ namespace UnityEngine
         private int quanteChiavi;
         private bool[,] caramelle;
         private int quanteCaramelle;
+        private bool[,] scarpette;
+        private int quanteScarpette;
 
         #region"Getter e Setter"
 
@@ -51,6 +53,7 @@ namespace UnityEngine
             tiles = new MapTile[dim, dim];
             keys = new bool[dim, dim];
             caramelle = new bool[dim, dim];
+            scarpette = new bool[dim, dim];
         }
 
         public Mappa() : this(DEF_DIM) { }
@@ -63,6 +66,7 @@ namespace UnityEngine
             tileSet.quantiTrivia = set.quantiTrivia;
             quanteChiavi = set.quanteChiavi;
             quanteCaramelle = set.quanteCaramelle;
+            quanteScarpette = set.quanteScarpette;
         }
 
         public string show()
@@ -106,6 +110,27 @@ namespace UnityEngine
             // Spawna caramelle
             SpawnCaramelle();
 
+            // Spawna scarpette
+            SpawnScarpette();
+
+        }
+
+        private void SpawnScarpette()
+        {
+            for (int i = 0; i < quanteScarpette; i++)
+            {
+                int y = Random.Range(0, dim - 1);
+                int x = Random.Range(0, dim - 1);
+                while (!LocationIsOk(x, y) || keys[x, y] || caramelle[x, y])
+                {
+                    y = Random.Range(0, dim - 1);
+                    x = Random.Range(0, dim - 1);
+                }
+                scarpette[x, y] = true;
+                tiles[x, y].SetScarpetta(true);
+            }
+
+            return;
         }
 
         private void SpawnCaramelle()
@@ -114,7 +139,7 @@ namespace UnityEngine
             {
                 int y = Random.Range(0, dim - 1);
                 int x = Random.Range(0, dim - 1);
-                while (!LocationIsOk(x, y))
+                while (!LocationIsOk(x, y) || keys[x,y] || scarpette[x,y])
                 {
                     y = Random.Range(0, dim - 1);
                     x = Random.Range(0, dim - 1);
@@ -148,7 +173,7 @@ namespace UnityEngine
             {
                 int y = Random.Range(0, dim - 1);
                 int x = Random.Range(0, dim - 1);
-                while (!LocationIsOk(x, y))
+                while (!LocationIsOk(x, y) || scarpette[x,y] || caramelle[x,y] )
                 {
                     y = Random.Range(0, dim - 1);
                     x = Random.Range(0, dim - 1);
@@ -162,19 +187,18 @@ namespace UnityEngine
 
         private void SpawnUscita()
         {
-            int center = (dim / 2);
+            int y = Random.Range(0, dim - 1);
+            int x = Random.Range(0, dim - 1);
 
-            uscitaX = Random.Range(0, dim - 1);
-            uscitaY = Random.Range(0, dim - 1);
-            while (uscitaX >= center - 1 && uscitaX <= center + 1 && uscitaY >= center - 1 && uscitaY <= center + 1)
+            while (!LocationIsOk(x, y) || scarpette[x, y] || caramelle[x, y] || keys[x,y])
             {
-                uscitaX = Random.Range(0, dim - 1);
-                uscitaY = Random.Range(0, dim - 1);
+                y = Random.Range(0, dim - 1);
+                x = Random.Range(0, dim - 1);
             }
 
-            tiles[uscitaX, uscitaY].SetUscita(true);
-
-            Debug.Log("USCITA: " + uscitaX + " " + uscitaY);
+            uscitaX = x;
+            uscitaY = y;
+            tiles[x, y].SetUscita(true);
         }
 
         private void AntiLockdown()

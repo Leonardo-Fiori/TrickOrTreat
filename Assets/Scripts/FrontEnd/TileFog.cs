@@ -90,6 +90,7 @@ public class TileFog : MonoBehaviour {
     public GameObject prefabUscita;
     public GameObject prefabKey;
     public GameObject prefabCaramella;
+    public GameObject prefabScarpetta;
 
     void SpawnUscita()
     {
@@ -106,6 +107,12 @@ public class TileFog : MonoBehaviour {
     {
         GameObject caramella = Instantiate(prefabCaramella, transform.position, Quaternion.identity);
         caramella.GetComponent<CaramellaAnimation>().Initialize(x, y);
+    }
+
+    void SpawnScarpetta()
+    {
+        GameObject scarpetta = Instantiate(prefabScarpetta, transform.position, Quaternion.identity);
+        scarpetta.GetComponent<CaramellaAnimation>().Initialize(x, y);
     }
 
     // Spawna la nebbia e il portale se è l'uscita
@@ -129,6 +136,11 @@ public class TileFog : MonoBehaviour {
         if (tile.HasCaramella())
         {
             SpawnCaramella();
+        }
+
+        if (tile.HasScarpetta())
+        {
+            SpawnScarpetta();
         }
 
         transform.localScale = new Vector3(0f, 0f, 0f);

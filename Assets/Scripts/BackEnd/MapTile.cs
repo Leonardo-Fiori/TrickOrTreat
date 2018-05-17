@@ -14,6 +14,7 @@ public class MapTile
     private bool uscita = false;
     private bool key = false;
     private bool caramella = false;
+    private bool scarpetta = false;
 
     private Rotation rotation;
     private TileType type;
@@ -29,6 +30,16 @@ public class MapTile
     public bool HasCaramella()
     {
         return caramella;
+    }
+
+    public void SetScarpetta(bool hasScarpetta)
+    {
+        scarpetta = hasScarpetta;
+    }
+
+    public bool HasScarpetta()
+    {
+        return scarpetta;
     }
 
     public void SetKey(bool hasKey)

@@ -222,6 +222,8 @@ MonoBehaviour:
   prefabKey: {fileID: 1866261375336496, guid: 7509eb4b73f8521419cbc92e976bb157, type: 2}
   prefabCaramella: {fileID: 1518281925748922, guid: 3a9f2e258bdfa914da15f80e1262dabb,
     type: 2}
+  prefabScarpetta: {fileID: 1095933322598068, guid: ba38a08fe8a65cc459bcb62d38b362d0,
+    type: 2}
 --- !u!114 &114290742117843300
 MonoBehaviour:
   m_ObjectHideFlags: 1

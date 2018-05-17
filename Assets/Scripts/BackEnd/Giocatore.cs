@@ -33,6 +33,12 @@ public class Giocatore : ScriptableObject {
         incrementoMosse = 0;
     }
 
+    public void RaccogliScarpetta()
+    {
+        Debug.Log("Hai raccolto una scarpetta. Ti restano " + (mossePerTurno - mosseFatte) + " mosse.");
+        mosseFatte--;
+    }
+
     public void RaccogliCaramella()
     {
         caramelleRaccolte++;
