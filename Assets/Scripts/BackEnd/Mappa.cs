@@ -64,6 +64,7 @@ namespace UnityEngine
             tileSet.quantiAngoli = set.quantiAngoli;
             tileSet.quantiCorridoi = set.quantiCorridoi;
             tileSet.quantiTrivia = set.quantiTrivia;
+            tileSet.quantiQuadrivia = set.quantiQuadrivia;
             quanteChiavi = set.quanteChiavi;
             quanteCaramelle = set.quanteCaramelle;
             quanteScarpette = set.quanteScarpette;
@@ -225,7 +226,106 @@ namespace UnityEngine
                 tiles[center, center - 1].rotate(true);
             }
 
+            for(int i = 0; i < dim; i++)
+            {
+                for(int j = 0; j < dim; j++)
+                {
+                    int counter = 0;
+
+                    while(counter < 4 && isLocked(i, j))
+                    {
+                        tiles[i, j].rotate(true);
+                        counter++;
+                    }
+                }
+            }
+
             return;
+        }
+
+        public bool isLocked(int x, int y)
+        {
+            return !canMoveAt(Direction.est, x, y) && !canMoveAt(Direction.ovest, x, y) && !canMoveAt(Direction.sud, x, y) && !canMoveAt(Direction.nord, x, y);
+        }
+
+        public MapTile getNextTile(int x, int y, Direction dir)
+        {
+            if (dir == Direction.nord)
+            {
+                y = (y + 1) % dim;
+            }
+            else if (dir == Direction.sud)
+            {
+                y = (y - 1) % dim;
+            }
+            else if (dir == Direction.est)
+            {
+                x = (x + 1) % dim;
+            }
+            else if (dir == Direction.ovest)
+            {
+                x = (x - 1) % dim;
+            }
+
+            if (y == -1) y = dim - 1;
+            if (x == -1) x = dim - 1;
+
+            //Debug.Log(x + " " + y);
+            return getTile(x, y);
+        }
+
+        public bool canMoveAt(Direction dir, int x, int y)
+        {
+            //Debug.Log("CONTROLLO SE PUO MUOVERSI IN " + dir);
+            MapTile playerTile = getTile(x, y);
+            //Debug.Log("Il player si trova su un " + playerTile.getTileType() + " " + playerTile.getTileRotation());
+            MapTile nextTile = getNextTile(x, y, dir);
+            //Debug.Log("E vuole andare su un " + nextTile.getTileType() + " " + nextTile.getTileRotation());
+
+            if (nextTile.getX() == GameManager.witchInstance.GetX() && nextTile.getY() == GameManager.witchInstance.GetY())
+                return false;
+
+            // Se la strada nel tile attuale è sbarrata
+            //if (!playerTile.getDirection(dir)) Debug.Log("Il playertile è chiuso a " + dir);
+            if (!playerTile.getDirection(dir)) return false;
+
+            // Controlla la strada nel tile di destinazione
+            if (dir == Direction.nord)
+            {
+                if (!nextTile.getDirection(Direction.sud))
+                {
+                    //Debug.Log("Il nextile è chiuso a sud");
+                    return false;
+                }
+            }
+            else if (dir == Direction.sud)
+            {
+                if (!nextTile.getDirection(Direction.nord))
+                {
+                    //Debug.Log("Il nextile è chiuso a nord");
+                    return false;
+                }
+            }
+            else if (dir == Direction.est)
+            {
+                if (!nextTile.getDirection(Direction.ovest))
+                {
+                    //Debug.Log("Il nextile è chiuso a ovest");
+                    return false;
+                }
+            }
+            else if (dir == Direction.ovest)
+            {
+                if (!nextTile.getDirection(Direction.est))
+                {
+                    //Debug.Log("Il nextile è chiuso a est");
+                    return false;
+                }
+            }
+
+            // Se ha passato tutti i controlli allora può muovere!
+            //Debug.Log("Può muoversi!");
+            return true;
         }
 
         private bool LocationIsOk(int x, int y)
@@ -244,7 +344,7 @@ namespace UnityEngine
 
         private bool aviableTiles()
         {
-            return tileSet.quantiCorridoi > 0 || tileSet.quantiAngoli > 0 || tileSet.quantiTrivia > 0;
+            return tileSet.quantiCorridoi > 0 || tileSet.quantiAngoli > 0 || tileSet.quantiTrivia > 0 || tileSet.quantiQuadrivia > 0;
         }
 
         private Rotation randomRotation()
@@ -274,6 +374,11 @@ namespace UnityEngine
                 else if (type == 2 && tileSet.quantiTrivia > 0)
                 {
                     tileSet.quantiTrivia--;
+                    return (TileType)type;
+                }
+                else if (type == 3 && tileSet.quantiQuadrivia > 0)
+                {
+                    tileSet.quantiQuadrivia--;
                     return (TileType)type;
                 }
             }

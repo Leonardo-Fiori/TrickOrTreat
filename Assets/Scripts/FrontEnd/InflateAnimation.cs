@@ -11,7 +11,7 @@ public class InflateAnimation : MonoBehaviour
 
     IEnumerator despawnAnimation()
     {
-        while (transform.localScale.x >= 0.1f)
+        while (transform.localScale.x >= 0.01f)
         {
             transform.localScale *= 0.9f;
             yield return null;

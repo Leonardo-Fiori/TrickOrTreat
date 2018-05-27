@@ -23,30 +23,36 @@ public class CameraManagerIsometric : MonoBehaviour
     Vector3 cameraOffset;
     Camera cam;
 
+    private GameObject center;
     private GameObject fantoccio;
-
-    private void Switch()
-    {
-        if (turno == Turno.strega)
-        {
-            turno = Turno.giocatore;
-            subject = subject1;
-        }
-        else
-        {
-            turno = Turno.strega;
-            subject = subject2;
-        }
-    }
 
     public void SwitchSubject()
     {
-        Invoke("Switch", .5f);
+        if (GameManager.turno == Turno.strega)
+        {
+            subject = subject2;
+            turno = Turno.giocatore;
+        }
+        else
+        {
+            subject = subject1;
+            turno = Turno.strega;
+        }
+    }
+
+    public void SwitchSubjectDelay(float delay)
+    {
+        Invoke("SwitchSubject", delay);
+    }
+
+    public void SwitchToPlayer()
+    {
+        subject = subject1;
+        turno = Turno.giocatore;
     }
 
     private void Start()
     {
-        turno = Turno.giocatore;
         subject = subject1;
 
         cam = GetComponent<Camera>();
@@ -54,24 +60,33 @@ public class CameraManagerIsometric : MonoBehaviour
         fantoccio = new GameObject();
         fantoccio.transform.position = subject.transform.position;
         cameraOffset = transform.position - fantoccio.transform.position;
+
+        int dim = GameManager.mapInstance.dim;
+        center = GameManager.mapInstance.getTile(dim / 2, dim / 2).getPrefab();
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
         
-        // check per far ruotare la camera
+        // Ruota la camera
         if (Input.GetMouseButton(2) && canRotate)
         {
             CameraRotation();
         }
 
-        if (transform.position.y <= 2) transform.position = new Vector3(transform.position.x, 2.1f, transform.position.z);  // check perche la telecamera non rotei troppo in basso
+        // Clamp rotazione camera
+        if (transform.position.y <= 2)
+            transform.position = new Vector3(transform.position.x, 2.1f, transform.position.z);
 
-        //transform.LookAt(subject.transform);
-        fantoccio.transform.position = Vector3.Lerp(fantoccio.transform.position, subject.transform.position, Time.deltaTime * snappyness);
+        // Trovo la posizione tra centro e soggetto
+        Vector3 destination = subject.transform.position + ((center.transform.position - subject.transform.position) / 2);
+
+        fantoccio.transform.position = Vector3.Lerp(fantoccio.transform.position, destination, Time.deltaTime * snappyness);
+
         transform.LookAt(fantoccio.transform);
 
+        // Zoom
         cam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * scrollSpeed;
         if (cam.orthographicSize <= maxZoom) cam.orthographicSize = maxZoom;
         if (cam.orthographicSize >= minZoom) cam.orthographicSize = minZoom;

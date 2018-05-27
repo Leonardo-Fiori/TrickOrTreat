@@ -20,7 +20,7 @@ public class Giocatore : ScriptableObject {
 
     [SerializeField] private int mossePerTurno;
     [SerializeField] private int caramelleNecessarie;
-    public int incrementoMosse = 0;
+    [HideInInspector] public int incrementoMosse = 0;
 
     private GameObject frontEndPrefab;
     private MovePlayer playerMover;
@@ -36,6 +36,7 @@ public class Giocatore : ScriptableObject {
     public void RaccogliScarpetta()
     {
         Debug.Log("Hai raccolto una scarpetta. Ti restano " + (mossePerTurno - mosseFatte) + " mosse.");
+
         mosseFatte--;
     }
 
@@ -83,14 +84,9 @@ public class Giocatore : ScriptableObject {
         mosseFatte++;
         if (mosseFatte >= mossePerTurno + incrementoMosse)
         {
-            GameManager.turno = Turno.strega;
             mosseFatte = 0;
 
-            // uso il prefab per chiamare il movimento nel back end perchè essendo un mono beahviour ha la invoke!
-            // InvokeMovement -> Move backend -> Move -> InvokeMovement
-            GameManager.cameraManagerInstance.SwitchSubject();
-
-            GameManager.witchPrefabInstance.GetComponent<MoveWitch>().InvokeMovement(.8f);
+            GameManager.instance.SwitchTurn();
         }
     }
 
@@ -126,11 +122,35 @@ public class Giocatore : ScriptableObject {
 
     public void move(int newX, int newY, Movement mov)
     {
+        GameManager.playerMovementEvent.Raise();
+
         x = newX;
         y = newY;
 
-        // Front end
+        if(mov == Movement.smooth)
+            IncrementaMosseFatte();
+
         playerMover.move(x, y, mov);
+
+        MapTile tile = GameManager.mapInstance.getTile(x, y);
+
+        if (tile.HasCaramella())
+        {
+            RaccogliCaramella();
+            tile.SetCaramella(false);
+        }
+
+        if (tile.HasKey())
+        {
+            IncrementaChiavi();
+            tile.SetKey(false);
+        }
+
+        if (tile.HasScarpetta())
+        {
+            RaccogliScarpetta();
+            tile.SetScarpetta(false);
+        }
 
         if (GameManager.mapInstance.getTile(x, y).IsUscita() && chiaviRaccolte >= GameManager.mapInstance.GetQuanteChiavi())
         {

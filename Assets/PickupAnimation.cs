@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorAnimation : MonoBehaviour
-{
-    protected int x;
-    protected int y;
-    private bool spawned;
+public class PickupAnimation : MonoBehaviour {
+
+    int x;
+    int y;
 
     IEnumerator despawnAnimation()
     {
@@ -15,6 +14,17 @@ public class DoorAnimation : MonoBehaviour
             transform.localScale *= 0.9f;
             yield return null;
         }
+    }
+
+    IEnumerator destroyAnimation()
+    {
+        while (transform.localScale.x >= 0.01f)
+        {
+            transform.localScale *= 0.9f;
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 
     IEnumerator spawnAnimation()
@@ -32,18 +42,28 @@ public class DoorAnimation : MonoBehaviour
         }
     }
 
-    protected void Spawn()
+    public void Spawn()
     {
-        spawned = true;
         StopCoroutine(despawnAnimation());
         StartCoroutine(spawnAnimation());
     }
 
-    protected void Despawn()
+    public void Despawn()
     {
-        spawned = false;
         StopCoroutine(spawnAnimation());
         StartCoroutine(despawnAnimation());
+    }
+
+    public void Initialize(int xx, int yy)
+    {
+        x = xx;
+        y = yy;
+    }
+
+    private void Start()
+    {
+        transform.localScale = new Vector3(.1f, .1f, .1f);
+        Despawn();
     }
 
     public void Think()
@@ -58,21 +78,21 @@ public class DoorAnimation : MonoBehaviour
 
         bool player = (x == pX && y == pY);
 
-        if (witch || player)
-        {
-            Despawn();
-        }
-        else
+        bool fog = GameManager.mapInstance.getTile(x, y).getPrefab().GetComponent<TileFog>().GetStatus();
+
+        if (!player && !witch && !fog)
         {
             Spawn();
         }
-    }
 
-    private void Start()
-    {
-        transform.localScale = Vector3.zero;
-        spawned = false;
-        x = GameManager.mapInstance.GetUscitaX();
-        y = GameManager.mapInstance.GetUscitaY();
+        if (witch)
+        {
+            Despawn();
+        }
+
+        if (player)
+        {
+            StartCoroutine(destroyAnimation());
+        }
     }
 }

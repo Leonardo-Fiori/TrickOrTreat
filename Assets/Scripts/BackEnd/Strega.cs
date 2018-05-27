@@ -90,104 +90,73 @@ public class Strega : ScriptableObject {
         {
             mosseFatte = 0;
 
-            GameManager.cameraManagerInstance.SwitchSubject();
-
-            GameManager.turno = Turno.giocatore;
+            GameManager.instance.SwitchTurn();
 
             return;
         }
 
-        // coordinate del player
         int playerX = GameManager.playerInstance.getX();
         int playerY = GameManager.playerInstance.getY();
 
-        if (x == playerX && y == playerY) // Il giocatore ha perso
+        if (x == playerX && y == playerY)
         {
             GameManager.instance.Restart();
             return;
         }
 
-        // gestiscila come ti pare, basta che io possa chiamare questa funzione dal gamemanager o dal movementmanager
-
-        // <-- INSERT YOUR CODE HERE DODOZ, SHOW ME YOUR SKILLZ <3
-
-        // mi salvo temporaneamente queste tile per il check del movimento strega
         MapTile nord = GameManager.movementManagerInstance.getNextTile(x, y, Direction.nord);
         MapTile sud = GameManager.movementManagerInstance.getNextTile(x, y, Direction.sud);
         MapTile ovest = GameManager.movementManagerInstance.getNextTile(x, y, Direction.ovest);
         MapTile est = GameManager.movementManagerInstance.getNextTile(x, y, Direction.est);
 
-
-        // mi servono per il confronto del pathfinding
-
-        int distanzaX = 1000;       // valore  da cambiare con dim mappa +1
+        int distanzaX = 1000; // what are you doing domi
         int distanzaY = 1000;
         int bestTileX = 0;
         int bestTileY = 0;
 
-        // confronto le tile con la posizione del player per vedere quale è quella più vicina
-
         if (((Mathf.Abs(nord.getX() - playerX)) <= distanzaX) && (Mathf.Abs(nord.getY() - playerY)) <= distanzaY)
         {
-
-
             bestTileX = nord.getX();
             bestTileY = nord.getY();
             distanzaX = Mathf.Abs(nord.getX() - playerX);
             distanzaY = Mathf.Abs(nord.getY() - playerY);
-
-
         }
 
         if (((Mathf.Abs(sud.getX() - playerX)) <= distanzaX) && (Mathf.Abs(sud.getY() - playerY) <= distanzaY))
         {
-
-
-
             bestTileX = sud.getX();
             bestTileY = sud.getY();
             distanzaX = Mathf.Abs(sud.getX() - playerX);
             distanzaY = Mathf.Abs(sud.getY() - playerY);
-
-
         }
 
         if (((Mathf.Abs(ovest.getX() - playerX)) <= distanzaX) && (Mathf.Abs(ovest.getY() - playerY) <= distanzaY))
         {
-
-
             bestTileX = ovest.getX();
             bestTileY = ovest.getY();
             distanzaX = Mathf.Abs(ovest.getX() - playerX);
             distanzaY = Mathf.Abs(ovest.getY() - playerY);
-
-
         }
 
 
         if (((Mathf.Abs(est.getX() - playerX)) <= distanzaX) && (Mathf.Abs(est.getY() - playerY)) <= distanzaY)
         {
-
-
             bestTileX = est.getX();
             bestTileY = est.getY();
             distanzaX = Mathf.Abs(est.getX() - playerX);
             distanzaY = Mathf.Abs(est.getY() - playerY);
-
-
         }
 
         x = bestTileX;
         y = bestTileY;
 
         int dim = GameManager.mapInstance.dim;
-        //Debug.Log(CalcDistanceToPlayer(GameManager.mapInstance.getTile(x,y)));
 
         mosseFatte++;
 
-        witchMover.Move(x, y, Movement.smooth); // Alla fine, aggiorna il front end con questa chiamata
+        witchMover.Move(x, y, Movement.smooth);
 
-        if (x == playerX && y == playerY) // Il giocatore ha perso
+        if (x == playerX && y == playerY) 
         {
             GameManager.instance.Restart();
             return;
@@ -197,15 +166,10 @@ public class Strega : ScriptableObject {
         {
             mosseFatte = 0;
 
-            GameManager.cameraManagerInstance.SwitchSubject();
-
-            GameManager.turno = Turno.giocatore;
-            //Debug.Log("Strega: turno del giocatore");
+            GameManager.instance.SwitchTurn();
         }
 
         eventoMovimento.Raise();
-
-        //Debug.Log("Strega: muovo...");
     }
 
     /*

@@ -135,12 +135,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 359589258}
         m_MethodName: InvokeMovement
-        m_Mode: 4
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0.3
+          m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -305,6 +305,12 @@ Prefab:
       propertyPath: m_Range
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114559622413886020, guid: b34011cc938092541a4f6252c7da7653,
+        type: 2}
+      propertyPath: playerMovedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 7b6574c4ade94ff48a5b10ca71c6f64e,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b34011cc938092541a4f6252c7da7653, type: 2}
   m_IsPrefabParent: 0
@@ -334,84 +340,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 725383542}
   m_Script: {fileID: 11500000, guid: 50254382b84725c4c96c105fabf30c19, type: 3}
---- !u!114 &823130485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 823130481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd637ca8f1ad2be459f8ba321b1cc37c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventToListen: {fileID: 11400000, guid: 7e3cbf671550b9e44ad5e7e9e763e161, type: 2}
-  whatToDo:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 823130486}
-        m_MethodName: Prendi
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!114 &823130486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 823130481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ce3d3adfd6d5e14291a9149e391fbe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &823130487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 823130481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd637ca8f1ad2be459f8ba321b1cc37c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventToListen: {fileID: 11400000, guid: b6c7d9f0f797cc74b865286e6280fff5, type: 2}
-  whatToDo:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 823130488}
-        m_MethodName: Prendi
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!114 &823130488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 823130481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52196b14e732af547aadf706bc9f3498, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &852097875
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,11 +436,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dimensioneMappa: 7
-  tileset: {fileID: 11400000, guid: e477fdf070d3b58429dcf45b6f51216a, type: 2}
+  tileset: {fileID: 11400000, guid: f6e92873df8f2d74e96482b703fd7f51, type: 2}
   giocatore: {fileID: 11400000, guid: 0309e24288c4c2747ac3b20f96e9fdb6, type: 2}
   prefabGiocatore: {fileID: 823130481}
   distanzaTraTile: 1
   scalaTiles: 1
+  witchDelay: 1
   prefabStrega: {fileID: 359589256}
   strega: {fileID: 11400000, guid: 7b78542fcd6cb494f9fed506bd9463ab, type: 2}
   eventoMovimento: {fileID: 11400000, guid: f939886397e28a448bb7982e47a39e93, type: 2}
@@ -676,8 +605,6 @@ GameObject:
   - component: {fileID: 1769690664}
   - component: {fileID: 1769690665}
   - component: {fileID: 1769690666}
-  - component: {fileID: 1769690667}
-  - component: {fileID: 1769690668}
   m_Layer: 0
   m_Name: Camera Isometric
   m_TagString: MainCamera
@@ -828,67 +755,17 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1769690656}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f401545e731376b499c6c196cb058131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  strega: {fileID: 11400000, guid: 7b78542fcd6cb494f9fed506bd9463ab, type: 2}
-  giocatore: {fileID: 11400000, guid: 0309e24288c4c2747ac3b20f96e9fdb6, type: 2}
-  pp: {fileID: 11400000, guid: f72eaca0e0ca4e548a7723853f6aad2c, type: 2}
-  grainDanger: 0.9
-  vignetteDanger: 0.9
-  aberrDanger: 0.9
-  colorDanger: {r: 1, g: 0, b: 0, a: 0}
-  grainStd: 0.001
-  vignetteStd: 0.3
-  aberrStd: 0.001
-  colorStd: {r: 0, g: 0, b: 0, a: 1}
---- !u!114 &1769690667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1769690656}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd637ca8f1ad2be459f8ba321b1cc37c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventToListen: {fileID: 11400000, guid: ae830f143e6b4d54cbad27339ace55bc, type: 2}
+  eventToListen: {fileID: 11400000, guid: 7b6574c4ade94ff48a5b10ca71c6f64e, type: 2}
   whatToDo:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1769690666}
-        m_MethodName: Check
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!114 &1769690668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1769690656}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd637ca8f1ad2be459f8ba321b1cc37c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventToListen: {fileID: 11400000, guid: f939886397e28a448bb7982e47a39e93, type: 2}
-  whatToDo:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1769690666}
-        m_MethodName: Check
+      - m_Target: {fileID: 1769690661}
+        m_MethodName: SwitchToPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -23,7 +23,7 @@ public class TileHghlight : MonoBehaviour {
             dest += hilightColor;
         }
 
-        if (inDanger && (tiles.mouseOverWitch || tiles.toggled))
+        if (inDanger && (tiles.mouseOverWitch || tiles.toggled || GameManager.turno == Turno.strega))
         {
             dest += witchDangerColor;
         }

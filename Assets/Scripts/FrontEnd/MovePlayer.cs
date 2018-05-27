@@ -15,6 +15,7 @@ public class MovePlayer : MonoBehaviour {
     public float raiseSpeed = 1f;
     public float raiseHeight = 3f;
     public static bool moving;
+    public SOEvent playerMovedEvent;
 
     // Sposta il prefab del giocatore di tot factor in direzione dir
 
@@ -52,6 +53,8 @@ public class MovePlayer : MonoBehaviour {
             yield return new WaitForFixedUpdate();
         }
         moving = false;
+
+        playerMovedEvent.Raise();
     }
 
     IEnumerator warpTowards(Vector3 destination)
@@ -132,6 +135,8 @@ public class MovePlayer : MonoBehaviour {
         }
 
         moving = false;
+
+        playerMovedEvent.Raise();
     }
 
     public void move(int x, int z, Movement mov)

@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour {
     public float distanzaTraTile;
     public float scalaTiles;
 
+    public float witchDelay;
+
     public static bool debugMode;
     public static bool cheatMode;
 
@@ -134,6 +136,24 @@ public class GameManager : MonoBehaviour {
         }
 
         SceneManager.LoadScene("Main");
+    }
+
+    public void SwitchTurn()
+    {
+        if(turno == Turno.strega)
+        {
+            turno = Turno.giocatore;
+
+            cameraManager.SwitchSubject();
+        }
+        else
+        {
+            turno = Turno.strega;
+
+            witchPrefabInstance.GetComponent<MoveWitch>().InvokeMovement();
+
+            cameraManagerInstance.SwitchSubjectDelay(instance.witchDelay / 2f);
+        }
     }
 
     public GameObject GetFrontEndTilePrefab(TileType tileType)
@@ -256,6 +276,12 @@ public class GameManager : MonoBehaviour {
             Quit();
         }
 
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if(turno == Turno.giocatore)
+                SwitchTurn();
+        }
+
         if (debugMode)
         {
             if(Input.GetKeyDown(KeyCode.F))
@@ -281,11 +307,6 @@ public class GameManager : MonoBehaviour {
                 cheatMode = !cheatMode;
                 print("Cheatmode: " + cheatMode);
             }         
-
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                witchPrefabInstance.GetComponent<MoveWitch>().InvokeMovement(1f);
-            }
 
             if (Input.GetKeyDown(KeyCode.T))
             {

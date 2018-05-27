@@ -82,11 +82,11 @@ public class MoveWitch : MonoBehaviour {
         GameManager.witchInstance.Move();
     }
 
-    public void InvokeMovement(float traQuanto)
+    public void InvokeMovement()
     {
         if (GameManager.witchInstance.GetMosseFatte() < GameManager.witchInstance.GetMossePerTurno() && GameManager.turno == Turno.strega)
         {
-            Invoke("MoveBackEnd", traQuanto);
+            Invoke("MoveBackEnd", GameManager.instance.witchDelay);
         }
     }
 }

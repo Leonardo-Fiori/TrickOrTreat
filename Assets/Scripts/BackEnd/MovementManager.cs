@@ -257,24 +257,6 @@ public class MovementManager {
             // Muovi il giocatore back end (muove da solo il front end)
 
             player.move(x, y, Movement.smooth);
-
-            //if (!GameManager.cheatMode)
-            player.IncrementaMosseFatte();
-
-            GameManager.playerMovementEvent.Raise();
-
-            // Se è il momento, switcha il turno
-
-            /*if(player.GetMosseFatte() >= player.GetMossePerTurno()) // SPOSTATO NEL PLAYER BACK END
-            {
-                GameManager.turno = Turno.strega;
-                player.ResetMosseFatte();
-                //Debug.Log("Giocatore: turno della strega...");
-
-                // uso il prefab per chiamare il movimento nel back end perchè essendo un mono beahviour ha la invoke!
-                // InvokeMovement -> Move backend -> Move -> InvokeMovement
-                GameManager.witchPrefabInstance.GetComponent<MoveWitch>().InvokeMovement(0.5f);
-            }*/
         }
 
         return;

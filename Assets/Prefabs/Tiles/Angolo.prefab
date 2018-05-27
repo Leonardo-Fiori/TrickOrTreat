@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 114698561014733844}
   - component: {fileID: 114313800407082004}
   - component: {fileID: 114375208863096478}
+  - component: {fileID: 114304652907908500}
   m_Layer: 0
   m_Name: Angolo
   m_TagString: Tile
@@ -78,8 +79,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1838746235234958}
   m_LocalRotation: {x: -0, y: 0.70705605, z: -0, w: 0.70715755}
-  m_LocalPosition: {x: 0.115, y: -0.411, z: -0.004}
-  m_LocalScale: {x: 0.03424, y: 0.047819998, z: 0.07790034}
+  m_LocalPosition: {x: 0.115, y: 0.01, z: -0.004}
+  m_LocalScale: {x: 0.03424, y: 0.047819998, z: 0.052206725}
   m_Children: []
   m_Father: {fileID: 4334753205003836}
   m_RootOrder: 1
@@ -91,8 +92,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1537990507139506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 82.901, y: 3.44, z: 42.68}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4453212713548442}
   - {fileID: 4198917084435980}
@@ -106,7 +107,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1238264775178892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.10852, y: -0.411, z: 0.196}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0.196}
   m_LocalScale: {x: 0.03424241, y: 0.04782545, z: 0.059355117}
   m_Children: []
   m_Father: {fileID: 4334753205003836}
@@ -220,7 +221,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1537990507139506}
-  m_Mesh: {fileID: 4300002, guid: 397bdd2191e9bc8489fb585142af9fcb, type: 3}
+  m_Mesh: {fileID: 4300002, guid: a1054a15d7def024bbc408e9a8a4f761, type: 3}
 --- !u!33 &33821788765561348
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -289,6 +290,17 @@ MonoBehaviour:
   fogPrefab: {fileID: 1734745612233654, guid: 7641ebaaf6889e84592dc8fcb1864dc0, type: 2}
   fogDisappearedEvent: {fileID: 11400000, guid: 026b3c4905c26ba4d80e884bf534d562,
     type: 2}
+--- !u!114 &114304652907908500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1537990507139506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed36f6e4f88d15c47ac99067acb17fff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   prefabUscita: {fileID: 1431255955593858, guid: e73b3803cbbd54848b43a62bf93faf76,
     type: 2}
   prefabKey: {fileID: 1866261375336496, guid: 7509eb4b73f8521419cbc92e976bb157, type: 2}
@@ -378,8 +390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291fd5af556a8694b8f12b5353fb8ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  witchDangerColor: {r: 0, g: 1, b: 0.006896496, a: 0}
-  hilightColor: {r: 1, g: 0, b: 0, a: 0}
+  witchDangerColor: {r: 1, g: 0, b: 0, a: 0}
+  hilightColor: {r: 0.11724138, g: 1, b: 0, a: 0}
   multiplier: 0.5
 --- !u!114 &114845360244433856
 MonoBehaviour:

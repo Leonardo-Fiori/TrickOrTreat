@@ -19,7 +19,6 @@ public class KeyAnimation : MonoBehaviour
             yield return null;
         }
 
-        GameManager.playerInstance.IncrementaChiavi();
         Destroy(gameObject);
     }
 
@@ -56,6 +55,8 @@ public class KeyAnimation : MonoBehaviour
     {
         int wX = GameManager.playerInstance.getX();
         int wY = GameManager.playerInstance.getY();
+
+        print(wX + " " + wY);
 
         if (x == wX && y == wY)
         {

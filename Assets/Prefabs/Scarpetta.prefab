@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4864215376646440}
-  - component: {fileID: 114213645733774360}
-  - component: {fileID: 114707750259019262}
-  - component: {fileID: 114925027640748264}
-  - component: {fileID: 114990162984037422}
+  - component: {fileID: 114179974828666708}
+  - component: {fileID: 114930572893564452}
+  - component: {fileID: 114261392423762294}
+  - component: {fileID: 114824980499877272}
   m_Layer: 0
   m_Name: Scarpetta
   m_TagString: Untagged
@@ -128,7 +128,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114213645733774360
+--- !u!114 &114179974828666708
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -136,12 +136,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1095933322598068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5787d19002c3a5f4b9b12dec99a61d08, type: 3}
+  m_Script: {fileID: 11500000, guid: cd637ca8f1ad2be459f8ba321b1cc37c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  y: 0
---- !u!114 &114707750259019262
+  eventToListen: {fileID: 11400000, guid: 7b6574c4ade94ff48a5b10ca71c6f64e, type: 2}
+  whatToDo:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114930572893564452}
+        m_MethodName: Think
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &114261392423762294
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -149,11 +164,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1095933322598068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29876d9b98146a0428eb7b18990bd9d4, type: 3}
+  m_Script: {fileID: 11500000, guid: cd637ca8f1ad2be459f8ba321b1cc37c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  caramellaPresa: {fileID: 11400000, guid: b6c7d9f0f797cc74b865286e6280fff5, type: 2}
---- !u!114 &114925027640748264
+  eventToListen: {fileID: 11400000, guid: ae830f143e6b4d54cbad27339ace55bc, type: 2}
+  whatToDo:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114930572893564452}
+        m_MethodName: Think
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &114824980499877272
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -168,7 +199,7 @@ MonoBehaviour:
   whatToDo:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114707750259019262}
+      - m_Target: {fileID: 114930572893564452}
         m_MethodName: Think
         m_Mode: 1
         m_Arguments:
@@ -181,7 +212,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114990162984037422
+--- !u!114 &114930572893564452
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -189,23 +220,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1095933322598068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd637ca8f1ad2be459f8ba321b1cc37c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e321646bee762a4b91ab5144f6f3725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventToListen: {fileID: 11400000, guid: f939886397e28a448bb7982e47a39e93, type: 2}
-  whatToDo:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114707750259019262}
-        m_MethodName: Think
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
