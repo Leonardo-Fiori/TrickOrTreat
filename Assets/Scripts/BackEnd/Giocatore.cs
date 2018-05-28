@@ -109,6 +109,11 @@ public class Giocatore : ScriptableObject {
     {
         return GameManager.mapInstance.GetQuanteChiavi();
     }
+    
+    public int GetCaramelleRaccolte()
+    {
+        return caramelleRaccolte;
+    }
 
     public int getX()
     {

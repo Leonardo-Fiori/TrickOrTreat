@@ -20,9 +20,9 @@ public class CaramelleUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        print("Hai " + GameManager.playerInstance.caramelleRaccolte + " al momento"); // arriva massimo a 4
+        print("Hai " + GameManager.playerInstance.GetCaramelleRaccolte() + " al momento"); // arriva massimo a 4
 
-        images[GameManager.playerInstance.caramelleRaccolte].gameObject.SetActive(true);
+        images[GameManager.playerInstance.GetCaramelleRaccolte()].gameObject.SetActive(true);
         //for (int i = 0; i < images.Length)
 	}
 }

@@ -108,6 +108,9 @@ public class TurniManager : MonoBehaviour
 
     public void PassaTurno()
     {
+        GameManager.instance.SwitchTurn();
+
+        /*
         if (GameManager.turno == Turno.giocatore)   // bisogna fare in modo che il turno switchi esattamente alla fine dei movimenti della strega
         {
             GameManager.turno = Turno.strega;
@@ -118,5 +121,6 @@ public class TurniManager : MonoBehaviour
 
             GameManager.playerInstance.ResetMosseFatte();
         }
+        */
     }
 }
