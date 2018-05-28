@@ -130,12 +130,6 @@ public class Giocatore : ScriptableObject {
         x = newX;
         y = newY;
 
-        if (mov == Movement.smooth)
-        {
-            GameManager.playerMovementEvent.Raise();
-            IncrementaMosseFatte();
-        }
-
         playerMover.move(x, y, mov);
 
         MapTile tile = GameManager.mapInstance.getTile(x, y);
@@ -156,6 +150,14 @@ public class Giocatore : ScriptableObject {
         {
             RaccogliScarpetta();
             tile.SetScarpetta(false);
+        }
+
+        if (mov == Movement.smooth)
+        {
+            GameManager.playerMovementEvent.Raise();
+
+            if(!tile.HasScarpetta())
+                IncrementaMosseFatte();
         }
 
         if (GameManager.mapInstance.getTile(x, y).IsUscita() && chiaviRaccolte >= GameManager.mapInstance.GetQuanteChiavi())
