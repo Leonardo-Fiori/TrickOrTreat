@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour {
             Destroy(tile);
         }
 
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void SwitchTurn()
