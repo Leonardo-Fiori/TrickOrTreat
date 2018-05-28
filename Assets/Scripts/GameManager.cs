@@ -144,11 +144,15 @@ public class GameManager : MonoBehaviour {
         {
             turno = Turno.giocatore;
 
+            strega.ResetMosseFatte();
+
             cameraManager.SwitchSubject();
         }
         else
         {
             turno = Turno.strega;
+
+            giocatore.ResetMosseFatte();
 
             witchPrefabInstance.GetComponent<MoveWitch>().InvokeMovement();
 
