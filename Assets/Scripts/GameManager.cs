@@ -53,10 +53,10 @@ public class GameManager : MonoBehaviour {
     public CameraManagerIsometric cameraManager;
 
     // Prefabs per generazione mappa
-    public GameObject prefabQuadrivia;
-    public GameObject prefabCorridoio;
-    public GameObject prefabTrivia;
-    public GameObject prefabAngolo;
+    public List<GameObject> prefabsQuadrivia;
+    public List<GameObject> prefabsCorridoio;
+    public List<GameObject> prefabsTrivia;
+    public List<GameObject> prefabsAngolo;
 
     // Lista dei prefab front end delle tile
     private static GameObject[] frontEndTileInstances;
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour {
         playerInstance.SetFrontEndPrefab(playerPrefabInstance);
         playerPrefabInstance.SetActive(false);
 
-        // Inizializzo la strega
+        // Inizializzo la strega 
         witchInstance = strega;
         witchPrefabInstance = prefabStrega;
         witchInstance.SetFrontEndPrefab(witchPrefabInstance);
@@ -160,18 +160,24 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    private GameObject RandomFromList(List<GameObject> list)
+    {
+        int random = Random.Range(0, list.Count - 1);
+        return list[random];
+    }
+
     public GameObject GetFrontEndTilePrefab(TileType tileType)
     {
         GameObject prefab = null;
 
         if (tileType == TileType.quadrivio)
-            prefab = prefabQuadrivia;
+            prefab = RandomFromList(prefabsQuadrivia);
         if (tileType == TileType.trivio)
-            prefab = prefabTrivia;
+            prefab = RandomFromList(prefabsTrivia);
         if (tileType == TileType.angolo)
-            prefab = prefabAngolo;
+            prefab = RandomFromList(prefabsAngolo);
         if (tileType == TileType.corridoio)
-            prefab = prefabCorridoio;
+            prefab = RandomFromList(prefabsCorridoio);
 
         return prefab;
     }

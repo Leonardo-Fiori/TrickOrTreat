@@ -446,14 +446,14 @@ MonoBehaviour:
   strega: {fileID: 11400000, guid: 7b78542fcd6cb494f9fed506bd9463ab, type: 2}
   eventoMovimento: {fileID: 11400000, guid: f939886397e28a448bb7982e47a39e93, type: 2}
   cameraManager: {fileID: 1769690661}
-  prefabQuadrivia: {fileID: 1977490210554508, guid: e9059674ee67c4e46b34b9aa2588e9f2,
-    type: 2}
-  prefabCorridoio: {fileID: 1395155642615840, guid: 4b457005872dbfc4380f956a86cec105,
-    type: 2}
-  prefabTrivia: {fileID: 1829411119178332, guid: daa11e4de13c42142adeb60b267d23fe,
-    type: 2}
-  prefabAngolo: {fileID: 1537990507139506, guid: ec9cd806a8de6724494e0233a41f986a,
-    type: 2}
+  prefabsQuadrivia:
+  - {fileID: 1977490210554508, guid: e9059674ee67c4e46b34b9aa2588e9f2, type: 2}
+  prefabsCorridoio:
+  - {fileID: 1395155642615840, guid: 4b457005872dbfc4380f956a86cec105, type: 2}
+  prefabsTrivia:
+  - {fileID: 1829411119178332, guid: daa11e4de13c42142adeb60b267d23fe, type: 2}
+  prefabsAngolo:
+  - {fileID: 1537990507139506, guid: ec9cd806a8de6724494e0233a41f986a, type: 2}
 --- !u!4 &1000383825
 Transform:
   m_ObjectHideFlags: 0
@@ -665,7 +665,7 @@ Prefab:
     - target: {fileID: 224248297374947164, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 224211633847597656, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
@@ -685,7 +685,7 @@ Prefab:
     - target: {fileID: 224211633847597656, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -225
       objectReference: {fileID: 0}
     - target: {fileID: 114412879728413292, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
