@@ -38,8 +38,8 @@ public class TurniManager : MonoBehaviour
         int turnoMax = GameManager.playerInstance.GetMossePerTurno();
         int turno = GameManager.playerInstance.GetMosseFatte();
 
-        print("Il turnoMAX" + turnoMax);
-        print("Il turno attuale è " + turno);
+        //print("Il turnoMAX" + turnoMax);
+        //print("Il turno attuale è " + turno);
 
         // se è il turno della strega la ui viene resettata
         if(GameManager.turno == Turno.strega)
@@ -72,7 +72,8 @@ public class TurniManager : MonoBehaviour
     }
 
 
-    void SetUI()    // setta la ui all'inizio instanziando le immagini
+    // setta la ui all'inizio instanziando le immagini
+    void SetUI()    
     {
         for (int i = 0; i < GameManager.playerInstance.GetMossePerTurno(); i++) // da 0 a 2  attivo le mosse disponibili
         {
@@ -85,7 +86,9 @@ public class TurniManager : MonoBehaviour
         }
     }
 
-    void ResetUI()  // sostituisce nell'array le immagini 
+
+    // sostituisce nell'array le immagini 
+    void ResetUI()  
     {
         for (int i = 0; i < GameManager.playerInstance.GetMossePerTurno(); i++) // da 0 a 2  attivo le mosse disponibili
         {
@@ -108,8 +111,10 @@ public class TurniManager : MonoBehaviour
 
     public void PassaTurno()
     {
-        GameManager.instance.SwitchTurn();
+        //print("Turno passato");
+        if (GameManager.turno == Turno.giocatore) GameManager.instance.SwitchTurn();
 
+        
         /*
         if (GameManager.turno == Turno.giocatore)   // bisogna fare in modo che il turno switchi esattamente alla fine dei movimenti della strega
         {
