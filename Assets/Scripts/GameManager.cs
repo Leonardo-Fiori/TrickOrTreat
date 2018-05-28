@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour {
     // Lista dei prefab front end delle tile
     private static GameObject[] frontEndTileInstances;
 
-    void Start () {
+    void OnEnable () {
 
         instance = this;
 
