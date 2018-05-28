@@ -44,6 +44,8 @@ public class MoveWarpTiles : EventListener {
         tileLatoSopra = (x >= 0 && x <= dim && y == dim);
         tileLatoSotto = (x >= 0 && x <= dim && y == 0);
 
+        opposti = new Dictionary<MoveWarpTiles, Vector3>();
+
         Invoke("InitializeOpposites", 2f);
     }
 
