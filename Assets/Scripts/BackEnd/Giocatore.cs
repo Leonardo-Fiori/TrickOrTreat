@@ -127,13 +127,14 @@ public class Giocatore : ScriptableObject {
 
     public void move(int newX, int newY, Movement mov)
     {
-        GameManager.playerMovementEvent.Raise();
-
         x = newX;
         y = newY;
 
-        if(mov == Movement.smooth)
+        if (mov == Movement.smooth)
+        {
+            GameManager.playerMovementEvent.Raise();
             IncrementaMosseFatte();
+        }
 
         playerMover.move(x, y, mov);
 
