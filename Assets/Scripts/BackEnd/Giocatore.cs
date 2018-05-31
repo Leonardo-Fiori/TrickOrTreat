@@ -54,7 +54,7 @@ public class Giocatore : ScriptableObject {
 
     public void SetFrontEndPrefab(GameObject prefab)
     {
-        Debug.Log(chiaviRaccolte);
+        //Debug.Log(chiaviRaccolte);
         frontEndPrefab = prefab;
         playerMover = prefab.GetComponent<MovePlayer>();
     }

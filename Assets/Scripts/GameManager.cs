@@ -31,10 +31,16 @@ public class GameManager : MonoBehaviour {
     public static CameraManagerIsometric cameraManagerInstance;
 
     // Valori pubblici di configurazione
-    public int dimensioneMappa = 7;
-    public Tileset tileset;
+    public SDifficulty difficulty;
+    public int[] dimensioniMappa;
+    public Tileset[] tilesets;
+    public Giocatore[] moduliGiocatore;
+    public Strega[] moduliStrega;
 
-    public Giocatore giocatore;
+    private int dimensioneMappa = 7;     // diff
+    private Tileset tileset;             // diff
+
+    private Giocatore giocatore;         // diff
     public GameObject prefabGiocatore;
 
     public float distanzaTraTile;
@@ -46,7 +52,7 @@ public class GameManager : MonoBehaviour {
     public static bool cheatMode;
 
     public GameObject prefabStrega;
-    public Strega strega;
+    private Strega strega;               // diff
 
     public SOEvent eventoMovimento;
 
@@ -72,25 +78,25 @@ public class GameManager : MonoBehaviour {
         playerMovementEvent = eventoMovimento;
 
         // Inizializzo il player
-        playerInstance = giocatore;
+        playerInstance = moduliGiocatore[difficulty.value];
         playerPrefabInstance = prefabGiocatore;
         playerInstance.SetFrontEndPrefab(playerPrefabInstance);
         playerPrefabInstance.SetActive(false);
 
         // Inizializzo la strega 
-        witchInstance = strega;
+        witchInstance = moduliStrega[difficulty.value];
         witchPrefabInstance = prefabStrega;
         witchInstance.SetFrontEndPrefab(witchPrefabInstance);
         witchPrefabInstance.SetActive(false);
 
         // Inizializzo la mappa
-        mapInstance = new Mappa(dimensioneMappa);
+        mapInstance = new Mappa(dimensioniMappa[difficulty.value]);
 
         // Inizializzo il movement manager
         movementManagerInstance = new MovementManager();
 
         // Imposto la mappa
-        mapInstance.setTileSet(tileset);
+        mapInstance.setTileSet(tilesets[difficulty.value]);
         mapInstance.randomize();
 
         // Spawno il front end della mappa
@@ -144,7 +150,7 @@ public class GameManager : MonoBehaviour {
         {
             turno = Turno.giocatore;
 
-            strega.ResetMosseFatte();
+            witchInstance.ResetMosseFatte();
 
             cameraManager.SwitchSubject();
         }
@@ -152,7 +158,7 @@ public class GameManager : MonoBehaviour {
         {
             turno = Turno.strega;
 
-            giocatore.ResetMosseFatte();
+            playerInstance.ResetMosseFatte();
 
             witchPrefabInstance.GetComponent<MoveWitch>().InvokeMovement();
 
@@ -235,7 +241,7 @@ public class GameManager : MonoBehaviour {
         playerInstance.ResetMosseFatte();
         playerPrefabInstance.SetActive(true);
 
-        strega.Spawn();
+        witchInstance.Spawn();
         witchPrefabInstance.SetActive(true);
 
         /* Se disattivo una singola nebbia all'interno di questa funzione 

@@ -435,22 +435,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25152bbc5ed5c6d4ba3e89b5190455ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: {fileID: 11400000, guid: 00c7633ce2dc34f44bc29c56c5b136a2, type: 2}
-  dimensioniMappa: 0700000007000000
-  tilesets:
-  - {fileID: 11400000, guid: e477fdf070d3b58429dcf45b6f51216a, type: 2}
-  - {fileID: 11400000, guid: ad83d0bd11fc94a459e001378d21a60f, type: 2}
-  moduliGiocatore:
-  - {fileID: 11400000, guid: 0309e24288c4c2747ac3b20f96e9fdb6, type: 2}
-  - {fileID: 11400000, guid: 0309e24288c4c2747ac3b20f96e9fdb6, type: 2}
-  moduliStrega:
-  - {fileID: 11400000, guid: 7b78542fcd6cb494f9fed506bd9463ab, type: 2}
-  - {fileID: 11400000, guid: 7b78542fcd6cb494f9fed506bd9463ab, type: 2}
+  dimensioneMappa: 7
+  tileset: {fileID: 11400000, guid: f6e92873df8f2d74e96482b703fd7f51, type: 2}
+  giocatore: {fileID: 11400000, guid: 0309e24288c4c2747ac3b20f96e9fdb6, type: 2}
   prefabGiocatore: {fileID: 823130481}
   distanzaTraTile: 1
   scalaTiles: 1
   witchDelay: 1
   prefabStrega: {fileID: 359589256}
+  strega: {fileID: 11400000, guid: 7b78542fcd6cb494f9fed506bd9463ab, type: 2}
   eventoMovimento: {fileID: 11400000, guid: f939886397e28a448bb7982e47a39e93, type: 2}
   cameraManager: {fileID: 1769690661}
   prefabsQuadrivia:

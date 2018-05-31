@@ -206,6 +206,8 @@ namespace UnityEngine
         {
             int center = (dim / 2);
 
+            Debug.Log(dim+" "+center);
+
             while (!tiles[center + 1, center].getDirection(Direction.ovest))
             {
                 tiles[center + 1, center].rotate(true);
