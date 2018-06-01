@@ -56,7 +56,7 @@ public class KeyAnimation : MonoBehaviour
         int wX = GameManager.playerInstance.getX();
         int wY = GameManager.playerInstance.getY();
 
-        print(wX + " " + wY);
+        //print(wX + " " + wY);
 
         if (x == wX && y == wY)
         {

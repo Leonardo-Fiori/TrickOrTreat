@@ -54,7 +54,7 @@ public class TilesInDanger : MonoBehaviour {
             tilesInDanger.AddRange(GameManager.movementManagerInstance.getNextTiles(nextX, witchY, Direction.sud, mosseStrega - i));
         }
 
-        print(tilesInDanger.Count);
+        //print(tilesInDanger.Count);
 
         dangerousTilesUpdatedEvent.Raise();
     }

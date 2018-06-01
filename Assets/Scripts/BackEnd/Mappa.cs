@@ -206,7 +206,7 @@ namespace UnityEngine
         {
             int center = (dim / 2);
 
-            Debug.Log(dim+" "+center);
+            //Debug.Log(dim+" "+center);
 
             while (!tiles[center + 1, center].getDirection(Direction.ovest))
             {

@@ -60,6 +60,10 @@ public class RaycastManager : MonoBehaviour
 
                 MapTile tileBackEnd = GameManager.mapInstance.getTile(clickedTile.GetTileX(), clickedTile.GetTileY());
 
+                //print(tileBackEnd.getTileType() + " " + tileBackEnd.getTileRotation());
+
+                //return;
+
                 // VUOLE RUOTARE, O E' IN MODALITA' DEBUG
                 if ((equalX && equalY) || GameManager.debugMode == true)
                 {

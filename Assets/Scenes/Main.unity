@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fb97ef2db7e844bb3bdde019c36f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  factor: 1
+  factor: 2
   offsetY: 2
   eventEndAnim: {fileID: 11400000, guid: 31aaa2618d8b6624cb265430de8ea891, type: 2}
 --- !u!4 &359589262 stripped
@@ -246,7 +246,7 @@ Prefab:
     - target: {fileID: 114559622413886020, guid: b34011cc938092541a4f6252c7da7653,
         type: 2}
       propertyPath: factor
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114559622413886020, guid: b34011cc938092541a4f6252c7da7653,
         type: 2}
@@ -447,7 +447,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7b78542fcd6cb494f9fed506bd9463ab, type: 2}
   - {fileID: 11400000, guid: 7b78542fcd6cb494f9fed506bd9463ab, type: 2}
   prefabGiocatore: {fileID: 823130481}
-  distanzaTraTile: 1
+  distanzaTraTile: 1.99
   scalaTiles: 1
   witchDelay: 1
   prefabStrega: {fileID: 359589256}
@@ -672,7 +672,7 @@ Prefab:
     - target: {fileID: 224248297374947164, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 224211633847597656, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
@@ -692,7 +692,7 @@ Prefab:
     - target: {fileID: 224211633847597656, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -225
       objectReference: {fileID: 0}
     - target: {fileID: 114412879728413292, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
