@@ -5,6 +5,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour {
 
     public static SoundManager instance = null;
+    public string mainMusicLoop;
 
     private void OnEnable()
     {
@@ -22,6 +23,10 @@ public class SoundManager : MonoBehaviour {
     {
         DontDestroyOnLoad(gameObject);
         source = gameObject.AddComponent<AudioSource>();
+        mainLoop = gameObject.AddComponent<AudioSource>();
+        mainLoop.clip = Find(mainMusicLoop);
+        mainLoop.loop = true;
+        mainLoop.Play();
     }
 
     [System.Serializable]
@@ -33,6 +38,7 @@ public class SoundManager : MonoBehaviour {
 
     public Sound[] sounds;
     private AudioSource source;
+    private AudioSource mainLoop;
 
     private AudioClip Find(string soundName)
     {
@@ -47,7 +53,7 @@ public class SoundManager : MonoBehaviour {
 
     public void Play(string name, float volume = 1f)
     {
-        print("Playing " + name + " at volume " + volume + " ...");
+        //print("Playing " + name + " at volume " + volume + " ...");
         AudioClip clip = Find(name);
         source.PlayOneShot(clip, volume);
     }

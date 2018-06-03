@@ -148,6 +148,8 @@ public class GameManager : MonoBehaviour {
     {
         if(turno == Turno.strega)
         {
+            SoundManager.instance.Play("playerturn");
+
             turno = Turno.giocatore;
 
             witchInstance.ResetMosseFatte();
@@ -156,6 +158,27 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
+            SoundManager.instance.Play("witchturn");
+
+            // Respawna scarpette
+            for (int i = 0; i < mapInstance.scarpetteDaRespawnare.Count; i++)
+            {
+                MapTile tile = mapInstance.scarpetteDaRespawnare[i];
+
+                print("CANT? " + tile.getX() + " " + tile.getY() + " " + playerInstance.getX() + " " + playerInstance.getY());
+
+                if (tile.getX() != playerInstance.getX() && tile.getY() != playerInstance.getY())
+                {
+                    tile.SetScarpetta(true);
+                    tile.getPrefab().GetComponent<PickupSpawner>().SpawnScarpetta();
+                    mapInstance.scarpetteDaRespawnare.Remove(tile);
+                }
+                else
+                {
+                    print("CANT "+tile.getX()+" "+tile.getY()+" "+playerInstance.getX()+" "+playerInstance.getY());
+                }
+            }
+
             turno = Turno.strega;
 
             playerInstance.ResetMosseFatte();
@@ -322,11 +345,6 @@ public class GameManager : MonoBehaviour {
             {
                 cheatMode = !cheatMode;
                 print("Cheatmode: " + cheatMode);
-            }         
-
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                playerInstance.RaccogliCaramella();
             }
         }
 

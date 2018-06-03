@@ -61,6 +61,9 @@ public class TileHghlight : MonoBehaviour {
 
     private void OnMouseOver()
     {
+        if (mouseOver)
+            return;
+
         int playerX = GameManager.playerInstance.getX();
         int playerY = GameManager.playerInstance.getY();
         int x = TileCoords.GetX(gameObject);
@@ -81,6 +84,7 @@ public class TileHghlight : MonoBehaviour {
         {
             if (on || sud && canMoveSud || est && canMoveEst || ovest && canMoveOvest || nord && canMoveNord)
             {
+                SoundManager.instance.Play("tilehover");
                 canMoveHere = true;
             }
             else

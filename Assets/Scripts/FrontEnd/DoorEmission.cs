@@ -22,8 +22,13 @@ public class DoorEmission : MonoBehaviour {
         chiavi++;
 
         if (chiavi < chiaviMassime)
-            material.SetColor("_EmissionColor", (Color.white * (chiavi / (2f * chiaviMassime))));
+        {
+            SoundManager.instance.Play("playerturn");
+        }
         else
+        {
+            SoundManager.instance.Play("dooropen");
             material.SetColor("_EmissionColor", Color.white * (chiavi / chiaviMassime));
+        }
     }
 }

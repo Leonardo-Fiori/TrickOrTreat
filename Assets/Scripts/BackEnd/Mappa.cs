@@ -25,6 +25,7 @@ namespace UnityEngine
         private int quanteCaramelle;
         private bool[,] scarpette;
         private int quanteScarpette;
+        public List<MapTile> scarpetteDaRespawnare;
 
         #region"Getter e Setter"
 
@@ -54,6 +55,7 @@ namespace UnityEngine
             keys = new bool[dim, dim];
             caramelle = new bool[dim, dim];
             scarpette = new bool[dim, dim];
+            scarpetteDaRespawnare = new List<MapTile>();
         }
 
         public Mappa() : this(DEF_DIM) { }

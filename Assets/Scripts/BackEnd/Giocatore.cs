@@ -35,6 +35,8 @@ public class Giocatore : ScriptableObject {
 
     public void RaccogliScarpetta()
     {
+        SoundManager.instance.Play("pickscarpetta");
+
         Debug.Log("Hai raccolto una scarpetta. Ti restano " + (mossePerTurno - mosseFatte) + " mosse.");
 
         mosseFatte--;
@@ -42,6 +44,8 @@ public class Giocatore : ScriptableObject {
 
     public void RaccogliCaramella()
     {
+        SoundManager.instance.Play("pickcaramella");
+
         caramelleRaccolte++;
 
         if (caramelleRaccolte >= caramelleNecessarie)
@@ -71,6 +75,8 @@ public class Giocatore : ScriptableObject {
 
     public void IncrementaChiavi()
     {
+        SoundManager.instance.Play("pickchiave");
+
         chiaviRaccolte++;
     }
 
@@ -154,6 +160,8 @@ public class Giocatore : ScriptableObject {
 
         if (mov == Movement.smooth)
         {
+            SoundManager.instance.Play("playermove");
+
             GameManager.playerMovementEvent.Raise();
 
             if(!tile.HasScarpetta())
@@ -162,6 +170,7 @@ public class Giocatore : ScriptableObject {
 
         if (GameManager.mapInstance.getTile(x, y).IsUscita() && chiaviRaccolte >= GameManager.mapInstance.GetQuanteChiavi())
         {
+            SoundManager.instance.Play("win");
             GameManager.instance.Restart();
             return;
         }

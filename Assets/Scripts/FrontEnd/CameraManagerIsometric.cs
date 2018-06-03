@@ -70,7 +70,7 @@ public class CameraManagerIsometric : MonoBehaviour
     {
         
         // Ruota la camera
-        if (Input.GetMouseButton(2) && canRotate)
+        if ((Input.GetMouseButton(2) || Input.GetMouseButton(1)) && canRotate)
         {
             CameraRotation();
         }

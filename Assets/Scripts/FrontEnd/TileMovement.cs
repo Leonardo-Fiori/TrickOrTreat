@@ -43,6 +43,8 @@ public class TileMovement : MonoBehaviour
     {
         canRot = false;
 
+        SoundManager.instance.Play("tilerotation");
+
         Vector3 startPosition = transform.position;
         Vector3 endPosition = startPosition + Vector3.up * height;
 
@@ -80,7 +82,9 @@ public class TileMovement : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        for(float i = 0; i < rotationSpeed; i++)
+        SoundManager.instance.Play("whoosh");
+
+        for (float i = 0; i < rotationSpeed; i++)
         {
             transform.Rotate(0f, angleRot / rotationSpeed, 0f);
             if(playerIsOnTile)
@@ -91,6 +95,8 @@ public class TileMovement : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         counter = 0f;
+
+        SoundManager.instance.Play("tilerotation");
 
         // Torna in posizione
         while (transform.position != startPosition)

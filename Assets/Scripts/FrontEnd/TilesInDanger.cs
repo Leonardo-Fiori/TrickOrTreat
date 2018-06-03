@@ -10,7 +10,12 @@ public class TilesInDanger : MonoBehaviour {
 
     private void OnMouseEnter()
     {
+        if (mouseOverWitch)
+            return;
+
         mouseOverWitch = true;
+
+        SoundManager.instance.Play("tilehover");
     }
 
     private void OnMouseExit()
@@ -21,7 +26,18 @@ public class TilesInDanger : MonoBehaviour {
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && mouseOverWitch)
+        {
             toggled = !toggled;
+
+            if (!toggled)
+            {
+                SoundManager.instance.Play("clicksimple");
+            }
+            else
+            {
+                SoundManager.instance.Play("clickrisata");
+            }
+        }
     }
 
     public void OnWitchMove()

@@ -51,7 +51,7 @@ public class PickupSpawner : MonoBehaviour {
         caramella.GetComponent<PickupAnimation>().Initialize(x, y);
     }
 
-    void SpawnScarpetta()
+    public void SpawnScarpetta()
     {
         scarpetta = Instantiate(prefabScarpetta, transform.position, Quaternion.identity);
         scarpetta.GetComponent<PickupAnimation>().Initialize(x, y);

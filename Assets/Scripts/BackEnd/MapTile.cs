@@ -35,6 +35,11 @@ public class MapTile
     public void SetScarpetta(bool hasScarpetta)
     {
         scarpetta = hasScarpetta;
+
+        if(scarpetta == false)
+        {
+            GameManager.mapInstance.scarpetteDaRespawnare.Add(this);
+        }
     }
 
     public bool HasScarpetta()
