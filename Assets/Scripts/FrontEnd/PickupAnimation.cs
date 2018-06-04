@@ -12,7 +12,7 @@ public class PickupAnimation : MonoBehaviour {
     {
         while (transform.localScale != Vector3.zero)
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Mathf.Sin(Time.frameCount) * speed);
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * speed);
             if (transform.localScale.x <= 0.01f)
                 transform.localScale = Vector3.zero;
             yield return null;
@@ -23,7 +23,7 @@ public class PickupAnimation : MonoBehaviour {
     {
         while (transform.localScale != Vector3.zero)
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Mathf.Sin(Time.frameCount) * speed);
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * speed);
             if (transform.localScale.x <= 0.01f)
                 transform.localScale = Vector3.zero;
             yield return new WaitForFixedUpdate();
@@ -36,7 +36,8 @@ public class PickupAnimation : MonoBehaviour {
     {
         while (transform.localScale != Vector3.one)
         {
-            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Mathf.Sin(Time.frameCount) * speed);
+            print("spawn");
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Time.deltaTime * speed);
             if (transform.localScale.x >= 0.99f)
                 transform.localScale = Vector3.one;
             yield return new WaitForFixedUpdate();
@@ -63,8 +64,8 @@ public class PickupAnimation : MonoBehaviour {
 
     private void Start()
     {
-        transform.localScale = new Vector3(.1f, .1f, .1f);
-        Despawn();
+        transform.localScale = Vector3.zero;
+        Think();
     }
 
     public void Think()

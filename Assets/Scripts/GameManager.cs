@@ -146,7 +146,41 @@ public class GameManager : MonoBehaviour {
 
     public void SwitchTurn()
     {
-        if(turno == Turno.strega)
+        // Respawna scarpette
+
+        List<MapTile> toRemove = new List<MapTile>();
+
+        for (int i = 0; i < mapInstance.scarpetteDaRespawnare.Count; i++)
+        {
+            MapTile tile = mapInstance.scarpetteDaRespawnare[i];
+
+            print("Analizzo il tile " + tile.getX() + " " + tile.getY() + " il giocatore si trova " + playerInstance.getX() + " " + playerInstance.getY());
+
+            bool sameX = (tile.getX() == playerInstance.getX());
+            bool sameY = (tile.getY() == playerInstance.getY());
+            bool samePos = (sameX && sameY);
+
+            if (!samePos)
+            {
+                tile.SetScarpetta(true);
+                tile.getPrefab().GetComponent<PickupSpawner>().SpawnScarpetta();
+                toRemove.Add(tile);
+                print("Lo spawno e lo tolgo dalla lista di quelli da rispawnare ("+tile.getX()+" "+tile.getY()+")");
+            }
+            else
+            {
+                print("Non posso spawnare " + tile.getX() + " " + tile.getY() + " perchè il player è in " + playerInstance.getX() + " " + playerInstance.getY());
+            }
+        }
+
+        foreach (MapTile tile in toRemove)
+        {
+            print("sto per rimuovere " + tile.getX() + " " + tile.getY() + " dalla lista di quelli da rispawnare");
+            mapInstance.scarpetteDaRespawnare.Remove(tile);
+            print("ho rimosso il tile: " + tile);
+        }
+
+        if (turno == Turno.strega)
         {
             SoundManager.instance.Play("playerturn");
 
@@ -159,34 +193,6 @@ public class GameManager : MonoBehaviour {
         else
         {
             SoundManager.instance.Play("witchturn");
-
-            // Respawna scarpette
-
-            List<MapTile> toRemove = new List<MapTile>();
-
-            for (int i = 0; i < mapInstance.scarpetteDaRespawnare.Count; i++)
-            {
-                MapTile tile = mapInstance.scarpetteDaRespawnare[i];
-
-                print("CANT? " + tile.getX() + " " + tile.getY() + " " + playerInstance.getX() + " " + playerInstance.getY());
-
-                if (tile.getX() != playerInstance.getX() && tile.getY() != playerInstance.getY())
-                {
-                    tile.SetScarpetta(true);
-                    tile.getPrefab().GetComponent<PickupSpawner>().SpawnScarpetta();
-                    toRemove.Add(tile);
-                    print("CAN!");
-                }
-                else
-                {
-                    print("CANT "+tile.getX()+" "+tile.getY()+" "+playerInstance.getX()+" "+playerInstance.getY());
-                }
-            }
-
-            foreach(MapTile tile in toRemove)
-            {
-                mapInstance.scarpetteDaRespawnare.Remove(tile);
-            }
 
             turno = Turno.strega;
 

@@ -40,7 +40,9 @@ public class MapTile
     public void PrendiScarpetta()
     {
         scarpetta = false;
-        //GameManager.mapInstance.scarpetteDaRespawnare.Add(this);
+        Debug.Log("inserisco " + this.x + " " + this.y);
+        GameManager.mapInstance.scarpetteDaRespawnare.Add(this);
+        Debug.Log("ho inserito " + this.x + " " + this.y + " la lista contiene " + GameManager.mapInstance.scarpetteDaRespawnare.Count + " tiles");
     }
 
     public bool HasScarpetta()
