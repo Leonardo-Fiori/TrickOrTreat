@@ -23,7 +23,7 @@ public class DoorEmission : MonoBehaviour {
 
         if (chiavi < chiaviMassime)
         {
-            SoundManager.instance.Play("playerturn");
+            //SoundManager.instance.Play("playerturn");
         }
         else
         {

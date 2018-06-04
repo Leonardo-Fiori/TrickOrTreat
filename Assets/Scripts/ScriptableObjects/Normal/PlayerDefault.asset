@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36be00e2611daab4da8ffa534cc6d849, type: 3}
   m_Name: PlayerDefault
   m_EditorClassIdentifier: 
-  mossePerTurno: 3
+  mossePerTurno: 4
   caramelleNecessarie: 3
   incrementoMosse: 0

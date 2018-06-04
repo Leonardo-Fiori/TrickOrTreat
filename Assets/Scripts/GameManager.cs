@@ -161,6 +161,9 @@ public class GameManager : MonoBehaviour {
             SoundManager.instance.Play("witchturn");
 
             // Respawna scarpette
+
+            List<MapTile> toRemove = new List<MapTile>();
+
             for (int i = 0; i < mapInstance.scarpetteDaRespawnare.Count; i++)
             {
                 MapTile tile = mapInstance.scarpetteDaRespawnare[i];
@@ -171,12 +174,18 @@ public class GameManager : MonoBehaviour {
                 {
                     tile.SetScarpetta(true);
                     tile.getPrefab().GetComponent<PickupSpawner>().SpawnScarpetta();
-                    mapInstance.scarpetteDaRespawnare.Remove(tile);
+                    toRemove.Add(tile);
+                    print("CAN!");
                 }
                 else
                 {
                     print("CANT "+tile.getX()+" "+tile.getY()+" "+playerInstance.getX()+" "+playerInstance.getY());
                 }
+            }
+
+            foreach(MapTile tile in toRemove)
+            {
+                mapInstance.scarpetteDaRespawnare.Remove(tile);
             }
 
             turno = Turno.strega;

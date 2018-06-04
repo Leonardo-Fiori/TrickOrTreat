@@ -79,18 +79,31 @@ public class CameraManagerIsometric : MonoBehaviour
         if (transform.position.y <= 2)
             transform.position = new Vector3(transform.position.x, 2.1f, transform.position.z);
 
+        // Camera follow
+        CameraFollow();
+
+        // Zoom
+        CameraZoom();
+    }
+
+    void CameraFollow()
+    {
         // Trovo la posizione tra centro e soggetto
         Vector3 destination = subject.transform.position + ((center.transform.position - subject.transform.position) / 2);
 
         fantoccio.transform.position = Vector3.Lerp(fantoccio.transform.position, destination, Time.deltaTime * snappyness);
 
         transform.LookAt(fantoccio.transform);
+    }
 
-        // Zoom
+    void CameraZoom()
+    {
+        if(Input.GetMouseButton(1))
+            cam.orthographicSize -= Input.GetAxis("Mouse Y") * Time.deltaTime * scrollSpeed / 10f;
+
         cam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * scrollSpeed;
         if (cam.orthographicSize <= maxZoom) cam.orthographicSize = maxZoom;
         if (cam.orthographicSize >= minZoom) cam.orthographicSize = minZoom;
-
     }
 
     void CameraRotation()

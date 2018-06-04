@@ -511,7 +511,7 @@ MonoBehaviour:
   dimensioniMappa: 0700000007000000
   tilesets:
   - {fileID: 11400000, guid: e477fdf070d3b58429dcf45b6f51216a, type: 2}
-  - {fileID: 11400000, guid: ad83d0bd11fc94a459e001378d21a60f, type: 2}
+  - {fileID: 0}
   moduliGiocatore:
   - {fileID: 11400000, guid: 0309e24288c4c2747ac3b20f96e9fdb6, type: 2}
   - {fileID: 11400000, guid: 0309e24288c4c2747ac3b20f96e9fdb6, type: 2}
@@ -1071,7 +1071,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.05882353, g: 0.05882353, b: 0.11764706, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

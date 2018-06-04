@@ -138,7 +138,7 @@ public class Strega : ScriptableObject {
         // Mossa random
         if(Random.Range(0, 100) < (chanceMossaRandomAttuale-(mosseFatte*10f)) && mosseFatte != mossePerTurno - 1 && !PlayerOnNextTile())
         {
-            Debug.Log("mossa random " + chanceMossaRandomAttuale);
+            //Debug.Log("mossa random " + chanceMossaRandomAttuale);
 
             float randomDirChanche = Random.Range(0, 100);
             Direction randomDir = 0;
@@ -169,7 +169,7 @@ public class Strega : ScriptableObject {
         // Mossa intelligente
         else
         {
-            Debug.Log("mossa intelligente" + chanceMossaRandomAttuale);
+            //Debug.Log("mossa intelligente" + chanceMossaRandomAttuale);
 
             chanceMossaRandomAttuale = chanceMossaRandom;
 

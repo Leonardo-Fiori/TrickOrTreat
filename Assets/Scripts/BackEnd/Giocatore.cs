@@ -33,13 +33,15 @@ public class Giocatore : ScriptableObject {
         incrementoMosse = 0;
     }
 
-    public void RaccogliScarpetta()
+    public void RaccogliScarpetta(MapTile tile)
     {
         SoundManager.instance.Play("pickscarpetta");
 
-        Debug.Log("Hai raccolto una scarpetta. Ti restano " + (mossePerTurno - mosseFatte) + " mosse.");
+        tile.PrendiScarpetta();
 
         mosseFatte--;
+
+        Debug.Log("Hai raccolto una scarpetta. Ti restano " + (mossePerTurno - mosseFatte) + " mosse.");
     }
 
     public void RaccogliCaramella()
@@ -154,8 +156,7 @@ public class Giocatore : ScriptableObject {
 
         if (tile.HasScarpetta())
         {
-            RaccogliScarpetta();
-            tile.SetScarpetta(false);
+            RaccogliScarpetta(tile);
         }
 
         if (mov == Movement.smooth)
