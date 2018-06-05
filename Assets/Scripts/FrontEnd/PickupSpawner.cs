@@ -43,18 +43,24 @@ public class PickupSpawner : MonoBehaviour {
     {
         chiave = Instantiate(prefabKey, transform.position, Quaternion.identity);
         chiave.GetComponent<KeyAnimation>().Initialize(x, y);
+
+        GameManager.mapInstance.getTile(x, y).SetChiaveFrontEnd(chiave);
     }
 
     void SpawnCaramella()
     {
         caramella = Instantiate(prefabCaramella, transform.position, Quaternion.identity);
         caramella.GetComponent<PickupAnimation>().Initialize(x, y);
+
+        GameManager.mapInstance.getTile(x, y).SetCaramellaFrontEnd(caramella);
     }
 
     public void SpawnScarpetta()
     {
         scarpetta = Instantiate(prefabScarpetta, transform.position, Quaternion.identity);
         scarpetta.GetComponent<PickupAnimation>().Initialize(x, y);
+
+        GameManager.mapInstance.getTile(x, y).SetScarpettaFrontEnd(scarpetta); 
     }
 
     void Start () {

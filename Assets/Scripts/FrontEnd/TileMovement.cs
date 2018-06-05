@@ -54,9 +54,27 @@ public class TileMovement : MonoBehaviour
 
         bool playerIsOnTile = (GameManager.playerInstance.getX() == TileCoords.GetX(gameObject) && GameManager.playerInstance.getY() == TileCoords.GetY(gameObject));
 
+        MapTile backEnd = GameManager.mapInstance.getTile(GetTileX(), GetTileY());
+
+        if (backEnd.HasCaramella())
+        {
+            backEnd.GetCaramellaFrontEnd().GetComponent<PickupAnimation>().Despawn();
+        }
+
+        if (backEnd.HasScarpetta())
+        {
+            backEnd.GetScarpettaFrontEnd().GetComponent<PickupAnimation>().Despawn();
+        }
+
+        if (backEnd.HasKey())
+        {
+            backEnd.GetChiaveFrontEnd().GetComponent<PickupAnimation>().Despawn();
+        }
+
         float counter = 0f;
 
         // la tile sale
+
         while (transform.position != endPosition)
         {
             counter += Time.deltaTime;
@@ -122,6 +140,21 @@ public class TileMovement : MonoBehaviour
                 playerPrefab.transform.position = new Vector3(playerPosition.x, transform.position.y + playerTileGapY, playerPosition.z);
 
             yield return new WaitForFixedUpdate();
+        }
+
+        if (backEnd.HasCaramella())
+        {
+            backEnd.GetCaramellaFrontEnd().GetComponent<PickupAnimation>().Spawn();
+        }
+
+        if (backEnd.HasScarpetta())
+        {
+            backEnd.GetScarpettaFrontEnd().GetComponent<PickupAnimation>().Spawn();
+        }
+
+        if (backEnd.HasKey())
+        {
+            backEnd.GetChiaveFrontEnd().GetComponent<PickupAnimation>().Spawn();
         }
 
         canRot = true;

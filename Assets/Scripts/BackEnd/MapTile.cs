@@ -20,7 +20,41 @@ public class MapTile
     private TileType type;
 
     private bool fog = true;
+
     private GameObject frontEndPrefab;
+    public GameObject scarpettaFrontEnd;
+    public GameObject chiaveFrontEnd;
+    public GameObject caramellaFrontEnd;
+
+    public void SetScarpettaFrontEnd(GameObject obj)
+    {
+        scarpettaFrontEnd = obj;
+    }
+
+    public GameObject GetScarpettaFrontEnd()
+    {
+        return scarpettaFrontEnd;
+    }
+
+    public void SetCaramellaFrontEnd(GameObject obj)
+    {
+        caramellaFrontEnd = obj;
+    }
+
+    public GameObject GetCaramellaFrontEnd()
+    {
+        return caramellaFrontEnd;
+    }
+
+    public void SetChiaveFrontEnd(GameObject obj)
+    {
+        chiaveFrontEnd = obj;
+    }
+
+    public GameObject GetChiaveFrontEnd()
+    {
+        return chiaveFrontEnd; ;
+    }
 
     public void SetCaramella(bool hasCaramella)
     {
@@ -40,9 +74,9 @@ public class MapTile
     public void PrendiScarpetta()
     {
         scarpetta = false;
-        Debug.Log("inserisco " + this.x + " " + this.y);
+        //Debug.Log("inserisco " + this.x + " " + this.y);
         GameManager.mapInstance.scarpetteDaRespawnare.Add(this);
-        Debug.Log("ho inserito " + this.x + " " + this.y + " la lista contiene " + GameManager.mapInstance.scarpetteDaRespawnare.Count + " tiles");
+        //Debug.Log("ho inserito " + this.x + " " + this.y + " la lista contiene " + GameManager.mapInstance.scarpetteDaRespawnare.Count + " tiles");
     }
 
     public bool HasScarpetta()
