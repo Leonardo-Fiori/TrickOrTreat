@@ -508,16 +508,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: {fileID: 11400000, guid: 00c7633ce2dc34f44bc29c56c5b136a2, type: 2}
-  dimensioniMappa: 0700000007000000
+  dimensioniMappa: 07000000070000000700000007000000
   tilesets:
+  - {fileID: 11400000, guid: ca27dd433891c6e448c975ae8573789e, type: 2}
+  - {fileID: 11400000, guid: c3811b14af5e1aa4b9691092869bb899, type: 2}
   - {fileID: 11400000, guid: e477fdf070d3b58429dcf45b6f51216a, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 8df75935dc75c2e4687bf6c1da6e14ff, type: 2}
   moduliGiocatore:
+  - {fileID: 11400000, guid: eb89f864ec7873545ab43a99343fef9c, type: 2}
+  - {fileID: 11400000, guid: 1c36f32c06bdfa54f936a294b74c3812, type: 2}
   - {fileID: 11400000, guid: 0309e24288c4c2747ac3b20f96e9fdb6, type: 2}
-  - {fileID: 11400000, guid: 0309e24288c4c2747ac3b20f96e9fdb6, type: 2}
+  - {fileID: 11400000, guid: f168abd52391c8f4db96fb2798d02a9e, type: 2}
   moduliStrega:
+  - {fileID: 11400000, guid: 90a51fbe457034c418974a889bacaa15, type: 2}
+  - {fileID: 11400000, guid: 11d110cb1994e764e944eb82c76b098c, type: 2}
   - {fileID: 11400000, guid: 7b78542fcd6cb494f9fed506bd9463ab, type: 2}
-  - {fileID: 11400000, guid: 7b78542fcd6cb494f9fed506bd9463ab, type: 2}
+  - {fileID: 11400000, guid: 560df11afc2b67045887d5de44d31e77, type: 2}
   prefabGiocatore: {fileID: 823130481}
   distanzaTraTile: 1.99
   scalaTiles: 1
@@ -1085,7 +1091,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

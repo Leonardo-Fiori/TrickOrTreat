@@ -8,27 +8,27 @@ public class DoorAnimation : MonoBehaviour
     protected int y;
     private bool spawned;
 
+    public float speed = 10f;
+
     IEnumerator despawnAnimation()
     {
-        while (transform.localScale.x >= 0.01f)
+        while (transform.localScale != Vector3.zero)
         {
-            transform.localScale *= 0.9f;
-            yield return null;
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * speed);
+            if (transform.localScale.x <= 0.01f)
+                transform.localScale = Vector3.zero;
+            yield return new WaitForFixedUpdate();
         }
     }
 
     IEnumerator spawnAnimation()
     {
-        while (transform.localScale.x <= 1f)
+        while (transform.localScale != Vector3.one)
         {
-            transform.localScale += Vector3.one * 0.1f;
-
-            if (Vector3.Distance(transform.localScale, Vector3.one) <= 0.1f)
-            {
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Time.deltaTime * speed);
+            if (transform.localScale.x >= 0.99f)
                 transform.localScale = Vector3.one;
-            }
-
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
     }
 

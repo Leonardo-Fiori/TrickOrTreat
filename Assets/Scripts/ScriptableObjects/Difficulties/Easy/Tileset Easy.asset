@@ -9,12 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7aa51ac8e6eeac5449d317dfb847f1cb, type: 3}
-  m_Name: TilesetDefault
+  m_Name: Tileset Easy
   m_EditorClassIdentifier: 
-  quantiCorridoi: 12
-  quantiAngoli: 12
-  quantiTrivia: 25
+  quantiCorridoi: 6
+  quantiAngoli: 6
+  quantiTrivia: 37
   quanteChiavi: 2
-  quanteCaramelle: 5
+  quanteCaramelle: 15
   quanteScarpette: 5
   quantiQuadrivia: 0
