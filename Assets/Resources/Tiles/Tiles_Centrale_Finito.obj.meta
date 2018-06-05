@@ -1,16 +1,18 @@
 fileFormatVersion: 2
-guid: f5dd1a2abac28914586bf505f7656bc4
+guid: 0e2d763c9b6dd834e8c0fab15435a91c
+timeCreated: 1528134871
+licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Tiles_Centrale_Finale_Tile_Mappate
-    400000: //RootNode
-    400002: Tiles_Centrale_Finale_Tile_Mappate
-    2100000: Tiles_Centrale_Finale_Tile_MappateMat
-    2300000: Tiles_Centrale_Finale_Tile_Mappate
-    3300000: Tiles_Centrale_Finale_Tile_Mappate
-    4300000: Tiles_Centrale_Finale_Tile_Mappate
+    100000: polySurface18
+    100002: //RootNode
+    400000: polySurface18
+    400002: //RootNode
+    2100000: polySurface18Mat
+    2300000: polySurface18
+    3300000: polySurface18
+    4300000: polySurface18
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -30,7 +32,6 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5

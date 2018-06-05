@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour {
 
     private GameObject RandomFromList(List<GameObject> list)
     {
-        int random = Random.Range(0, list.Count - 1);
+        int random = Random.Range(0, list.Count);
         return list[random];
     }
 

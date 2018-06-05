@@ -529,10 +529,13 @@ MonoBehaviour:
   - {fileID: 1977490210554508, guid: e9059674ee67c4e46b34b9aa2588e9f2, type: 2}
   prefabsCorridoio:
   - {fileID: 1395155642615840, guid: 4b457005872dbfc4380f956a86cec105, type: 2}
+  - {fileID: 1395155642615840, guid: 478f384ebd7216a4581ce9b685b08d3e, type: 2}
   prefabsTrivia:
   - {fileID: 1829411119178332, guid: daa11e4de13c42142adeb60b267d23fe, type: 2}
+  - {fileID: 1829411119178332, guid: a1a723e6d1b06ce44a83789601289c53, type: 2}
   prefabsAngolo:
   - {fileID: 1537990507139506, guid: ec9cd806a8de6724494e0233a41f986a, type: 2}
+  - {fileID: 1537990507139506, guid: 079780cbc514e5447ac0b75227cc6290, type: 2}
 --- !u!4 &1000383825
 Transform:
   m_ObjectHideFlags: 0

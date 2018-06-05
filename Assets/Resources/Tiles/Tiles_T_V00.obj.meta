@@ -1,54 +1,18 @@
 fileFormatVersion: 2
-guid: a1054a15d7def024bbc408e9a8a4f761
-timeCreated: 1524927396
+guid: 9fc34861a8966b845b205e32817fc6cb
+timeCreated: 1528134871
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Calice
-    100002: porta_angolo
-    100004: porta_angolo_Sbl
-    100006: porta_corridoio
-    100008: porta_quadrupla
-    100010: porta_tripla
-    100012: Prospective
-    100014: //RootNode
-    400000: Calice
-    400002: porta_angolo
-    400004: porta_angolo_Sbl
-    400006: porta_corridoio
-    400008: porta_quadrupla
-    400010: porta_tripla
-    400012: Prospective
-    400014: //RootNode
-    2100000: CaliceMat
-    2100002: porta_angoloMat
-    2100004: porta_angolo_SblMat
-    2100006: porta_corridoioMat
-    2100008: porta_quadruplaMat
-    2100010: porta_triplaMat
-    2100012: ProspectiveMat
-    2300000: Calice
-    2300002: porta_angolo
-    2300004: porta_angolo_Sbl
-    2300006: porta_corridoio
-    2300008: porta_quadrupla
-    2300010: porta_tripla
-    2300012: Prospective
-    3300000: Calice
-    3300002: porta_angolo
-    3300004: porta_angolo_Sbl
-    3300006: porta_corridoio
-    3300008: porta_quadrupla
-    3300010: porta_tripla
-    3300012: Prospective
-    4300000: Calice
-    4300002: porta_angolo
-    4300004: porta_angolo_Sbl
-    4300006: porta_corridoio
-    4300008: porta_quadrupla
-    4300010: porta_tripla
-    4300012: Prospective
+    100000: polySurface45_polySurface17
+    100002: //RootNode
+    400000: polySurface45_polySurface17
+    400002: //RootNode
+    2100000: polySurface45_polySurface17Mat
+    2300000: polySurface45_polySurface17
+    3300000: polySurface45_polySurface17
+    4300000: polySurface45_polySurface17
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -79,7 +43,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.05
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

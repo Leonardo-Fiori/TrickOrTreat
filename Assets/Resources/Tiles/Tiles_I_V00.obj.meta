@@ -1,16 +1,18 @@
 fileFormatVersion: 2
-guid: 385c55cedcb286a49bae442808acbdf0
+guid: 2647a0e6d9c0cbf4b8b2a6c9e279cde4
+timeCreated: 1528134871
+licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Tile_T_Finale
+    100000: polySurface36_polySurface35
     100002: //RootNode
-    400000: Tile_T_Finale
+    400000: polySurface36_polySurface35
     400002: //RootNode
-    2100000: Tile_T_FinaleMat
-    2300000: Tile_T_Finale
-    3300000: Tile_T_Finale
-    4300000: Tile_T_Finale
+    2100000: polySurface36_polySurface35Mat
+    2300000: polySurface36_polySurface35
+    3300000: polySurface36_polySurface35
+    4300000: polySurface36_polySurface35
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -30,7 +32,6 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
