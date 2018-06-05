@@ -14,3 +14,8 @@ MonoBehaviour:
   mossePerTurno: 3
   caramelleNecessarie: 3
   incrementoMosse: 0
+  eventoScarpettaPresa: {fileID: 11400000, guid: b6c7d9f0f797cc74b865286e6280fff5,
+    type: 2}
+  eventoCaramellaPresa: {fileID: 11400000, guid: 7e3cbf671550b9e44ad5e7e9e763e161,
+    type: 2}
+  eventoChiavePresa: {fileID: 11400000, guid: 677fb50a6ce110949a5fc0776e0c2ef4, type: 2}

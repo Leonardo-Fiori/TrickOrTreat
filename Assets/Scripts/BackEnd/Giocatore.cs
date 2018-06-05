@@ -25,6 +25,10 @@ public class Giocatore : ScriptableObject {
     private GameObject frontEndPrefab;
     private MovePlayer playerMover;
 
+    public SOEvent eventoScarpettaPresa;
+    public SOEvent eventoCaramellaPresa;
+    public SOEvent eventoChiavePresa;
+
     public void Reset()
     {
         mosseFatte = 0;
@@ -39,6 +43,8 @@ public class Giocatore : ScriptableObject {
 
         tile.PrendiScarpetta();
 
+        eventoScarpettaPresa.Raise();
+
         mosseFatte--;
 
         Debug.Log("Hai raccolto una scarpetta. Ti restano " + (mossePerTurno - mosseFatte) + " mosse.");
@@ -49,6 +55,8 @@ public class Giocatore : ScriptableObject {
         SoundManager.instance.Play("pickcaramella");
 
         caramelleRaccolte++;
+
+        eventoCaramellaPresa.Raise();
 
         if (caramelleRaccolte >= caramelleNecessarie)
         {
@@ -78,6 +86,8 @@ public class Giocatore : ScriptableObject {
     public void IncrementaChiavi()
     {
         SoundManager.instance.Play("pickchiave");
+
+        eventoChiavePresa.Raise();
 
         chiaviRaccolte++;
     }

@@ -78,7 +78,6 @@ public class KeyAnimation : MonoBehaviour
 
         if (x == wX && y == wY)
         {
-            eventoChiavePresa.Raise();
             Despawn();
         }
     }
