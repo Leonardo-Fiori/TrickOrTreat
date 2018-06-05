@@ -9,49 +9,67 @@ public class KeyAnimation : MonoBehaviour
     protected int y;
     private bool spawned;
 
+    public float speed = 10f;
+
     public SOEvent eventoChiavePresa;
 
     IEnumerator despawnAnimation()
     {
-        while (transform.localScale.x >= 0.1f)
+        while (transform.localScale != Vector3.zero)
         {
-            transform.localScale *= 0.9f;
-            yield return null;
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * speed);
+            if (transform.localScale.x <= 0.01f)
+                transform.localScale = Vector3.zero;
+            yield return new WaitForFixedUpdate();
         }
 
         Destroy(gameObject);
     }
 
-    IEnumerator spawnAnimation()
+    IEnumerator despawnAnimationNoDestroy()
     {
-        while (transform.localScale.x <= 1f)
+        while (transform.localScale != Vector3.zero)
         {
-            transform.localScale += Vector3.one * 0.1f;
-
-            if (Vector3.Distance(transform.localScale, Vector3.one) <= 0.1f)
-            {
-                transform.localScale = Vector3.one;
-            }
-
-            yield return null;
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * speed);
+            if (transform.localScale.x <= 0.01f)
+                transform.localScale = Vector3.zero;
+            yield return new WaitForFixedUpdate();
         }
     }
 
-    protected void Spawn()
+    IEnumerator spawnAnimation()
+    {
+        while (transform.localScale != Vector3.one)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Time.deltaTime * speed);
+            if (transform.localScale.x >= 0.99f)
+                transform.localScale = Vector3.one;
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    public void Spawn()
     {
         spawned = true;
         StopCoroutine(despawnAnimation());
         StartCoroutine(spawnAnimation());
     }
 
-    protected void Despawn()
+    public void Despawn()
     {
         spawned = false;
         StopCoroutine(spawnAnimation());
         StartCoroutine(despawnAnimation());
     }
 
-    public virtual void Think()
+    public void DespawnNoDestroy()
+    {
+        spawned = false;
+        StopCoroutine(spawnAnimation());
+        StartCoroutine(despawnAnimationNoDestroy());
+    }
+
+    public void Think()
     {
         int wX = GameManager.playerInstance.getX();
         int wY = GameManager.playerInstance.getY();

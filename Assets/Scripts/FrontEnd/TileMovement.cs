@@ -68,7 +68,7 @@ public class TileMovement : MonoBehaviour
 
         if (backEnd.HasKey())
         {
-            backEnd.GetChiaveFrontEnd().GetComponent<PickupAnimation>().Despawn();
+            backEnd.GetChiaveFrontEnd().GetComponent<KeyAnimation>().DespawnNoDestroy();
         }
 
         float counter = 0f;
@@ -154,7 +154,7 @@ public class TileMovement : MonoBehaviour
 
         if (backEnd.HasKey())
         {
-            backEnd.GetChiaveFrontEnd().GetComponent<PickupAnimation>().Spawn();
+            backEnd.GetChiaveFrontEnd().GetComponent<KeyAnimation>().Spawn();
         }
 
         canRot = true;

@@ -36,7 +36,6 @@ public class PickupAnimation : MonoBehaviour {
     {
         while (transform.localScale != Vector3.one)
         {
-            //print("spawn");
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Time.deltaTime * speed);
             if (transform.localScale.x >= 0.99f)
                 transform.localScale = Vector3.one;
