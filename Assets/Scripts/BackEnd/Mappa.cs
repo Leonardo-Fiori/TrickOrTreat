@@ -131,10 +131,13 @@ namespace UnityEngine
             {
                 int y = Random.Range(0, dim - 1);
                 int x = Random.Range(0, dim - 1);
+                int safetyCounter = 0;
                 while (!LocationIsOk(x, y))
                 {
                     y = Random.Range(0, dim - 1);
                     x = Random.Range(0, dim - 1);
+                    if (safetyCounter++ > dim * dim * 1000)
+                        throw new Exception("Non ho trovato un posto libero per piazzare un petardo!");
                 }
                 petardi[x, y] = true;
                 tiles[x, y].SetPetardo(true);
@@ -150,10 +153,13 @@ namespace UnityEngine
             {
                 int y = Random.Range(0, dim - 1);
                 int x = Random.Range(0, dim - 1);
+                int safetyCounter = 0;
                 while (!LocationIsOk(x, y) || keys[x, y] || caramelle[x, y])
                 {
                     y = Random.Range(0, dim - 1);
                     x = Random.Range(0, dim - 1);
+                    if (safetyCounter++ > dim * dim * 1000)
+                        throw new Exception("Non ho trovato un posto libero per piazzare una scarpetta!");
                 }
                 scarpette[x, y] = true;
                 tiles[x, y].SetScarpetta(true);
@@ -168,10 +174,13 @@ namespace UnityEngine
             {
                 int y = Random.Range(0, dim - 1);
                 int x = Random.Range(0, dim - 1);
+                int safetyCounter = 0;
                 while (!LocationIsOk(x, y) || keys[x,y] || scarpette[x,y])
                 {
                     y = Random.Range(0, dim - 1);
                     x = Random.Range(0, dim - 1);
+                    if (safetyCounter++ > dim * dim * 1000)
+                        throw new Exception("Non ho trovato un posto libero per piazzare una caramella!");
                 }
                 caramelle[x, y] = true;
                 tiles[x, y].SetCaramella(true);

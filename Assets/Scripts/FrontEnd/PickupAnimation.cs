@@ -86,14 +86,21 @@ public class PickupAnimation : MonoBehaviour {
             Spawn();
         }
 
-        if (witch)
+        if (witch || player)
         {
             Despawn();
         }
+    }
 
+    public void Preso()
+    {
+        int pX = GameManager.playerInstance.getX();
+        int pY = GameManager.playerInstance.getY();
+
+        bool player = (x == pX && y == pY);
+
+        // Non faccio ulteriori controlli come nella think perchè questa viene chiamata dall'evento specifico di pick
         if (player)
-        {
             StartCoroutine(destroyAnimation());
-        }
     }
 }

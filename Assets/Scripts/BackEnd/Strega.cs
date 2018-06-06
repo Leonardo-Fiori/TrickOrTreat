@@ -10,7 +10,6 @@ public class Strega : ScriptableObject {
     private int mosseFatte;
     public SOEvent eventoMovimento;
     public SOEvent eventoMorteGiocatore;
-    public SOEvent eventoScoppioPetardo;
     public float chanceMossaRandom;
     private float chanceMossaRandomAttuale;
 
@@ -130,8 +129,6 @@ public class Strega : ScriptableObject {
             petardo = false;
 
             Debug.Log("la strega salta una mossa");
-
-            SoundManager.instance.Play("bangpetardo");
 
             mosseFatte++;
 
@@ -258,7 +255,6 @@ public class Strega : ScriptableObject {
         {
             petardo = true;
             GameManager.mapInstance.getTile(x, y).ScoppiaPetardo();
-            eventoScoppioPetardo.Raise();
         }
 
         if (x == playerX && y == playerY) 

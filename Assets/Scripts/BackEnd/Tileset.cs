@@ -18,4 +18,5 @@ public class Tileset : ScriptableObject
     public int quanteScarpette = 5;
     public int quantiQuadrivia = 0;
     public int quantiPetardi = 0;
+    public int despawnPetardi = 2;
 }

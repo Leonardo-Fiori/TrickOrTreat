@@ -61,6 +61,11 @@ public class TileMovement : MonoBehaviour
             backEnd.GetCaramellaFrontEnd().GetComponent<PickupAnimation>().Despawn();
         }
 
+        if (backEnd.HasPetardo())
+        {
+            backEnd.GetPetardoFrontEnd().GetComponent<PickupAnimation>().Despawn();
+        }
+
         if (backEnd.HasScarpetta())
         {
             backEnd.GetScarpettaFrontEnd().GetComponent<PickupAnimation>().Despawn();
@@ -155,6 +160,11 @@ public class TileMovement : MonoBehaviour
         if (backEnd.HasKey())
         {
             backEnd.GetChiaveFrontEnd().GetComponent<KeyAnimation>().Spawn();
+        }
+
+        if (backEnd.HasPetardo())
+        {
+            backEnd.GetPetardoFrontEnd().GetComponent<PickupAnimation>().Despawn();
         }
 
         canRot = true;

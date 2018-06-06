@@ -20,9 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4864215376646440}
   - component: {fileID: 114179974828666708}
-  - component: {fileID: 114930572893564452}
   - component: {fileID: 114261392423762294}
   - component: {fileID: 114824980499877272}
+  - component: {fileID: 114979740927541552}
+  - component: {fileID: 114930572893564452}
   m_Layer: 0
   m_Name: Scarpetta
   m_TagString: Untagged
@@ -223,3 +224,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e321646bee762a4b91ab5144f6f3725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
+--- !u!114 &114979740927541552
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1095933322598068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd637ca8f1ad2be459f8ba321b1cc37c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventToListen: {fileID: 11400000, guid: b6c7d9f0f797cc74b865286e6280fff5, type: 2}
+  whatToDo:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114930572893564452}
+        m_MethodName: Preso
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

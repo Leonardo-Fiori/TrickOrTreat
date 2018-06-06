@@ -57,6 +57,9 @@ public class Giocatore : ScriptableObject {
 
     public void RaccogliPetardo(MapTile tile)
     {
+        if (petardo)
+            return;
+
         eventoPetardoPreso.Raise();
 
         SoundManager.instance.Play("pickpetardo");

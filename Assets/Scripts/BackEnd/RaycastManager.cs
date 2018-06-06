@@ -64,9 +64,11 @@ public class RaycastManager : MonoBehaviour
                     if (equalX && equalY)
                         return;
 
-                    if (GameManager.movementManagerInstance.getTilesNextToPlayer().Contains(tileBackEnd) || GameManager.debugMode)
+                    if ((GameManager.movementManagerInstance.getTilesNextToPlayer().Contains(tileBackEnd) || GameManager.debugMode) && !tileBackEnd.IsPetardoAttivo())
                     {
                         tileBackEnd.AttivaPetardo();
+
+                        GameManager.instance.AggiungiDespawnPetardo(tileBackEnd);
 
                         GameManager.playerInstance.UsaPetardo();
 

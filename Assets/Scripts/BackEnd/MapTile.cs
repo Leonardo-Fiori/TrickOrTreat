@@ -35,6 +35,11 @@ public class MapTile
         petardoFrontEnd = obj;
     }
 
+    public GameObject GetPetardoFrontEnd()
+    {
+        return petardoFrontEnd;
+    }
+
     public bool HasPetardo()
     {
         return petardo;
@@ -58,8 +63,12 @@ public class MapTile
 
     public void ScoppiaPetardo()
     {
+        if (!petardoAttivo)
+            return;
+
         petardoAttivo = false;
-        // Evento scoppio petardo dentro strega
+        SoundManager.instance.Play("bangpetardo");
+        GameManager.instance.eventoScoppioPetardo.Raise();
     }
 
     public void SetScarpettaFrontEnd(GameObject obj)

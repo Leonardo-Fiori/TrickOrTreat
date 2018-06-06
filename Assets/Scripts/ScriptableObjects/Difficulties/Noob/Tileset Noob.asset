@@ -15,7 +15,8 @@ MonoBehaviour:
   quantiAngoli: 6
   quantiTrivia: 26
   quanteChiavi: 1
-  quanteCaramelle: 17
+  quanteCaramelle: 14
   quanteScarpette: 8
   quantiQuadrivia: 11
   quantiPetardi: 3
+  despawnPetardi: 2

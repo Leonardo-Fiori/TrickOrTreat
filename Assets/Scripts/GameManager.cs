@@ -67,9 +67,15 @@ public class GameManager : MonoBehaviour {
     // Lista dei prefab front end delle tile
     private static GameObject[] frontEndTileInstances;
 
+    private int turniPassati = 0;
+    private List<MapTile> petardiDaDespawnare;
+    public SOEvent eventoScoppioPetardo;
+
     void OnEnable () {
 
         instance = this;
+
+        petardiDaDespawnare = new List<MapTile>();
 
         cameraManagerInstance = cameraManager;
 
@@ -148,6 +154,7 @@ public class GameManager : MonoBehaviour {
     public void SwitchTurn()
     {
         // Respawna scarpette
+        turniPassati++;
 
         List<MapTile> toRemove = new List<MapTile>();
 
@@ -174,6 +181,8 @@ public class GameManager : MonoBehaviour {
 
         if (turno == Turno.strega)
         {
+            DespawnPetardi();
+
             SoundManager.instance.Play("playerturn");
 
             turno = Turno.giocatore;
@@ -376,6 +385,24 @@ public class GameManager : MonoBehaviour {
                 movementManagerInstance.movePlayer(Direction.sud);
             }
         }
+    }
+
+    private void DespawnPetardi()
+    {
+        if(turniPassati > tilesets[difficulty.value].despawnPetardi)
+        {
+            turniPassati = 0;
+            foreach(MapTile tile in petardiDaDespawnare)
+            {
+                tile.ScoppiaPetardo();
+            }
+            petardiDaDespawnare.Clear();
+        }
+    }
+
+    public void AggiungiDespawnPetardo(MapTile tile)
+    {
+        petardiDaDespawnare.Add(tile);
     }
 
     private void OnDisable()
