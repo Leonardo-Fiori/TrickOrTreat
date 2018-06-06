@@ -25,6 +25,42 @@ public class MapTile
     public GameObject scarpettaFrontEnd;
     public GameObject chiaveFrontEnd;
     public GameObject caramellaFrontEnd;
+    public GameObject petardoFrontEnd;
+
+    public bool petardo = false;
+    public bool petardoAttivo = false;
+
+    public void SetPetardoFrontEnd(GameObject obj)
+    {
+        petardoFrontEnd = obj;
+    }
+
+    public bool HasPetardo()
+    {
+        return petardo;
+    }
+
+    public void SetPetardo(bool hasPetardo)
+    {
+        petardo = hasPetardo;
+    }
+
+    public bool IsPetardoAttivo()
+    {
+        return petardoAttivo;
+    }
+
+    public void AttivaPetardo()
+    {
+        Debug.Log("MapTile "+x+" "+y+" petardo attivo");
+        petardoAttivo = true;
+    }
+
+    public void ScoppiaPetardo()
+    {
+        petardoAttivo = false;
+        // Evento scoppio petardo dentro strega
+    }
 
     public void SetScarpettaFrontEnd(GameObject obj)
     {

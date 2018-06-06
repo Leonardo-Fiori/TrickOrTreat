@@ -6,6 +6,7 @@ public class SoundManager : MonoBehaviour {
 
     public static SoundManager instance = null;
     public string mainMusicLoop;
+    public float mainMusicVolume = 0.5f;
 
     private void OnEnable()
     {
@@ -25,6 +26,7 @@ public class SoundManager : MonoBehaviour {
         source = gameObject.AddComponent<AudioSource>();
         mainLoop = gameObject.AddComponent<AudioSource>();
         mainLoop.clip = Find(mainMusicLoop);
+        mainLoop.volume = mainMusicVolume;
         mainLoop.loop = true;
         mainLoop.Play();
     }

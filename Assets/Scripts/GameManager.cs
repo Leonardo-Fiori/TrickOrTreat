@@ -124,6 +124,7 @@ public class GameManager : MonoBehaviour {
     private void ResetComponents()
     {
         witchInstance.ResetMosseFatte();
+        witchInstance.ResetPetardo();
         turno = Turno.giocatore;
         playerInstance.Reset();
         MovePlayer.moving = false;
@@ -154,8 +155,6 @@ public class GameManager : MonoBehaviour {
         {
             MapTile tile = mapInstance.scarpetteDaRespawnare[i];
 
-            //print("Analizzo il tile " + tile.getX() + " " + tile.getY() + " il giocatore si trova " + playerInstance.getX() + " " + playerInstance.getY());
-
             bool sameX = (tile.getX() == playerInstance.getX());
             bool sameY = (tile.getY() == playerInstance.getY());
             bool samePos = (sameX && sameY);
@@ -165,19 +164,12 @@ public class GameManager : MonoBehaviour {
                 tile.SetScarpetta(true);
                 tile.getPrefab().GetComponent<PickupSpawner>().SpawnScarpetta();
                 toRemove.Add(tile);
-                //print("Lo spawno e lo tolgo dalla lista di quelli da rispawnare ("+tile.getX()+" "+tile.getY()+")");
-            }
-            else
-            {
-                //print("Non posso spawnare " + tile.getX() + " " + tile.getY() + " perchè il player è in " + playerInstance.getX() + " " + playerInstance.getY());
             }
         }
 
         foreach (MapTile tile in toRemove)
         {
-            //print("sto per rimuovere " + tile.getX() + " " + tile.getY() + " dalla lista di quelli da rispawnare");
             mapInstance.scarpetteDaRespawnare.Remove(tile);
-            //print("ho rimosso il tile: " + tile);
         }
 
         if (turno == Turno.strega)
@@ -187,6 +179,8 @@ public class GameManager : MonoBehaviour {
             turno = Turno.giocatore;
 
             witchInstance.ResetMosseFatte();
+
+            witchInstance.ResetPetardo();
 
             cameraManager.SwitchSubject();
         }

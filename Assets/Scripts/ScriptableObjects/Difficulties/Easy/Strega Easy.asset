@@ -14,5 +14,7 @@ MonoBehaviour:
   eventoMovimento: {fileID: 11400000, guid: ae830f143e6b4d54cbad27339ace55bc, type: 2}
   eventoMorteGiocatore: {fileID: 11400000, guid: e75ff9b09765cf84a822a9878575aa72,
     type: 2}
+  eventoScoppioPetardo: {fileID: 11400000, guid: f8f34aac6b8607b429a5c2776565e7e3,
+    type: 2}
   chanceMossaRandom: 0
   mossePerTurno: 2

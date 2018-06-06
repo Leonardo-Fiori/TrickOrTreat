@@ -376,9 +376,11 @@ MonoBehaviour:
   prefabUscita: {fileID: 1431255955593858, guid: e73b3803cbbd54848b43a62bf93faf76,
     type: 2}
   prefabKey: {fileID: 1866261375336496, guid: 7509eb4b73f8521419cbc92e976bb157, type: 2}
-  prefabCaramella: {fileID: 1518281925748922, guid: 3a9f2e258bdfa914da15f80e1262dabb,
-    type: 2}
+  prefabsCaramella:
+  - {fileID: 1518281925748922, guid: 3a9f2e258bdfa914da15f80e1262dabb, type: 2}
   prefabScarpetta: {fileID: 1095933322598068, guid: ba38a08fe8a65cc459bcb62d38b362d0,
+    type: 2}
+  prefabPetardo: {fileID: 1799401077272886, guid: 9494c620f5ba35b4da674bd46cdf8532,
     type: 2}
 --- !u!114 &114906863149037158
 MonoBehaviour:

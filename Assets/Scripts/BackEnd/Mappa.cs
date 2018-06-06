@@ -25,6 +25,8 @@ namespace UnityEngine
         private int quanteCaramelle;
         private bool[,] scarpette;
         private int quanteScarpette;
+        private bool[,] petardi;
+        private int quantiPetardi;
         public List<MapTile> scarpetteDaRespawnare;
 
         #region"Getter e Setter"
@@ -56,6 +58,7 @@ namespace UnityEngine
             caramelle = new bool[dim, dim];
             scarpette = new bool[dim, dim];
             scarpetteDaRespawnare = new List<MapTile>();
+            petardi = new bool[dim, dim];
         }
 
         public Mappa() : this(DEF_DIM) { }
@@ -70,6 +73,7 @@ namespace UnityEngine
             quanteChiavi = set.quanteChiavi;
             quanteCaramelle = set.quanteCaramelle;
             quanteScarpette = set.quanteScarpette;
+            quantiPetardi = set.quantiPetardi;
         }
 
         public string show()
@@ -116,6 +120,28 @@ namespace UnityEngine
             // Spawna scarpette
             SpawnScarpette();
 
+            // Spawna petardi
+            SpawnPetardi();
+
+        }
+
+        private void SpawnPetardi()
+        {
+            for (int i = 0; i < quantiPetardi; i++)
+            {
+                int y = Random.Range(0, dim - 1);
+                int x = Random.Range(0, dim - 1);
+                while (!LocationIsOk(x, y))
+                {
+                    y = Random.Range(0, dim - 1);
+                    x = Random.Range(0, dim - 1);
+                }
+                petardi[x, y] = true;
+                tiles[x, y].SetPetardo(true);
+                //Debug.Log(x + " " + y + " petardo = " + tiles[x, y].HasPetardo());
+            }
+
+            return;
         }
 
         private void SpawnScarpette()
@@ -338,6 +364,15 @@ namespace UnityEngine
                 return false;
 
             if (keys[x, y])
+                return false;
+
+            if (caramelle[x, y])
+                return false;
+
+            if (scarpette[x, y])
+                return false;
+
+            if (petardi[x, y])
                 return false;
 
             if (uscitaX == x && uscitaY == y)

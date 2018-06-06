@@ -10,6 +10,7 @@ public class Strega : ScriptableObject {
     private int mosseFatte;
     public SOEvent eventoMovimento;
     public SOEvent eventoMorteGiocatore;
+    public SOEvent eventoScoppioPetardo;
     public float chanceMossaRandom;
     private float chanceMossaRandomAttuale;
 
@@ -18,10 +19,17 @@ public class Strega : ScriptableObject {
     private GameObject frontEndPrefab;
     private MoveWitch witchMover;
 
+    private bool petardo = false;
+
     // Serve per l'ai, non toccare
     private bool[,] visitedTiles;
 
     /* Funzioni Get() e Set() */
+
+    public void ResetPetardo()
+    {
+        petardo = false;
+    }
 
     public void ResetMosseFatte()
     {
@@ -65,7 +73,6 @@ public class Strega : ScriptableObject {
         frontEndPrefab = prefab;
         witchMover = frontEndPrefab.GetComponent<MoveWitch>();
     }
-
 
     /* Chiamo la Spawn() dal Game manager per muovere il prefab in posizione di avvio nel front end e inizializzare il back end */
 
@@ -117,6 +124,27 @@ public class Strega : ScriptableObject {
 
     public void Move()
     {
+
+        if (petardo)
+        {
+            petardo = false;
+
+            Debug.Log("la strega salta una mossa");
+
+            SoundManager.instance.Play("bangpetardo");
+
+            mosseFatte++;
+
+            if (mosseFatte >= mossePerTurno)
+            {
+                mosseFatte = 0;
+
+                GameManager.instance.SwitchTurn();
+            }
+
+            return;
+        }
+
         if (GameManager.cheatMode)
         {
             mosseFatte = 0;
@@ -226,7 +254,12 @@ public class Strega : ScriptableObject {
 
         SoundManager.instance.Play("witchstep");
 
-        witchMover.Move(x, y, Movement.smooth);
+        if (GameManager.mapInstance.getTile(x, y).IsPetardoAttivo())
+        {
+            petardo = true;
+            GameManager.mapInstance.getTile(x, y).ScoppiaPetardo();
+            eventoScoppioPetardo.Raise();
+        }
 
         if (x == playerX && y == playerY) 
         {
@@ -240,6 +273,8 @@ public class Strega : ScriptableObject {
 
             GameManager.instance.SwitchTurn();
         }
+
+        witchMover.Move(x, y, Movement.smooth);
 
         eventoMovimento.Raise();
     }

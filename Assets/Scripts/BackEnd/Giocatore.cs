@@ -18,6 +18,8 @@ public class Giocatore : ScriptableObject {
     private int chiaviRaccolte;
     private int caramelleRaccolte;
 
+    private bool petardo = false;
+
     [SerializeField] private int mossePerTurno;
     [SerializeField] private int caramelleNecessarie;
     [HideInInspector] public int incrementoMosse = 0;
@@ -28,6 +30,8 @@ public class Giocatore : ScriptableObject {
     public SOEvent eventoScarpettaPresa;
     public SOEvent eventoCaramellaPresa;
     public SOEvent eventoChiavePresa;
+    public SOEvent eventoPetardoPreso;
+    public SOEvent eventoPetardoUsato;
 
     public void Reset()
     {
@@ -35,6 +39,7 @@ public class Giocatore : ScriptableObject {
         chiaviRaccolte = 0;
         caramelleRaccolte = 0;
         incrementoMosse = 0;
+        petardo = false;
     }
 
     public void RaccogliScarpetta(MapTile tile)
@@ -50,11 +55,36 @@ public class Giocatore : ScriptableObject {
         Debug.Log("Hai raccolto una scarpetta. Ti restano " + (mossePerTurno - mosseFatte) + " mosse.");
     }
 
-    public void RaccogliCaramella()
+    public void RaccogliPetardo(MapTile tile)
+    {
+        eventoPetardoPreso.Raise();
+
+        SoundManager.instance.Play("pickpetardo");
+
+        tile.SetPetardo(false);
+
+        petardo = true;
+    }
+
+    public void UsaPetardo()
+    {
+        eventoPetardoUsato.Raise();
+
+        petardo = false;
+    }
+
+    public bool HasPetardo()
+    {
+        return petardo;
+    }
+
+    public void RaccogliCaramella(MapTile tile)
     {
         SoundManager.instance.Play("pickcaramella");
 
         caramelleRaccolte++;
+
+        tile.SetCaramella(false);
 
         eventoCaramellaPresa.Raise();
 
@@ -83,9 +113,11 @@ public class Giocatore : ScriptableObject {
         chiaviRaccolte = 0;
     }
 
-    public void IncrementaChiavi()
+    public void IncrementaChiavi(MapTile tile)
     {
         SoundManager.instance.Play("pickchiave");
+
+        tile.SetKey(false);
 
         eventoChiavePresa.Raise();
 
@@ -154,19 +186,22 @@ public class Giocatore : ScriptableObject {
 
         if (tile.HasCaramella())
         {
-            RaccogliCaramella();
-            tile.SetCaramella(false);
+            RaccogliCaramella(tile);
         }
 
         if (tile.HasKey())
         {
-            IncrementaChiavi();
-            tile.SetKey(false);
+            IncrementaChiavi(tile);
         }
 
         if (tile.HasScarpetta())
         {
             RaccogliScarpetta(tile);
+        }
+
+        if (tile.HasPetardo())
+        {
+            RaccogliPetardo(tile);
         }
 
         if (mov == Movement.smooth)

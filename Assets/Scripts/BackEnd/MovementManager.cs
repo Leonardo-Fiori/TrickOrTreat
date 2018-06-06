@@ -20,6 +20,21 @@ public class MovementManager {
         witchMover = GameManager.witchPrefabInstance.GetComponent<MoveWitch>();
     }
 
+    public List<MapTile> getTilesNextToPlayer()
+    {
+        List<MapTile> res = new List<MapTile>();
+
+        int playerX = GameManager.playerInstance.getX();
+        int playerY = GameManager.playerInstance.getY();
+
+        res.Add(getNextTile(playerX, playerY, Direction.nord));
+        res.Add(getNextTile(playerX, playerY, Direction.sud));
+        res.Add(getNextTile(playerX, playerY, Direction.est));
+        res.Add(getNextTile(playerX, playerY, Direction.ovest));
+
+        return res;
+    }
+
     // Ottiene in modo circolare la prossima tile partendo da x,y in direzione dir
 
     public MapTile getNextTile(int x, int y, Direction dir)

@@ -49,20 +49,35 @@ public class RaycastManager : MonoBehaviour
 
                 if (hit.transform.tag != "Tile") return;
 
-                //print("raycast  dir" + dir);
-
                 TileMovement clickedTile = hit.transform.GetComponent<TileMovement>();
-
-                //print(clickedTile.GetTileX() + " " + clickedTile.GetTileY());
 
                 bool equalX = (clickedTile.GetTileX() == GameManager.playerInstance.getX());
                 bool equalY = (clickedTile.GetTileY() == GameManager.playerInstance.getY());
 
                 MapTile tileBackEnd = GameManager.mapInstance.getTile(clickedTile.GetTileX(), clickedTile.GetTileY());
 
-                //print(tileBackEnd.getTileType() + " " + tileBackEnd.getTileRotation());
+                // VUOLE PIAZZARE UN PETARDO
+                if (AttivaPetardo.toggle)
+                {
+                    //print("Raycastmanager petardo");
 
-                //return;
+                    if (equalX && equalY)
+                        return;
+
+                    if (GameManager.movementManagerInstance.getTilesNextToPlayer().Contains(tileBackEnd) || GameManager.debugMode)
+                    {
+                        tileBackEnd.AttivaPetardo();
+
+                        GameManager.playerInstance.UsaPetardo();
+
+                        SoundManager.instance.Play("playermove");
+
+                        if (!GameManager.debugMode)
+                            AttivaPetardo.toggle = false;
+                    }
+
+                    return;
+                }
 
                 // VUOLE RUOTARE, O E' IN MODALITA' DEBUG
                 if ((equalX && equalY) || GameManager.debugMode == true)

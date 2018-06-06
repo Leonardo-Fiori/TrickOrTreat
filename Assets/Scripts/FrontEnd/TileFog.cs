@@ -24,6 +24,8 @@ public class TileFog : MonoBehaviour {
 
     public void SetFog(bool status)
     {
+        if (status == active) return;
+
         active = status;
         if (status == false) deactivateFog();
         else if (status == true) activateFog();
@@ -49,6 +51,8 @@ public class TileFog : MonoBehaviour {
             //StartCoroutine(RaiseTile());
 
         StartCoroutine(InflateTile());
+
+        SoundManager.instance.Play("tileappeared",0.25f);
 
         fogDisappearedEvent.Raise();
 
