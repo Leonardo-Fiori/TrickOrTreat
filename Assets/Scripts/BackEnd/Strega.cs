@@ -257,12 +257,6 @@ public class Strega : ScriptableObject {
             GameManager.mapInstance.getTile(x, y).ScoppiaPetardo();
         }
 
-        if (x == playerX && y == playerY) 
-        {
-            Win();
-            return;
-        }
-
         if (mosseFatte >= mossePerTurno)
         {
             mosseFatte = 0;
@@ -271,6 +265,12 @@ public class Strega : ScriptableObject {
         }
 
         witchMover.Move(x, y, Movement.smooth);
+
+        if (x == playerX && y == playerY)
+        {
+            Win();
+            return;
+        }
 
         eventoMovimento.Raise();
     }
