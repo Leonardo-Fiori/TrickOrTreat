@@ -10,7 +10,7 @@ public class FogDifferentiator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        transform.rotation = Quaternion.Euler(new Vector3(0, Random.Range(-180f, 180f), 0));
+        transform.rotation = Quaternion.Euler(new Vector3(0, Random.Range(0f, 180f), 0));
         float scaleVariation = 0f;
         if (Random.Range(0, 1) == 1)
         {

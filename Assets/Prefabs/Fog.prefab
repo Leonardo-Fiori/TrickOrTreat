@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c544ae71381920468f7ecb3f2b83be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLuciAttive: 2
+  maxLuciAttive: 4
   hasLights: 1
 --- !u!198 &198435075561634104
 ParticleSystem:

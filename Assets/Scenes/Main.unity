@@ -628,6 +628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1269652168}
   - component: {fileID: 1269652167}
+  - component: {fileID: 1269652169}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -684,6 +685,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!95 &1269652169
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1269652166}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 27294e82afe5def488432283426259f7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1294849863
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,7 +994,7 @@ Prefab:
     - target: {fileID: 224248297374947164, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 224211633847597656, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
@@ -996,7 +1014,7 @@ Prefab:
     - target: {fileID: 224211633847597656, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -225
       objectReference: {fileID: 0}
     - target: {fileID: 114412879728413292, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
