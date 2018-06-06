@@ -65,6 +65,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21c00a2cd53f2c4698879f04df4faed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMusicLoop: loopmusic
+  mainMusicVolume: 0.5
   sounds:
   - name: whoosh
     clip: {fileID: 8300000, guid: ca3f8fabd6e982749918a4733db3e3b7, type: 3}
+  - name: playermove
+    clip: {fileID: 8300000, guid: 6eb21aed463ad4d4c9328cb9f6205dde, type: 3}
+  - name: witchstep
+    clip: {fileID: 8300000, guid: 5d5c408688ca8b94bb8194f793b3e6ca, type: 3}
+  - name: pickscarpetta
+    clip: {fileID: 8300000, guid: 4ed614c450d6d284c88363841a1a202d, type: 3}
+  - name: pickcaramella
+    clip: {fileID: 8300000, guid: d26362da23c8e3d40a9347626fb571ca, type: 3}
+  - name: pickpetardo
+    clip: {fileID: 8300000, guid: ef445c1cf1c8d284fbc48181f334955a, type: 3}
+  - name: dooropen
+    clip: {fileID: 8300000, guid: f97321f5c03230b40bf218a6a75841fb, type: 3}
+  - name: tilerotation
+    clip: {fileID: 8300000, guid: cddce99c1c0438d438277b9d856036fb, type: 3}
+  - name: tileappeared
+    clip: {fileID: 8300000, guid: 6fbd3a6ce06593349bc50d572d6567ef, type: 3}
+  - name: tilewarping
+    clip: {fileID: 8300000, guid: 5a5f80a6d5607e849ae41529391c70a7, type: 3}
+  - name: pickchiave
+    clip: {fileID: 8300000, guid: 88aecfe2d6d145c44bf4bee048bf191b, type: 3}
+  - name: witchturn
+    clip: {fileID: 8300000, guid: 471b920521489b3419d822242097d199, type: 3}
+  - name: loopmusic
+    clip: {fileID: 8300000, guid: 369a2f4f64e40fd42a4845d4b6cda1c5, type: 3}
+  - name: playerturn
+    clip: {fileID: 8300000, guid: 6010837b074668f4db4882af83649002, type: 3}
+  - name: win
+    clip: {fileID: 8300000, guid: 4dd653ac74348924f985d2ccd414d130, type: 3}
+  - name: sconfitta
+    clip: {fileID: 8300000, guid: b5f0353b388818442a0d356fe2a42940, type: 3}
+  - name: tilehover
+    clip: {fileID: 8300000, guid: 1c3b43adc20472042b2044ab503a1544, type: 3}
+  - name: clickrisata
+    clip: {fileID: 8300000, guid: 35123e19e32919242a031f92b446aa40, type: 3}
+  - name: clicksimple
+    clip: {fileID: 8300000, guid: f71ec27423664564aa83549c8d6cfd5d, type: 3}
+  - name: pickpetardo
+    clip: {fileID: 8300000, guid: ef445c1cf1c8d284fbc48181f334955a, type: 3}
+  - name: bangpetardo
+    clip: {fileID: 8300000, guid: 5d7159f929c3d03458c261943d14224b, type: 3}
