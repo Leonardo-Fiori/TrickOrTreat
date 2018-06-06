@@ -18,7 +18,6 @@ public class SOEvent : ScriptableObject {
         {
             listeners.Remove(listener);
         }
-
     }
 
     public void Raise()

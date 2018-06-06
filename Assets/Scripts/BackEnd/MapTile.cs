@@ -340,6 +340,8 @@ public class MapTile
     {
         if (type == TileType.quadrivio) return;
 
+        GameManager.playerMovementEvent.Raise();
+
         if (clockwise)
         {
             if (rotation == Rotation.su)
