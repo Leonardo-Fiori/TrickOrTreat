@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed36f6e4f88d15c47ac99067acb17fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabUscita: {fileID: 1431255955593858, guid: e73b3803cbbd54848b43a62bf93faf76,
+  prefabUscita: {fileID: 1979864603185748, guid: dc849daa2343eaa409e1135c42420c84,
     type: 2}
   prefabKey: {fileID: 1866261375336496, guid: 7509eb4b73f8521419cbc92e976bb157, type: 2}
   prefabsCaramella:
