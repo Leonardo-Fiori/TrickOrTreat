@@ -17,6 +17,15 @@ public class MovePlayer : MonoBehaviour {
     public static bool moving;
     public SOEvent playerMovedEvent;
 
+    private void Start()
+    {
+        GameObject temp = new GameObject();
+        temp.transform.position = transform.position + Vector3.back;
+        transform.LookAt(temp.transform);
+        transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
+        Destroy(temp);
+    }
+
     // Sposta il prefab del giocatore di tot factor in direzione dir
 
     IEnumerator moveTowards(Vector3 finalPos)

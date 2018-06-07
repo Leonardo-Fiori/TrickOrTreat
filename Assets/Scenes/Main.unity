@@ -320,6 +320,10 @@ Prefab:
       propertyPath: m_DrawHalo
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1452760819521258, guid: b34011cc938092541a4f6252c7da7653, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b34011cc938092541a4f6252c7da7653, type: 2}
   m_IsPrefabParent: 0
@@ -365,12 +369,6 @@ MonoBehaviour:
   speed: 5
   returnSpeed: 4
   secondsInAir: 0.41
---- !u!114 &823130484 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114559622413886020, guid: b34011cc938092541a4f6252c7da7653,
-    type: 2}
-  m_PrefabInternal: {fileID: 725383542}
-  m_Script: {fileID: 11500000, guid: 50254382b84725c4c96c105fabf30c19, type: 3}
 --- !u!1 &852097875
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,7 +572,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 11d110cb1994e764e944eb82c76b098c, type: 2}
   - {fileID: 11400000, guid: 7b78542fcd6cb494f9fed506bd9463ab, type: 2}
   - {fileID: 11400000, guid: 560df11afc2b67045887d5de44d31e77, type: 2}
-  prefabGiocatore: {fileID: 823130481}
+  prefabGiocatore: {fileID: 1294737612}
   distanzaTraTile: 1.99
   scalaTiles: 1
   witchDelay: 1
@@ -744,6 +742,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1 &1294737612 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1344810880999628, guid: 2af5d245b226f3140a87ff39049c15a7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1412583810}
+--- !u!114 &1294737613 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114659217673108324, guid: 2af5d245b226f3140a87ff39049c15a7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1412583810}
+  m_Script: {fileID: 11500000, guid: 70592b32181dda14f930eec675631ff9, type: 3}
+--- !u!114 &1294737614 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114364505913369090, guid: 2af5d245b226f3140a87ff39049c15a7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1412583810}
+  m_Script: {fileID: 11500000, guid: 50254382b84725c4c96c105fabf30c19, type: 3}
 --- !u!1 &1294849863
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,6 +918,48 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1001 &1412583810
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4945071258887296, guid: 2af5d245b226f3140a87ff39049c15a7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945071258887296, guid: 2af5d245b226f3140a87ff39049c15a7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945071258887296, guid: 2af5d245b226f3140a87ff39049c15a7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945071258887296, guid: 2af5d245b226f3140a87ff39049c15a7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945071258887296, guid: 2af5d245b226f3140a87ff39049c15a7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945071258887296, guid: 2af5d245b226f3140a87ff39049c15a7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945071258887296, guid: 2af5d245b226f3140a87ff39049c15a7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945071258887296, guid: 2af5d245b226f3140a87ff39049c15a7, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2af5d245b226f3140a87ff39049c15a7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1438766505
 Prefab:
   m_ObjectHideFlags: 0
@@ -946,12 +1003,12 @@ Prefab:
         type: 2}
       propertyPath: playerPrefabRot
       value: 
-      objectReference: {fileID: 823130482}
+      objectReference: {fileID: 1294737613}
     - target: {fileID: 114505486970801670, guid: c1bb758ee6e7f8248ac5d094fad222ef,
         type: 2}
       propertyPath: playerPrefabMov
       value: 
-      objectReference: {fileID: 823130484}
+      objectReference: {fileID: 1294737614}
     - target: {fileID: 1350079397436178, guid: c1bb758ee6e7f8248ac5d094fad222ef, type: 2}
       propertyPath: m_Name
       value: RaycastManager Instance
@@ -1381,7 +1438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f9d607c6e7abb42aaf95271e2188b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  subject1: {fileID: 823130481}
+  subject1: {fileID: 1294737612}
   subject2: {fileID: 359589256}
   scrollSpeed: 65
   cameraDistance: 5
