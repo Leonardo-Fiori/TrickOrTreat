@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 114129913729751960}
   - component: {fileID: 114053776904025180}
   - component: {fileID: 114802962199597478}
+  - component: {fileID: 114740664152129846}
   m_Layer: 2
   m_Name: Petardo
   m_TagString: Untagged
@@ -213,6 +214,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+--- !u!114 &114740664152129846
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1799401077272886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed4414f3548427f4eac25c0cb04985b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ampiezza: 0.001
+  speed: 1
+  rotazione: 1
+  speedX: 0
+  speedY: 1
+  speedZ: 0
+  randomizeSpeed: 1
 --- !u!114 &114802962199597478
 MonoBehaviour:
   m_ObjectHideFlags: 1
