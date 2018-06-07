@@ -58,6 +58,9 @@ public class MapTile
     public void AttivaPetardo()
     {
         Debug.Log("MapTile "+x+" "+y+" petardo attivo");
+
+        GameObject.Instantiate(GameManager.instance.particlePetardoPiazzato, frontEndPrefab.transform);
+
         petardoAttivo = true;
     }
 
@@ -65,6 +68,8 @@ public class MapTile
     {
         if (!petardoAttivo)
             return;
+
+        GameObject.Instantiate(GameManager.instance.particlePetardoEsploso, frontEndPrefab.transform);
 
         petardoAttivo = false;
         SoundManager.instance.Play("bangpetardo");

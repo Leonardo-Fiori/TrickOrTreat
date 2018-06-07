@@ -241,7 +241,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4119600209247612, guid: b34011cc938092541a4f6252c7da7653, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114559622413886020, guid: b34011cc938092541a4f6252c7da7653,
         type: 2}
@@ -538,6 +538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1000383825}
   - component: {fileID: 1000383824}
+  - component: {fileID: 1000383826}
   m_Layer: 0
   m_Name: GameManager Instance
   m_TagString: Untagged
@@ -593,6 +594,11 @@ MonoBehaviour:
   - {fileID: 1469807102411922, guid: 3b32f999eb10059479835a34dfad0029, type: 2}
   eventoScoppioPetardo: {fileID: 11400000, guid: f8f34aac6b8607b429a5c2776565e7e3,
     type: 2}
+  particlePetardoPiazzato: {fileID: 1286764554509444, guid: e289cddf1403936449f64c5f02d35019,
+    type: 2}
+  particlePetardoEsploso: {fileID: 1286764554509444, guid: e289cddf1403936449f64c5f02d35019,
+    type: 2}
+  controlli: {fileID: 11400000, guid: a8cc41046c234d740943d233b1fe88fa, type: 2}
 --- !u!4 &1000383825
 Transform:
   m_ObjectHideFlags: 0
@@ -606,6 +612,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1000383826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1000383823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae51ab1c86ccb614f91bc43ad9373c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: 1fae1c1c9a64488448ebc41e1b5e2615, type: 2}
+  quality: {fileID: 11400000, guid: 8ba3381f86f7131418c4c31eef004142, type: 2}
+  easy: 0
+  normal: 0
+  hard: 0
+  cameraQualityLevel: 0
+  name: SaveData
 --- !u!1 &1048015019 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1350079397436178, guid: c1bb758ee6e7f8248ac5d094fad222ef,
@@ -1341,6 +1365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   qualityLevel: {fileID: 11400000, guid: 8ba3381f86f7131418c4c31eef004142, type: 2}
+  needsDebugMode: 0
 --- !u!1 &1800306658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,7 +1447,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -90, y: -30, z: 0}
 --- !u!1001 &1819381957
 Prefab:

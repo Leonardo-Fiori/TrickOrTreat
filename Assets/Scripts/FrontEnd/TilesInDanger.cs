@@ -25,7 +25,7 @@ public class TilesInDanger : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && mouseOverWitch)
+        if (Input.GetMouseButtonDown(GameManager.controls.standardClick) && mouseOverWitch)
         {
             toggled = !toggled;
 

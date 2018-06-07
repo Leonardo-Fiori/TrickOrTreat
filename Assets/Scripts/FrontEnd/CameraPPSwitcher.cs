@@ -7,16 +7,17 @@ public class CameraPPSwitcher : MonoBehaviour {
 
     public SOCameraPPValue qualityLevel;
     private int quality = 0;
+    public bool needsDebugMode = false;
 	
 	void Update () {
-        if (GameManager.debugMode)
+        if (GameManager.debugMode || !needsDebugMode)
         {
-            if (Input.GetKeyUp(KeyCode.F1))
+            if (Input.GetKeyUp(GameManager.controls.decrementaGrafica))
             {
                 qualityLevel.Decrease();
                 print("Quality level: " + qualityLevel.value);
             }
-            else if (Input.GetKeyUp(KeyCode.F2))
+            else if (Input.GetKeyUp(GameManager.controls.incrementaGrafica))
             {
                 qualityLevel.Increase();
                 print("Quality level: " + qualityLevel.value);
