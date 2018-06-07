@@ -40,7 +40,7 @@ public class TileFog : MonoBehaviour {
         }
         fogPrefab.GetComponent<ParticleSystem>().Stop();
         fogPrefab.SetActive(false);
-        transform.localScale = new Vector3(1f, 0.5f, 1f);
+        transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
     private void deactivateFog()
@@ -82,7 +82,7 @@ public class TileFog : MonoBehaviour {
 
     public IEnumerator InflateTile()
     {
-        Vector3 destination = new Vector3(1f, .5f, 1f);
+        Vector3 destination = new Vector3(1f, 1f, 1f);
 
         while (transform.localScale.x < destination.x)
         {
