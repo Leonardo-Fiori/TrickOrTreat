@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a3bdb2cd68f901469e7cc149151eb49, type: 3}
-  m_Name: MainCameraPP
+  m_Name: NormalGraphics
   m_EditorClassIdentifier: 
   debugViews:
     m_Enabled: 1
@@ -44,13 +44,13 @@ MonoBehaviour:
     m_Settings:
       intensity: 2.02
       radius: 0.61
-      sampleCount: 16
+      sampleCount: 10
       downsampling: 0
       forceForwardCompatibility: 0
       ambientOnly: 0
       highPrecision: 0
   screenSpaceReflection:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       reflection:
         blendType: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
       screenEdgeMask:
         intensity: 0.03
   depthOfField:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       focusDistance: 2
       aperture: 0.1
@@ -77,7 +77,7 @@ MonoBehaviour:
       useCameraFov: 1
       kernelSize: 0
   motionBlur:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       shutterAngle: 1
       sampleCount: 10
@@ -106,13 +106,13 @@ MonoBehaviour:
         radius: 3.09
         antiFlicker: 0
       lensDirt:
-        texture: {fileID: 2800000, guid: f9a01fd9a405ed24089bdd7bcc83323b, type: 3}
-        intensity: 1
+        texture: {fileID: 0}
+        intensity: 0
   colorGrading:
     m_Enabled: 1
     m_Settings:
       tonemapping:
-        tonemapper: 1
+        tonemapper: 2
         neutralBlackIn: 0.019
         neutralWhiteIn: 10.5
         neutralBlackOut: -0.013
@@ -125,7 +125,7 @@ MonoBehaviour:
         tint: 0
         hueShift: 0
         saturation: 0.87
-        contrast: 0.97
+        contrast: 1.13
       channelMixer:
         red: {x: 0.88, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}

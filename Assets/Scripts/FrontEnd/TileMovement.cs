@@ -169,8 +169,8 @@ public class TileMovement : MonoBehaviour
             backEnd.GetPetardoFrontEnd().GetComponent<PickupAnimation>().Despawn();
         }
 
-        playerMovementEvent.Raise();
-
         canRot = true;
+
+        playerMovementEvent.Raise();
     }
 }

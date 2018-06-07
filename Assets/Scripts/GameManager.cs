@@ -320,7 +320,11 @@ public class GameManager : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D)) debugMode = !debugMode;
+        if (Input.GetKey(KeyCode.D) && Input.GetKeyDown(KeyCode.H))
+        {
+            debugMode = !debugMode;
+            print("Debug Mode: " + debugMode);
+        }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
