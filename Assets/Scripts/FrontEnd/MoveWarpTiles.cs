@@ -218,6 +218,28 @@ public class MoveWarpTiles : EventListener {
 
         float counter = 0f;
 
+        MapTile backEnd = GameManager.mapInstance.getTile(x, y);
+        /*
+        if (backEnd.HasCaramella())
+        {
+            backEnd.GetCaramellaFrontEnd().GetComponent<PickupAnimation>().Despawn();
+        }
+
+        if (backEnd.HasPetardo())
+        {
+            backEnd.GetPetardoFrontEnd().GetComponent<PickupAnimation>().Despawn();
+        }
+
+        if (backEnd.HasScarpetta())
+        {
+            backEnd.GetScarpettaFrontEnd().GetComponent<PickupAnimation>().Despawn();
+        }
+
+        if (backEnd.HasKey())
+        {
+            backEnd.GetChiaveFrontEnd().GetComponent<KeyAnimation>().DespawnNoDestroy();
+        }*/
+
         while (transform.position != endPosition)
         {
             counter += Time.deltaTime;

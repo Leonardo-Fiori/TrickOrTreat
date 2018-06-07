@@ -9,14 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7aa51ac8e6eeac5449d317dfb847f1cb, type: 3}
-  m_Name: Tileset Hard
+  m_Name: Tileset Normal Petardo
   m_EditorClassIdentifier: 
-  quantiCorridoi: 12
-  quantiAngoli: 12
-  quantiTrivia: 25
+  quantiCorridoi: 8
+  quantiAngoli: 8
+  quantiTrivia: 33
   quanteChiavi: 2
-  quanteCaramelle: 10
-  quanteScarpette: 4
+  quanteCaramelle: 14
+  quanteScarpette: 5
   quantiQuadrivia: 0
-  quantiPetardi: 0
+  quantiPetardi: 4
   despawnPetardi: 2

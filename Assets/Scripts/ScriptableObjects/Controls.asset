@@ -31,3 +31,5 @@ MonoBehaviour:
   debugDown: 274
   debugRight: 275
   debugLeft: 276
+  debugIncreaseDifficulty: 285
+  debugDecreaseDifficulty: 284

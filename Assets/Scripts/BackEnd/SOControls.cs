@@ -25,4 +25,6 @@ public class SOControls : ScriptableObject {
     public KeyCode debugDown;
     public KeyCode debugRight;
     public KeyCode debugLeft;
+    public KeyCode debugIncreaseDifficulty;
+    public KeyCode debugDecreaseDifficulty;
 }

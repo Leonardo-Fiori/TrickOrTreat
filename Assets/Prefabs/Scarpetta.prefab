@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114824980499877272}
   - component: {fileID: 114979740927541552}
   - component: {fileID: 114930572893564452}
+  - component: {fileID: 114293429432057736}
   m_Layer: 2
   m_Name: Scarpetta
   m_TagString: Untagged
@@ -185,6 +186,24 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114293429432057736
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1095933322598068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed4414f3548427f4eac25c0cb04985b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ampiezza: 0.0025
+  speed: 1
+  rotazione: 1
+  speedX: 0
+  speedY: 1
+  speedZ: 0
+  randomizeSpeed: 1
 --- !u!114 &114824980499877272
 MonoBehaviour:
   m_ObjectHideFlags: 1

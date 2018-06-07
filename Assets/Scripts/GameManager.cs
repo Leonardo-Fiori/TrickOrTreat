@@ -368,6 +368,22 @@ public class GameManager : MonoBehaviour {
                 cheatMode = !cheatMode;
                 print("Cheatmode: " + cheatMode);
             }
+
+            if (Input.GetKeyDown(controls.debugIncreaseDifficulty))
+            {
+                difficulty.value++;
+                if (difficulty.value >= dimensioniMappa.Length) difficulty.value = dimensioniMappa.Length - 1;
+                SoundManager.instance.Play("playermove");
+                print("Selected difficulty level: " + difficulty.value);
+            }
+
+            if (Input.GetKeyDown(controls.debugDecreaseDifficulty))
+            {
+                difficulty.value--;
+                if (difficulty.value < 0) difficulty.value = 0;
+                SoundManager.instance.Play("playermove");
+                print("Selected difficulty level: " + difficulty.value);
+            }
         }
 
         if (debugMode)
