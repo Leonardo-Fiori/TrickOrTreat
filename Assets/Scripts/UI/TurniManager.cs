@@ -10,17 +10,22 @@ public class TurniManager : MonoBehaviour
     public GameObject panel;
     public Image turnoAttivo;
     public Image turnoDisattivato;
+    public Image scarpetta;
     public Image[] arrayImmagini;
-
+    
     public Giocatore giocatore;
 
+    int posizioneScarpetta;    // ultima posizione pannello immagini riservata alla scarpetta
+
     int j = 1; // la uso per scorrermi i turni
+
+
     // creo un array con le mosse massime che il bambino potrà mai fare
     void Start()
     {
-        //GameManager.instance.difficulty.value;
+        print(GameManager.instance.difficulty.value);
         arrayImmagini = new Image[mosseMassime];        // iniziallizzo l'array con le immagini
-
+        posizioneScarpetta = arrayImmagini.Length - 1;
 
         SetUI();
 
@@ -86,8 +91,11 @@ public class TurniManager : MonoBehaviour
     // evento che ascolta la presa della scarpetta, la j che sarà aumentata nello scalaturno della presa della scarpetta dovrà essere riportata al valore precedente
     public void ScarpettaTaken()
     {
-       print("Scarpetta presa j vale " + j);
-        int turnoMassimo = GameManager.playerInstance.GetMossePerTurno();
+        print("Scarpetta presa j vale " + j);
+        arrayImmagini[posizioneScarpetta].gameObject.SetActive(false);
+        GameObject.Destroy(arrayImmagini[posizioneScarpetta]);
+        arrayImmagini[posizioneScarpetta] = Instantiate(scarpetta, transform);
+        /*int turnoMassimo = GameManager.playerInstance.GetMossePerTurno();
 
         j--;
 
@@ -95,7 +103,7 @@ public class TurniManager : MonoBehaviour
         GameObject.Destroy(arrayImmagini[turnoMassimo - j]);
 
         arrayImmagini[turnoMassimo - j] = Instantiate(turnoAttivo, transform);
-
+        */
     }
 
 
