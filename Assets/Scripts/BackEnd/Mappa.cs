@@ -245,6 +245,20 @@ namespace UnityEngine
 
             //Debug.Log(dim+" "+center);
 
+            for(int i = 0; i < dim; i++)
+            {
+                for(int j = 0; j < dim; j++)
+                {
+                    int counter = 0;
+
+                    while(counter < 4 && isLocked(i, j))
+                    {
+                        tiles[i, j].rotate(true);
+                        counter++;
+                    }
+                }
+            }
+
             while (!tiles[center + 1, center].getDirection(Direction.ovest))
             {
                 tiles[center + 1, center].rotate(true);
@@ -263,20 +277,6 @@ namespace UnityEngine
             while (!tiles[center, center - 1].getDirection(Direction.nord))
             {
                 tiles[center, center - 1].rotate(true);
-            }
-
-            for(int i = 0; i < dim; i++)
-            {
-                for(int j = 0; j < dim; j++)
-                {
-                    int counter = 0;
-
-                    while(counter < 4 && isLocked(i, j))
-                    {
-                        tiles[i, j].rotate(true);
-                        counter++;
-                    }
-                }
             }
 
             return;

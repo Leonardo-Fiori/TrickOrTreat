@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114824980499877272}
   - component: {fileID: 114979740927541552}
   - component: {fileID: 114930572893564452}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Scarpetta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 33266898405052378}
   - component: {fileID: 65066833626059792}
   - component: {fileID: 23726329901562446}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Scarpetta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,13 +55,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1211387088068790}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_Children: []
   m_Father: {fileID: 4864215376646440}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4864215376646440
 Transform:
   m_ObjectHideFlags: 1
@@ -90,7 +90,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 39e49e10a4d48f14c9622420ad0d94f1, type: 2}
+  - {fileID: 2100000, guid: 87c6a45f196988f4cbc0e7915ba67591, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,7 +116,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1211387088068790}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 6518d83379a78a243a89aa145f0e0e34, type: 3}
 --- !u!65 &65066833626059792
 BoxCollider:
   m_ObjectHideFlags: 1

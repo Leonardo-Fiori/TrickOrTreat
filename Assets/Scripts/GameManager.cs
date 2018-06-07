@@ -70,10 +70,19 @@ public class GameManager : MonoBehaviour {
     private int turniPassati = 0;
     private List<MapTile> petardiDaDespawnare;
     public SOEvent eventoScoppioPetardo;
+    public GameObject particlePetardoPiazzato;
+    public GameObject particlePetardoEsploso;
+
+
+    // Centralizzazione comandi
+    public SOControls controlli;
+    public static SOControls controls;
 
     void OnEnable () {
 
         instance = this;
+
+        controls = controlli;
 
         petardiDaDespawnare = new List<MapTile>();
 
@@ -320,20 +329,24 @@ public class GameManager : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D)) debugMode = !debugMode;
+        if (Input.GetKey(controls.debugHold) && Input.GetKeyDown(controls.debugPress))
+        {
+            debugMode = !debugMode;
+            print("Debug Mode: " + debugMode);
+        }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(controls.restart))
         {
             Restart();
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(controls.quit))
         {
             Quit();
         }
 
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(controls.passaTurno))
         {
             if(turno == Turno.giocatore)
                 SwitchTurn();
@@ -341,7 +354,7 @@ public class GameManager : MonoBehaviour {
 
         if (debugMode)
         {
-            if(Input.GetKeyDown(KeyCode.F))
+            if(Input.GetKeyDown(controls.debugFogOff))
             {
                 TileFog[] tfs = FindObjectsOfType<TileFog>();
                 foreach(TileFog tf in tfs)
@@ -350,16 +363,7 @@ public class GameManager : MonoBehaviour {
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                TileFog[] tfs = FindObjectsOfType<TileFog>();
-                foreach (TileFog tf in tfs)
-                {
-                    tf.SetFog(true);
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(controls.debugCheatMode))
             {
                 cheatMode = !cheatMode;
                 print("Cheatmode: " + cheatMode);
@@ -368,19 +372,19 @@ public class GameManager : MonoBehaviour {
 
         if (debugMode)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(controls.debugUp))
             {
                 movementManagerInstance.movePlayer(Direction.nord);
             }
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(controls.debugLeft))
             {
                 movementManagerInstance.movePlayer(Direction.ovest);
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKeyDown(controls.debugRight))
             {
                 movementManagerInstance.movePlayer(Direction.est);
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(controls.debugDown))
             {
                 movementManagerInstance.movePlayer(Direction.sud);
             }

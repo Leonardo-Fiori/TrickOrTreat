@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a3bdb2cd68f901469e7cc149151eb49, type: 3}
-  m_Name: MainCameraPP
+  m_Name: NormalGraphics
   m_EditorClassIdentifier: 
   debugViews:
     m_Enabled: 1
@@ -42,15 +42,15 @@ MonoBehaviour:
   ambientOcclusion:
     m_Enabled: 1
     m_Settings:
-      intensity: 2
-      radius: 0.3
+      intensity: 2.02
+      radius: 0.61
       sampleCount: 10
-      downsampling: 1
+      downsampling: 0
       forceForwardCompatibility: 0
       ambientOnly: 0
       highPrecision: 0
   screenSpaceReflection:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       reflection:
         blendType: 0
@@ -71,15 +71,15 @@ MonoBehaviour:
   depthOfField:
     m_Enabled: 0
     m_Settings:
-      focusDistance: 23.906754
+      focusDistance: 2
       aperture: 0.1
       focalLength: 300
-      useCameraFov: 0
-      kernelSize: 3
+      useCameraFov: 1
+      kernelSize: 0
   motionBlur:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
-      shutterAngle: 0.025
+      shutterAngle: 1
       sampleCount: 10
       frameBlending: 0
   eyeAdaptation:
@@ -100,14 +100,14 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 0.5
+        intensity: 0.48
         threshold: 1.1
-        softKnee: 0.5
-        radius: 4
+        softKnee: 0.38
+        radius: 3.09
         antiFlicker: 0
       lensDirt:
         texture: {fileID: 0}
-        intensity: 3
+        intensity: 0
   colorGrading:
     m_Enabled: 1
     m_Settings:
@@ -120,23 +120,23 @@ MonoBehaviour:
         neutralWhiteLevel: 5.3
         neutralWhiteClip: 10
       basic:
-        postExposure: 0
-        temperature: 0
+        postExposure: 0.83
+        temperature: -4
         tint: 0
         hueShift: 0
-        saturation: 1
-        contrast: 1.12
+        saturation: 0.87
+        contrast: 1.13
       channelMixer:
-        red: {x: 1, y: 0, z: 0}
+        red: {x: 0.88, y: 0, z: 0}
         green: {x: 0, y: 1, z: 0}
         blue: {x: 0, y: 0, z: 1}
         currentEditingChannel: 0
       colorWheels:
         mode: 1
         log:
-          slope: {r: 0.93623173, g: 0.7356882, b: 1, a: 0}
-          power: {r: 0.7877768, g: 1, b: 0.9999998, a: 0}
-          offset: {r: 0.92942196, g: 1, b: 0.885933, a: 0}
+          slope: {r: 0.9574057, g: 0.7079067, b: 1, a: 0}
+          power: {r: 0.74111867, g: 1, b: 0.971049, a: 0}
+          offset: {r: 0.9941918, g: 1, b: 0.89854485, a: 0}
         linear:
           lift: {r: 0, g: 0, b: 0, a: 0}
           gamma: {r: 0, g: 0, b: 0, a: 0}
@@ -281,31 +281,31 @@ MonoBehaviour:
       lut: {fileID: 0}
       contribution: 1
   chromaticAberration:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       spectralTexture: {fileID: 0}
-      intensity: 0.001
+      intensity: 1
   grain:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       colored: 0
-      intensity: 0.001
-      size: 0
+      intensity: 0.12
+      size: 0.44
       luminanceContribution: 0
   vignette:
     m_Enabled: 1
     m_Settings:
       mode: 0
-      color: {r: 0, g: 0, b: 0, a: 1}
-      center: {x: 0, y: 0}
-      intensity: 0.3
-      smoothness: 0
-      roundness: 0
+      color: {r: 0.16719663, g: 0.029844286, b: 0.16911763, a: 1}
+      center: {x: 0.5, y: 0.5}
+      intensity: 0.5
+      smoothness: 0.27
+      roundness: 0.97
       mask: {fileID: 0}
       opacity: 0
       rounded: 0
   dithering:
-    m_Enabled: 1
+    m_Enabled: 0
   monitors:
     currentMonitorID: 0
     refreshOnPlay: 0

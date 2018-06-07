@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d007efc5a6ab1f849bfeb5a0c0f83104, type: 3}
+  m_Name: Controls
+  m_EditorClassIdentifier: 
+  rotazioneOraria: 1
+  rotazioneAntioraria: 0
+  standardClick: 0
+  movimento: 0
+  rotazioneCamera: 1
+  zoomCamera: 1
+  petardo: 306
+  restart: 114
+  quit: 27
+  passaTurno: 116
+  incrementaGrafica: 283
+  decrementaGrafica: 282
+  debugHold: 100
+  debugPress: 104
+  debugFogOff: 102
+  debugCheatMode: 99
+  debugUp: 273
+  debugDown: 274
+  debugRight: 275
+  debugLeft: 276

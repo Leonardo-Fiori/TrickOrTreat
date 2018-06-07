@@ -12,6 +12,8 @@ public class TileMovement : MonoBehaviour
     public float returnSpeed = 1f;
     public float rotationSpeed = 10f;
 
+    public SOEvent playerMovementEvent;
+
     public static bool canRot = true;
 
     public void StartTileRotation(int angleRot, int dir)
@@ -168,5 +170,7 @@ public class TileMovement : MonoBehaviour
         }
 
         canRot = true;
+
+        playerMovementEvent.Raise();
     }
 }

@@ -19,7 +19,7 @@ public class RaycastManager : MonoBehaviour
     // dir va cambiato perchè mi fa sia da controllo sia da velocità di rotazione
     void Update()
     {
-        if ((Input.GetMouseButtonUp(0) || (Input.GetMouseButtonUp(1))) && TileMovement.canRot && PlayerOnTileMovement.canRot && !MovePlayer.moving)
+        if ((Input.GetMouseButtonUp(GameManager.controls.rotazioneAntioraria) || (Input.GetMouseButtonUp(GameManager.controls.rotazioneOraria))) && TileMovement.canRot && PlayerOnTileMovement.canRot && !MovePlayer.moving)
         {
             bool clockwise = false;
 
@@ -27,13 +27,13 @@ public class RaycastManager : MonoBehaviour
             // dir va cambiato perchè mi fa sia da controllo sia da velocità di rotazione
 
             int dir = 0;
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(GameManager.controls.rotazioneOraria))
             {
                 clockwise = true;
                 angleRot = 90;
                 dir = 2;
             }
-            if (Input.GetMouseButtonUp(1))
+            if (Input.GetMouseButtonUp(GameManager.controls.rotazioneAntioraria))
             {
                 clockwise = false;
                 angleRot = -90;
@@ -55,6 +55,8 @@ public class RaycastManager : MonoBehaviour
                 bool equalY = (clickedTile.GetTileY() == GameManager.playerInstance.getY());
 
                 MapTile tileBackEnd = GameManager.mapInstance.getTile(clickedTile.GetTileX(), clickedTile.GetTileY());
+
+                print(tileBackEnd.getTileType()+" "+tileBackEnd.getTileRotation());
 
                 // VUOLE PIAZZARE UN PETARDO
                 if (AttivaPetardo.toggle)

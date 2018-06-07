@@ -228,7 +228,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1977490210554508}
-  m_Mesh: {fileID: 4300000, guid: 0e2d763c9b6dd834e8c0fab15435a91c, type: 3}
+  m_Mesh: {fileID: 4300000, guid: fafc98b8192c17244a63a63f79b04e72, type: 3}
 --- !u!33 &33959342622877244
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -291,6 +291,8 @@ MonoBehaviour:
   speed: 5
   returnSpeed: 7
   rotationSpeed: 10
+  playerMovementEvent: {fileID: 11400000, guid: 7b6574c4ade94ff48a5b10ca71c6f64e,
+    type: 2}
 --- !u!114 &114406927217627210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -321,6 +323,9 @@ MonoBehaviour:
   prefabKey: {fileID: 1866261375336496, guid: 7509eb4b73f8521419cbc92e976bb157, type: 2}
   prefabsCaramella:
   - {fileID: 1518281925748922, guid: 3a9f2e258bdfa914da15f80e1262dabb, type: 2}
+  - {fileID: 1427206230703530, guid: aefb3a3d15a84e04486cdc25117bcfea, type: 2}
+  - {fileID: 1598548002323738, guid: a4f8a04766bba554e8a6cd0968e2c697, type: 2}
+  - {fileID: 1785672638540980, guid: 19275c5aa26b97a4f84c9f36c13ceb41, type: 2}
   prefabScarpetta: {fileID: 1095933322598068, guid: ba38a08fe8a65cc459bcb62d38b362d0,
     type: 2}
   prefabPetardo: {fileID: 1799401077272886, guid: 9494c620f5ba35b4da674bd46cdf8532,

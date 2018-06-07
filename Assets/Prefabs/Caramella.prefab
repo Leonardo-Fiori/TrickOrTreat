@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114508618476170098}
   - component: {fileID: 114558410828478372}
   - component: {fileID: 114980698651213566}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Caramella
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 33850438762329524}
   - component: {fileID: 135299821353308246}
   - component: {fileID: 23262125000042122}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Caramella
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 1632871731409350}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children: []
   m_Father: {fileID: 4713248611667780}
   m_RootOrder: 0
@@ -90,7 +90,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7a13896234917c442bea7e04518ca0ac, type: 2}
+  - {fileID: 2100000, guid: 204d4a1a3206da94d8450a12312985b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,7 +116,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1632871731409350}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 42cd273fbd1d1fe499b18b18da933d29, type: 3}
 --- !u!114 &114508618476170098
 MonoBehaviour:
   m_ObjectHideFlags: 1
