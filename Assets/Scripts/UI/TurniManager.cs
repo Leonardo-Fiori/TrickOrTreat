@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class TurniManager : MonoBehaviour
 {
-    public int mosseMassime = 8;    // magari aggiungere un mosse massime possibili nel game manager?
+    int mosseMassime = 8;    // Gamemanger.difficulty.value caramelle dal tileset e numero di caramelle necessarie dal player
+    
     public Button skipTurn;
     public GameObject panel;
     public Image turnoAttivo;
@@ -17,6 +18,7 @@ public class TurniManager : MonoBehaviour
     // creo un array con le mosse massime che il bambino potrà mai fare
     void Start()
     {
+        //GameManager.instance.difficulty.value;
         arrayImmagini = new Image[mosseMassime];        // iniziallizzo l'array con le immagini
 
 
@@ -30,13 +32,13 @@ public class TurniManager : MonoBehaviour
     {
         int turnoMax = GameManager.playerInstance.GetMossePerTurno();
         int turno = GameManager.playerInstance.GetMosseFatte();
-        print("J vale " + j);
+        //print("J vale " + j);
         //print("Il turnoMAX" + turnoMax);
         //print("Il turno attuale è " + turno);     
               
     }
-
-
+    
+    
     // setta la ui con le mossime massime disponibili da quel turno
     public void SetUI()    
     {
@@ -56,7 +58,7 @@ public class TurniManager : MonoBehaviour
     // Resetta la j a 1 ascoltando la strega che si muove
     public void ResetTurno()
     {
-        print("ResetTurno() invocato, Resetto UI e conteggio ScalaTurno()");
+        //print("ResetTurno() invocato, Resetto UI e conteggio ScalaTurno()");
 
         int turnoMassimo = GameManager.playerInstance.GetMossePerTurno();
         if (turnoMassimo == arrayImmagini.Length) print("La capacità delle mosse massime è arrivata al massimo");
@@ -84,7 +86,7 @@ public class TurniManager : MonoBehaviour
     // evento che ascolta la presa della scarpetta, la j che sarà aumentata nello scalaturno della presa della scarpetta dovrà essere riportata al valore precedente
     public void ScarpettaTaken()
     {
-        print("Scarpetta presa j vale " + j);
+       print("Scarpetta presa j vale " + j);
         int turnoMassimo = GameManager.playerInstance.GetMossePerTurno();
 
         j--;
@@ -101,7 +103,7 @@ public class TurniManager : MonoBehaviour
     public void ScalaTurno()
     {
         int turnoMassimo = GameManager.playerInstance.GetMossePerTurno();
-        print("ScalaTurno() in posizione " + (turnoMassimo - j));   // faccio la sottrazione a causa di come viene tenuto il conteggio dei turni che non conterebbe lo 0
+       // print("ScalaTurno() in posizione " + (turnoMassimo - j));   // faccio la sottrazione a causa di come viene tenuto il conteggio dei turni che non conterebbe lo 0
 
         arrayImmagini[turnoMassimo - j].gameObject.SetActive(false);
         GameObject.Destroy(arrayImmagini[turnoMassimo - j]);
@@ -119,6 +121,8 @@ public class TurniManager : MonoBehaviour
     {
         // CHECK sul numero di caramelle che ho vs le caramelle necessarie per aumentare le mosse permanentemente
     }
+
+    // funzione del pulsante per skippare il turno
     public void PassaTurno()
     {
         //print("Turno passato");

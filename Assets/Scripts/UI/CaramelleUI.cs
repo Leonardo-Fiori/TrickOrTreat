@@ -8,7 +8,7 @@ public class CaramelleUI : MonoBehaviour {
     public Image caramellaDisattiva;
     public static Image[] images;
 
-    //public SOEvent evento;
+    
     int j = 0; // lo uso per scorrere gli eventi per aggiungere caramelle
     
 
@@ -16,6 +16,8 @@ public class CaramelleUI : MonoBehaviour {
 	// iniziallizzo un array di immagini e spawno nel pannello le caramelle disattivate
 	void Start () {
         
+        if (caramellaAttiva.tag != "CaramellaAttiva") throw new System.ArgumentException("Tag di " + caramellaAttiva + " non può essere nullo! Impostare nel prefab tag 'CaramellaAttiva' ");
+
         images = new Image[GameManager.playerInstance.GetCaramelleNecessarie()]; 
 
         for (int i = 0; i < images.Length; i++)
@@ -27,28 +29,11 @@ public class CaramelleUI : MonoBehaviour {
 	
 
 
-	// Update is called once per frame
-	void Update () {
-
-        //print("Caramelle che ho"+GameManager.playerInstance.GetCaramelleRaccolte());
-        //print("Caramelle necessarie" + GameManager.playerInstance.GetCaramelleNecessarie());
-
-        // if caramelle prese corrisponde a get caramelle necessarie disattivo tutte le caramelle e aggiungo una mossa duratura ai turni
-        if (GameManager.playerInstance.GetCaramelleRaccolte() == GameManager.playerInstance.GetCaramelleNecessarie())
-        {
-            print("Resetto ui caramelle");
-            ResetUiCaramelle();
-            j = 0;  // lo riporto a 0 per ricontare da 0
-        }
-        //if (Input.GetKeyDown(KeyCode.M)) evento.Raise();    // per fargli partire l'evento della presa caramella
-	}
-
-
 
     // aggiunge una sprite di caramella attiva distruggendo la sprite caramella spenta
     public void AddCaramella()
     {
-        print("Caramella added");
+        //print("Caramella added");
 
         images[j].gameObject.SetActive(false);  // disattivo prima di distruggere l'mmagine della caramella disattivata
         GameObject.Destroy(images[j].gameObject);   // distruggo la sprite
@@ -59,9 +44,26 @@ public class CaramelleUI : MonoBehaviour {
     }
 
 
+    // ad ogni presa di caramella controlla se l'array è pieno di caramelle attive, in tal caso resetta la ui 
+    public void CheckResetCaramelleUI()
+    {
+        int controllo = 0;
+
+        for (int i = 0; i < images.Length; i++)
+        {
+            if (images[i].CompareTag("CaramellaAttiva")) controllo++;            
+            
+        }
+        print("controllo vale " + controllo);
+        if (controllo == images.Length) ResetUiCaramelle();
+    }
+
+
     // resetta le caramelle tutte disattivate ( instanziando le sprite delle caramelle disattivate)
     public void ResetUiCaramelle()
     {
+        print("Disattivo le caramelle ");
+
         // se non si resetta forse è perchè caramelleraccolte non è mai uguale a caramelle necessarie
         for (int i = 0; i < images.Length; i++)
         {
@@ -69,5 +71,8 @@ public class CaramelleUI : MonoBehaviour {
             GameObject.Destroy( images[i].gameObject);
             images[i] = Instantiate(caramellaDisattiva, transform);
         }
+
+        j = 0;
+        
     }
 }

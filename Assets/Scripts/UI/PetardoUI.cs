@@ -4,16 +4,23 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PetardoUI : MonoBehaviour {
 
-    public Image[] images;  // conterrà l'immagine petardo on e l'immagine petardo off
-	
-	// Update is called once per frame
-	void Update () {
+    public Image[] images;
 
-        // se il player non ha il petardo display l'immagine petardo OFF
+    private void Start()
+    {
+        PetardoOff();
+    }    
+
+    public void PetardoOn()
+    {
+        images[0].gameObject.SetActive(false);
+        images[1].gameObject.SetActive(true);
+    }
 
 
-        // else display immagine petardo ON
-
-
+    public void PetardoOff()
+    {
+        images[0].gameObject.SetActive(true);
+        images[1].gameObject.SetActive(false);
     }
 }

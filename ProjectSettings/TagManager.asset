@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tile
   - Witch
+  - CaramellaAttiva
   layers:
   - Default
   - TransparentFX

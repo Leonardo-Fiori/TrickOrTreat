@@ -4,33 +4,31 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PortaUI : MonoBehaviour {
 
-    public Image[] images;
+    
+    public Image portaChiusa;
+    public Image portaAperta;
+
 
     private void Start()
     {
-        images[1].gameObject.SetActive(true);   // attivo sprite porta disabled
-        images[0].gameObject.SetActive(false);
+        portaChiusa.gameObject.SetActive(true);   
+        portaAperta.gameObject.SetActive(false);
 
     }
 
-    // Update is called once per frame
-    void Update () {
 
+    // L'EVENTO CHIAVE PRESA VIENE CHIAMATO PRIMA CHE LA CHIAVE VENGA EFFETTIVAMENTE CONTEGGIATA, PER QUESTO LA CONDIZIONE è CHIAVI +1
+    public void CheckPortaAperta()
+    {
+        //print("Check porta");
         int chiavi = GameManager.playerInstance.GetChiavi();
         int chiaviMassime = GameManager.playerInstance.GetChiaviNecessarie();
-        //print("Ho chiavi = " + chiavi);
-        //print("chiavi massime " + chiaviMassime);
-        // check se sprite porta aperta
-        if (chiaviMassime <= chiavi)
+        //print("Ho " + chiavi + " me ne servono " + chiaviMassime + " per entrare");
+        if (chiaviMassime == chiavi+1)
         {
-            images[1].gameObject.SetActive(false);  // disattivo sprite porta disabled
-            images[0].gameObject.SetActive(true);   //  attivo sprite porta enabled
-            //print("Ho le chiavi");
-        }
-        // else porta chiusa
-        else
-        {
-            //print("Mancano le chiavi");
+            portaChiusa.gameObject.SetActive(false);
+            portaAperta.gameObject.SetActive(true);
+            //print("switch immagini porta");
         }
     }
 }
