@@ -43,7 +43,7 @@ public class PickupSpawner : MonoBehaviour {
     {
         uscita = Instantiate(prefabUscita, transform.position, Quaternion.identity);
 
-        uscita.transform.parent = gameObject.transform;
+        //uscita.transform.parent = gameObject.transform; // viene settato quando la fog despawna!!
     }
 
     void SpawnKey()
@@ -51,7 +51,7 @@ public class PickupSpawner : MonoBehaviour {
         chiave = Instantiate(prefabKey, transform.position, Quaternion.identity);
         chiave.GetComponent<KeyAnimation>().Initialize(x, y);
 
-        chiave.transform.parent = gameObject.transform;
+        //chiave.transform.parent = gameObject.transform; // viene settato quando la fog despawna!!
 
         GameManager.mapInstance.getTile(x, y).SetChiaveFrontEnd(chiave);
     }

@@ -89,6 +89,12 @@ public class TileFog : MonoBehaviour {
             transform.localScale += destination / 10f;
             yield return null;
         }
+
+        GameObject uscita = gameObject.GetComponent<PickupSpawner>().GetPickup("uscita");
+        if(uscita != null) uscita.gameObject.transform.parent = gameObject.transform;
+
+        GameObject chiave = gameObject.GetComponent<PickupSpawner>().GetPickup("chiave");
+        if(chiave != null) chiave.gameObject.transform.parent = gameObject.transform;
     }
 
     // Spawna la nebbia
