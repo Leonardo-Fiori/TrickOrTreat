@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 4826384842938994}
   - component: {fileID: 114585932486241388}
   - component: {fileID: 114838894476871190}
+  - component: {fileID: 114185074713873292}
   m_Layer: 0
   m_Name: Chiave
   m_TagString: Untagged
@@ -142,6 +143,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1792209267212460}
   m_Mesh: {fileID: 4300000, guid: a8cfa657d36c4494e8e4439b66d56caa, type: 3}
+--- !u!114 &114185074713873292
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1866261375336496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed4414f3548427f4eac25c0cb04985b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ampiezza: 0.004
+  speed: 1
+  rotazione: 0
+  speedX: 0
+  speedY: 0
+  speedZ: 0
+  randomizeSpeed: 1
 --- !u!114 &114585932486241388
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd17cc01b69a5864d80424d29ab16f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
   eventoChiavePresa: {fileID: 11400000, guid: 677fb50a6ce110949a5fc0776e0c2ef4, type: 2}
 --- !u!114 &114838894476871190
 MonoBehaviour:
