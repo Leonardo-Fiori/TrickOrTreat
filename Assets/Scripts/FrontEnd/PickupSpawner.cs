@@ -42,12 +42,16 @@ public class PickupSpawner : MonoBehaviour {
     void SpawnUscita()
     {
         uscita = Instantiate(prefabUscita, transform.position, Quaternion.identity);
+
+        uscita.transform.parent = gameObject.transform;
     }
 
     void SpawnKey()
     {
         chiave = Instantiate(prefabKey, transform.position, Quaternion.identity);
         chiave.GetComponent<KeyAnimation>().Initialize(x, y);
+
+        chiave.transform.parent = gameObject.transform;
 
         GameManager.mapInstance.getTile(x, y).SetChiaveFrontEnd(chiave);
     }
@@ -62,6 +66,8 @@ public class PickupSpawner : MonoBehaviour {
         caramella = Instantiate(RandomCaramellaPrefab(), transform.position, Quaternion.identity);
         caramella.GetComponent<PickupAnimation>().Initialize(x, y);
 
+        caramella.transform.parent = gameObject.transform;
+
         GameManager.mapInstance.getTile(x, y).SetCaramellaFrontEnd(caramella);
     }
 
@@ -70,6 +76,8 @@ public class PickupSpawner : MonoBehaviour {
         scarpetta = Instantiate(prefabScarpetta, transform.position, Quaternion.identity);
         scarpetta.GetComponent<PickupAnimation>().Initialize(x, y);
 
+        scarpetta.transform.parent = gameObject.transform;
+
         GameManager.mapInstance.getTile(x, y).SetScarpettaFrontEnd(scarpetta); 
     }
 
@@ -77,6 +85,8 @@ public class PickupSpawner : MonoBehaviour {
     {
         petardo = Instantiate(prefabPetardo, transform.position, Quaternion.identity);
         petardo.GetComponent<PickupAnimation>().Initialize(x, y);
+
+        petardo.transform.parent = gameObject.transform;
 
         GameManager.mapInstance.getTile(x, y).SetPetardoFrontEnd(petardo);
     }
