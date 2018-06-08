@@ -284,7 +284,7 @@ Prefab:
         type: 2}
       propertyPath: playerPrefabRot
       value: 
-      objectReference: {fileID: 1294737613}
+      objectReference: {fileID: 0}
     - target: {fileID: 114986109441456196, guid: b8b461e7174daa5478c2d9891b0ef89f,
         type: 2}
       propertyPath: playerPrefabMov
@@ -500,12 +500,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1344810880999628, guid: 2af5d245b226f3140a87ff39049c15a7,
     type: 2}
   m_PrefabInternal: {fileID: 1412583810}
---- !u!114 &1294737613 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114659217673108324, guid: 2af5d245b226f3140a87ff39049c15a7,
-    type: 2}
-  m_PrefabInternal: {fileID: 1412583810}
-  m_Script: {fileID: 11500000, guid: 70592b32181dda14f930eec675631ff9, type: 3}
 --- !u!114 &1294737614 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114364505913369090, guid: 2af5d245b226f3140a87ff39049c15a7,
@@ -714,7 +708,8 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114659217673108324, guid: 2af5d245b226f3140a87ff39049c15a7, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 2af5d245b226f3140a87ff39049c15a7, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1610371217
