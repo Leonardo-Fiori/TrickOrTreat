@@ -197,6 +197,7 @@ MonoBehaviour:
     type: 2}
   prefabPetardo: {fileID: 1799401077272886, guid: 9494c620f5ba35b4da674bd46cdf8532,
     type: 2}
+  verticalOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &114502207515231450
 MonoBehaviour:
   m_ObjectHideFlags: 1
