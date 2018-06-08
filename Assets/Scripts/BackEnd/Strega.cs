@@ -95,6 +95,7 @@ public class Strega : ScriptableObject {
 
     private void Win()
     {
+        Giocatore.morto = true;
         eventoMorteGiocatore.Raise();
         SoundManager.instance.Play("sconfitta");
         GameManager.instance.Restart();

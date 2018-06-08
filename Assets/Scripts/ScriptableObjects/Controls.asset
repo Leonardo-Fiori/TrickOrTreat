@@ -15,8 +15,8 @@ MonoBehaviour:
   rotazioneAntioraria: 0
   standardClick: 0
   movimento: 0
-  rotazioneCamera: 1
-  zoomCamera: 1
+  rotazioneCamera: 32
+  zoomCamera: 32
   petardo: 306
   restart: 114
   quit: 27

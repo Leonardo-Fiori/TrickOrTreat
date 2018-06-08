@@ -14,6 +14,8 @@ public class Giocatore : ScriptableObject {
     private int x;
     private int y;
 
+    public static bool morto;
+
     private int mosseFatte;
     private int chiaviRaccolte;
     private int caramelleRaccolte;

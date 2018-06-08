@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour {
         witchInstance.ResetPetardo();
         turno = Turno.giocatore;
         playerInstance.Reset();
+        Giocatore.morto = false;
         MovePlayer.moving = false;
         MoveWitch.moving = false;
         TileMovement.canRot = true;

@@ -9,8 +9,8 @@ public class SOControls : ScriptableObject {
     public int rotazioneAntioraria;
     public int standardClick;
     public int movimento;
-    public int rotazioneCamera;
-    public int zoomCamera;
+    public KeyCode rotazioneCamera;
+    public KeyCode zoomCamera;
     public KeyCode petardo;
     public KeyCode restart;
     public KeyCode quit;
