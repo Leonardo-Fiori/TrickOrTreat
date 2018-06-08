@@ -70,7 +70,7 @@ public class CameraManagerIsometric : MonoBehaviour
     {
         
         // Ruota la camera
-        if (Input.GetMouseButton(GameManager.controls.rotazioneCamera) && canRotate)
+        if (Input.GetKey(GameManager.controls.rotazioneCamera) && canRotate)
         {
             CameraRotation();
         }
@@ -98,7 +98,7 @@ public class CameraManagerIsometric : MonoBehaviour
 
     void CameraZoom()
     {
-        if(Input.GetMouseButton(GameManager.controls.zoomCamera))
+        if(Input.GetKey(GameManager.controls.zoomCamera))
             cam.orthographicSize -= Input.GetAxis("Mouse Y") * Time.deltaTime * scrollSpeed / 10f;
 
         cam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * scrollSpeed;

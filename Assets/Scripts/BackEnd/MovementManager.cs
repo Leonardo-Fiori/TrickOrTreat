@@ -177,6 +177,8 @@ public class MovementManager {
 
     public bool canMove(Direction dir)
     {
+        if (Giocatore.morto == true)
+            return false;
         //Debug.Log("CONTROLLO SE PUO MUOVERSI IN " + dir);
         MapTile playerTile = map.getTile(player.getX(), player.getY());
         //Debug.Log("Il player si trova su un " + playerTile.getTileType() + " " + playerTile.getTileRotation());
