@@ -36,11 +36,11 @@ public class TileFog : MonoBehaviour {
         while(fogPrefab.transform.localScale.x > 0.1f)
         {
             fogPrefab.transform.localScale = fogPrefab.transform.localScale * .9f;
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
-        fogPrefab.GetComponent<ParticleSystem>().Stop();
+        fogPrefab.GetComponentInChildren<ParticleSystem>().Stop();
         fogPrefab.SetActive(false);
-        transform.localScale = new Vector3(1f, 1f, 1f);
+        //transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
     private void deactivateFog()
@@ -48,7 +48,9 @@ public class TileFog : MonoBehaviour {
         StartCoroutine(deactivateAnimation());
 
         if(!raised)
-            //StartCoroutine(RaiseTile());
+            StartCoroutine(RaiseTile());
+
+        raised = true;
 
         StartCoroutine(InflateTile());
 
@@ -62,7 +64,7 @@ public class TileFog : MonoBehaviour {
     private void activateFog()
     {
         fogPrefab.SetActive(true);
-        fogPrefab.GetComponent<ParticleSystem>().Play();
+        fogPrefab.GetComponentInChildren<ParticleSystem>().Play();
         return;
     }
 
@@ -70,13 +72,20 @@ public class TileFog : MonoBehaviour {
     {
         raised = true;
         Vector3 destination = transform.position;
-        transform.position += Vector3.down * 2;
+        transform.position += Vector3.down * 10;
+
+        float counter = 0f;
         
-        while(transform.position.y < destination.y)
+        while(transform.position != destination)
         {
-            //transform.position = (transform.position - destination) / 20;
-            transform.position += Vector3.up / 20;
-            yield return null;
+            counter += Time.deltaTime;
+
+            transform.position = Vector3.Lerp(transform.position, destination, Mathf.Abs(Mathf.Sin(counter)));
+
+            if (Vector3.Distance(transform.position, destination) < 0.001f)
+                transform.position = destination;
+
+            yield return new WaitForFixedUpdate();
         }
     }
 
@@ -84,10 +93,18 @@ public class TileFog : MonoBehaviour {
     {
         Vector3 destination = new Vector3(1f, 1f, 1f);
 
-        while (transform.localScale.x < destination.x)
+        float counter = 0f;
+
+        while (transform.localScale.x != destination.x)
         {
-            transform.localScale += destination / 10f;
-            yield return null;
+            counter += Time.deltaTime;
+
+            transform.localScale = Vector3.Lerp(transform.localScale, destination, Mathf.Abs(Mathf.Sin(counter)));
+
+            if (Vector3.Distance(transform.localScale, destination) < 0.001f)
+                transform.localScale = destination;
+
+            yield return new WaitForFixedUpdate();
         }
 
         GameObject uscita = gameObject.GetComponent<PickupSpawner>().GetPickup("uscita");
