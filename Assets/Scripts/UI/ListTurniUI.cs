@@ -14,30 +14,37 @@ public class ListTurniUI : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        images = new List<Image>(new Image[GameManager.playerInstance.GetMossePerTurno()]);
-                          
+        //images = new List<Image>(new Image[GameManager.playerInstance.GetMossePerTurno()]);
 
-        for (int i = 0; i < images.Count; i++)
+
+        /*for (int i = 0; i < images.Count; i++)
         {
             images[i] = Instantiate(turnoAttivo, transform);
+        }*/
+
+        ////////////////////////////////////////////////////////////////////////////////
+        images = new List<Image>(new Image[9]);
+        for (int i = 0; i < GameManager.playerInstance.GetMossePerTurno(); i++) // da 0 a 2  attivo le mosse disponibili
+        {
+            images[i] = Instantiate(turnoAttivo, transform); // attivo le prime 3                   
         }
 
-        print(images.Count);
-        print(GameManager.playerInstance.GetMossePerTurno());
+        for (int i = GameManager.playerInstance.GetMossePerTurno(); i < images.Count; i++) // da 3 a 5 metto quelle non disponibili
+        {
+            images[i] = Instantiate(turnoDisattivato, transform);   // disattivo quelle dopo
+        }
+
+        //print(images.Count);
+        //print(GameManager.playerInstance.GetMossePerTurno());
 
     }
 	
-	// Update is called once per frame
-	void Update () {
-        //if (Input.GetKeyDown(KeyCode.K)) TurnoPermanente();
-        print(j);
-	}
 
     public void ScalaTurno()
     {
         int turnoMassimo = GameManager.playerInstance.GetMossePerTurno();
         
-        print("ScalaTurno() in posizione " + (turnoMassimo - j));   // faccio la sottrazione a causa di come viene tenuto il conteggio dei turni che non conterebbe lo 0
+       // print("ScalaTurno() in posizione " + (turnoMassimo - j));   // faccio la sottrazione a causa di come viene tenuto il conteggio dei turni che non conterebbe lo 0
 
         images[turnoMassimo - j].gameObject.SetActive(false);
         GameObject.Destroy(images[turnoMassimo - j]);
@@ -46,25 +53,37 @@ public class ListTurniUI : MonoBehaviour {
         j++;
 
     }
+    
+    
+    public void ScarpettaTaken()
+    {
+        int turnoMassimo = GameManager.playerInstance.GetMossePerTurno();
+        if(j <= turnoMassimo) j--;  // check per evitare il reference expection, però la ui lo seguirà male
 
-    //public void TurnoPermanente()
-    //{
-    //    print("Mossa permanente");
-    //    images.Insert(jInstantiate(turnoAttivo , transform));
-    //    images.
-    //    j--;
-    //}
+        /*print("Devo instanziare un turno attivo in posizione " + (turnoMassimo - j ));
+        GameObject.Destroy(images[turnoMassimo - j]);
+        images[turnoMassimo - j] = Instantiate(turnoAttivo);*/
+    }
+    public void TurnoPermanente()
+    {
+        int turnoMassimo = GameManager.playerInstance.GetMossePerTurno();
+
+        //print("Mossa permanente");
+
+        images.Insert(turnoMassimo - j , Instantiate(turnoAttivo, transform));
+        
+    }
 
 
 
 
     public void ResetTurno()
     {
-        print("ResetTurno() invocato, Resetto UI e conteggio ScalaTurno()");
+       // print("ResetTurno() invocato, Resetto UI e conteggio ScalaTurno()");
 
         int turnoMassimo = GameManager.playerInstance.GetMossePerTurno();
 
-        if (turnoMassimo == images.Count) print("La capacità delle mosse massime è arrivata al massimo");
+        //if (turnoMassimo == images.Count) print("La capacità delle mosse massime è arrivata al massimo");
 
         for (int i = 0; i < turnoMassimo; i++) // 
         {
