@@ -8,7 +8,7 @@ public class ListTurniUI : MonoBehaviour {
     public List<Image> images;    
     public Image turnoAttivo;
     public Image turnoDisattivato;
-    public Image scarpetta;
+    public int lunghezzaMassima = 9;
 
     int j = 1;
     // Use this for initialization
@@ -23,7 +23,7 @@ public class ListTurniUI : MonoBehaviour {
         }*/
 
         ////////////////////////////////////////////////////////////////////////////////
-        images = new List<Image>(new Image[9]);
+        images = new List<Image>(new Image[lunghezzaMassima]);
         for (int i = 0; i < GameManager.playerInstance.GetMossePerTurno(); i++) // da 0 a 2  attivo le mosse disponibili
         {
             images[i] = Instantiate(turnoAttivo, transform); // attivo le prime 3                   
