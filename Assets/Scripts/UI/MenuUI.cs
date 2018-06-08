@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems; // per event data 
+using UnityEngine.SceneManagement;
 public class MenuUI : MonoBehaviour{ /*,IPointerEnterHandler,*/ //IPointerExitHandler { //per il pointer enter e exit
 
     RectTransform rt;
@@ -30,6 +31,11 @@ public class MenuUI : MonoBehaviour{ /*,IPointerEnterHandler,*/ //IPointerExitHa
         print("Booleana cambiata, hasBeenClicked is " + hasBeenClicked);
         if (hasBeenClicked) hasBeenClicked = false;
         else if (!hasBeenClicked) hasBeenClicked = true;
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
     /*public void OnPointerEnter(PointerEventData eventData)
     {

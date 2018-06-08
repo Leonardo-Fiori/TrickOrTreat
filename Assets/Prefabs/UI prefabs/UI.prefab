@@ -310,11 +310,11 @@ GameObject:
   - component: {fileID: 224762750187383714}
   - component: {fileID: 222560871345991718}
   - component: {fileID: 114646567097464526}
-  - component: {fileID: 114286438335395066}
   - component: {fileID: 114412879728413292}
   - component: {fileID: 114457661477138688}
   - component: {fileID: 114194901376355508}
   - component: {fileID: 114550036485092512}
+  - component: {fileID: 114074321988162688}
   m_Layer: 0
   m_Name: PanelDisplayTurni
   m_TagString: Untagged
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114286438335395066}
+      - m_Target: {fileID: 0}
         m_MethodName: PassaTurno
         m_Mode: 1
         m_Arguments:
@@ -483,6 +483,23 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114074321988162688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1835507555539078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe15b60510eda964d9c30581c21af60b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  images: []
+  turnoAttivo: {fileID: 114490178562854368, guid: 1da31f7e66cd16047b68a4affd11b869,
+    type: 2}
+  turnoDisattivato: {fileID: 114490178562854368, guid: 3d7a7951cf3196f45aff275d300da8d6,
+    type: 2}
+  lunghezzaMassima: 9
 --- !u!114 &114081616351463110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -643,7 +660,7 @@ MonoBehaviour:
   whatToDo:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114286438335395066}
+      - m_Target: {fileID: 114074321988162688}
         m_MethodName: ResetTurno
         m_Mode: 1
         m_Arguments:
@@ -788,27 +805,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
---- !u!114 &114286438335395066
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1835507555539078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80dad6aa47919204caadbd4e2da687ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skipTurn: {fileID: 114057817073682802}
-  panel: {fileID: 1835507555539078}
-  turnoAttivo: {fileID: 114490178562854368, guid: 1da31f7e66cd16047b68a4affd11b869,
-    type: 2}
-  turnoDisattivato: {fileID: 114490178562854368, guid: 3d7a7951cf3196f45aff275d300da8d6,
-    type: 2}
-  scarpetta: {fileID: 114210371302441120, guid: c6ecd76a342999b4c8881771737e5f3a,
-    type: 2}
-  arrayImmagini: []
-  giocatore: {fileID: 11400000, guid: 0309e24288c4c2747ac3b20f96e9fdb6, type: 2}
 --- !u!114 &114305114651533138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -934,7 +930,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 3
+  m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -982,7 +978,7 @@ MonoBehaviour:
   whatToDo:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114286438335395066}
+      - m_Target: {fileID: 114074321988162688}
         m_MethodName: ScalaTurno
         m_Mode: 1
         m_Arguments:
@@ -1065,7 +1061,7 @@ MonoBehaviour:
   whatToDo:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114286438335395066}
+      - m_Target: {fileID: 114074321988162688}
         m_MethodName: ScarpettaTaken
         m_Mode: 1
         m_Arguments:
@@ -1590,8 +1586,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Quit
+      - m_Target: {fileID: 114000869186672768}
+        m_MethodName: BackToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1999,7 +1995,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 49, y: -12.2}
+  m_AnchoredPosition: {x: 77.14014, y: -12.2}
   m_SizeDelta: {x: 120, y: -297.26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224544776915686474
@@ -2109,7 +2105,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -150, y: -150}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224856191569669212
@@ -2153,7 +2149,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 61.79785, y: -51.07422}
+  m_AnchoredPosition: {x: 61.797363, y: -51.07422}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224962763536988008
