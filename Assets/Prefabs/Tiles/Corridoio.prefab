@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114021747776440570}
   - component: {fileID: 114754313620133736}
   - component: {fileID: 114041055311597366}
+  - component: {fileID: 114339060940962222}
   m_Layer: 0
   m_Name: Corridoio
   m_TagString: Tile
@@ -168,7 +169,6 @@ MonoBehaviour:
     type: 2}
   prefabPetardo: {fileID: 1799401077272886, guid: 9494c620f5ba35b4da674bd46cdf8532,
     type: 2}
-  verticalOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &114123964244269424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,9 +180,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9335d214ba34dd64cb6541d9eccffb72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fogPrefab: {fileID: 1734745612233654, guid: 7641ebaaf6889e84592dc8fcb1864dc0, type: 2}
+  fogPrefab: {fileID: 1268366958036658, guid: 4eac4801120c6bf4abbaa19be8c1b947, type: 2}
   fogDisappearedEvent: {fileID: 11400000, guid: 026b3c4905c26ba4d80e884bf534d562,
     type: 2}
+--- !u!114 &114339060940962222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1954467829343646}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed4414f3548427f4eac25c0cb04985b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ampiezza: 0.01
+  speed: 1
+  rotazione: 1
+  speedX: 1
+  speedY: 1
+  speedZ: 1
+  randomizeSpeed: 1
 --- !u!114 &114457455435889748
 MonoBehaviour:
   m_ObjectHideFlags: 1

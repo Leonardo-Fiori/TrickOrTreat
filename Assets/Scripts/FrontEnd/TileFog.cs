@@ -33,14 +33,27 @@ public class TileFog : MonoBehaviour {
 
     private IEnumerator deactivateAnimation()
     {
-        while(fogPrefab.transform.localScale.x > 0.1f)
+        float counter = 0f;
+
+        while(fogPrefab.transform.localScale != Vector3.zero)
         {
-            fogPrefab.transform.localScale = fogPrefab.transform.localScale * .9f;
+            counter += Time.deltaTime;
+
+            fogPrefab.transform.GetChild(0).transform.localScale = Vector3.Lerp(fogPrefab.transform.GetChild(0).transform.localScale, Vector3.zero, Mathf.Abs(Mathf.Sin(counter)) * 0.7f);
+
+            if (Vector3.Distance(fogPrefab.transform.GetChild(0).transform.localScale, Vector3.zero) < 0.001f)
+                fogPrefab.transform.GetChild(0).transform.localScale = Vector3.zero;
+
             yield return new WaitForFixedUpdate();
         }
-        fogPrefab.GetComponentInChildren<ParticleSystem>().Stop();
+
+        //gameObject.GetComponentInChildren<ParticleSystem>().Play();
+
+        fogPrefab.transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
+
+        fogPrefab.transform.GetChild(0).gameObject.SetActive(false);
+
         fogPrefab.SetActive(false);
-        //transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
     private void deactivateFog()
@@ -48,9 +61,9 @@ public class TileFog : MonoBehaviour {
         StartCoroutine(deactivateAnimation());
 
         if(!raised)
-            StartCoroutine(RaiseTile());
+            //StartCoroutine(RaiseTile());
 
-        raised = true;
+        //raised = true;
 
         StartCoroutine(InflateTile());
 
@@ -95,7 +108,19 @@ public class TileFog : MonoBehaviour {
 
         float counter = 0f;
 
-        while (transform.localScale.x != destination.x)
+        while (transform.localScale != destination + Vector3.up)
+        {
+            counter += Time.deltaTime;
+
+            transform.localScale = Vector3.Lerp(transform.localScale, destination + Vector3.up, Mathf.Abs(Mathf.Sin(counter)));
+
+            if (Vector3.Distance(transform.localScale, destination + Vector3.up) < 0.001f)
+                transform.localScale = destination + Vector3.up;
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        while (transform.localScale != destination)
         {
             counter += Time.deltaTime;
 
@@ -118,6 +143,8 @@ public class TileFog : MonoBehaviour {
     void Start ()
     {     
         transform.localScale = new Vector3(0f, 0f, 0f);
+
+        //gameObject.GetComponentInChildren<ParticleSystem>().Stop();
 
         fogPrefab = Instantiate(fogPrefab, transform);
 	}

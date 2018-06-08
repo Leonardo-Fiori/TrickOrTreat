@@ -385,6 +385,15 @@ public class GameManager : MonoBehaviour {
                 SoundManager.instance.Play("playermove");
                 print("Selected difficulty level: " + difficulty.value);
             }
+
+            if(Input.GetKeyDown(KeyCode.F12) && Input.GetKeyDown(KeyCode.F11))
+            {
+                foreach(GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
+                {
+                    tile.GetComponent<FloatAnimation>().enabled = true;
+                    SoundManager.instance.Play("win");
+                }
+            }
         }
 
         if (debugMode)

@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 114456339869112042}
   - component: {fileID: 114837406215882424}
   - component: {fileID: 114115692592215420}
+  - component: {fileID: 114307636658274134}
   m_Layer: 0
   m_Name: Portone
   m_TagString: Untagged
@@ -303,6 +304,24 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114307636658274134
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1979864603185748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed4414f3548427f4eac25c0cb04985b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ampiezza: 0.001
+  speed: 1
+  rotazione: 0
+  speedX: 0
+  speedY: 1
+  speedZ: 0
+  randomizeSpeed: 1
 --- !u!114 &114357947007366796
 MonoBehaviour:
   m_ObjectHideFlags: 1

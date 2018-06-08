@@ -10,8 +10,6 @@ public class PickupSpawner : MonoBehaviour {
     public GameObject prefabScarpetta;
     public GameObject prefabPetardo;
 
-    public Vector3 verticalOffset;
-
     private GameObject uscita;
     private GameObject chiave;
     private GameObject scarpetta;
@@ -65,7 +63,7 @@ public class PickupSpawner : MonoBehaviour {
 
     void SpawnCaramella()
     {
-        caramella = Instantiate(RandomCaramellaPrefab(), transform.position + verticalOffset, Quaternion.identity);
+        caramella = Instantiate(RandomCaramellaPrefab(), transform.position, Quaternion.identity);
         caramella.GetComponent<PickupAnimation>().Initialize(x, y);
 
         caramella.transform.parent = gameObject.transform;
@@ -75,7 +73,7 @@ public class PickupSpawner : MonoBehaviour {
 
     public void SpawnScarpetta()
     {
-        scarpetta = Instantiate(prefabScarpetta, transform.position + verticalOffset, Quaternion.identity);
+        scarpetta = Instantiate(prefabScarpetta, transform.position, Quaternion.identity);
         scarpetta.GetComponent<PickupAnimation>().Initialize(x, y);
 
         scarpetta.transform.parent = gameObject.transform;
@@ -85,7 +83,7 @@ public class PickupSpawner : MonoBehaviour {
 
     public void SpawnPetardo()
     {
-        petardo = Instantiate(prefabPetardo, transform.position + verticalOffset, Quaternion.identity);
+        petardo = Instantiate(prefabPetardo, transform.position, Quaternion.identity);
         petardo.GetComponent<PickupAnimation>().Initialize(x, y);
 
         petardo.transform.parent = gameObject.transform;

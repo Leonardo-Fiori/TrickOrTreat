@@ -32,8 +32,6 @@ public class FloatAnimation : MonoBehaviour {
 
     private void Start()
     {
-        transform.position += Vector3.up * 10;
-
         if (randomizeSpeed)
         {
             speed = Random.Range(speed / 2f, speed + (speed / 2f));
