@@ -8,6 +8,8 @@ public class MoveWitch : MonoBehaviour {
     public float offsetY = 1f;
     public static bool moving;
     public SOEvent eventEndAnim;
+    public float speed = 1f;
+    public float jumpMultiplier = 1f;
 
     private void Update()
     {
@@ -39,6 +41,8 @@ public class MoveWitch : MonoBehaviour {
         Destroy(temp);
 
         moving = true;
+
+        // OLD MOVEMENT
         while (transform.position != finalPos)
         {
             counter += Time.deltaTime;
@@ -59,6 +63,88 @@ public class MoveWitch : MonoBehaviour {
 
             yield return new WaitForEndOfFrame();
         }
+
+
+        /* // RAISE AND MOVE
+        Vector3 upPos = transform.position + Vector3.up * jumpMultiplier;
+
+        while(transform.position != upPos)
+        {
+            counter += Time.deltaTime * speed;
+
+            transform.position = Vector3.Lerp(transform.position, upPos, Mathf.Abs(Mathf.Sin(counter)));
+
+            if (Vector3.Distance(transform.position, upPos) < 0.01f)
+            {
+                transform.position = upPos;
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        counter = 0f;
+
+        Vector3 upFinalPos = finalPos + Vector3.up * jumpMultiplier;
+
+        while (transform.position != upFinalPos)
+        {
+            counter += Time.deltaTime * speed;
+
+            transform.position = Vector3.Lerp(transform.position, upFinalPos, Mathf.Abs(Mathf.Sin(counter)));
+
+            if (Vector3.Distance(transform.position, upFinalPos) < 0.01f)
+            {
+                transform.position = upFinalPos;
+            }
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        counter = 0f;
+
+        while (transform.position != finalPos)
+        {
+            counter += Time.deltaTime * speed;
+
+            transform.position = Vector3.Lerp(transform.position, finalPos, Mathf.Abs(Mathf.Sin(counter)));
+
+            if (Vector3.Distance(transform.position, finalPos) < 0.01f)
+            {
+                transform.position = finalPos;
+            }
+
+            yield return new WaitForFixedUpdate();
+        }*/
+
+        // COME PEDINA
+        /*
+        Vector3 upPosition = originalPos + Vector3.up * jumpMultiplier;
+
+        counter = 0f;
+
+        float distanceOriginal = Vector3.Distance(new Vector3(transform.position.x, 0f, transform.position.z), finalPos);
+
+        while (transform.position != finalPos)
+        {
+            counter += Time.deltaTime * speed;
+
+            transform.position = Vector3.Lerp(transform.position, finalPos, Mathf.Abs(Mathf.Sin(counter)));
+
+            if (Vector3.Distance(new Vector3(transform.position.x, 0f, transform.position.z), finalPos) >= distanceOriginal / 2f)
+            {
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, upPosition.y, transform.position.z), Mathf.Abs(Mathf.Sin(counter)));
+            }
+            else
+            {
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, originalPos.y, transform.position.z), Mathf.Abs(Mathf.Sin(counter)));
+            }
+
+            if (Vector3.Distance(transform.position, finalPos) < 0.01f)
+                transform.position = finalPos;
+
+            yield return new WaitForFixedUpdate();
+        }*/
+
         moving = false;
 
         eventEndAnim.Raise();
@@ -89,4 +175,5 @@ public class MoveWitch : MonoBehaviour {
             Invoke("MoveBackEnd", GameManager.instance.witchDelay);
         }
     }
+
 }

@@ -211,8 +211,6 @@ public class Giocatore : ScriptableObject {
 
         if (mov == Movement.smooth)
         {
-            SoundManager.instance.Play("playermove");
-
             GameManager.playerMovementEvent.Raise();
 
             if(!tile.HasScarpetta())

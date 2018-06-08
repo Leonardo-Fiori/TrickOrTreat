@@ -251,6 +251,7 @@ public class Strega : ScriptableObject {
         mosseFatte++;
 
         SoundManager.instance.Play("witchstep");
+        SoundManager.instance.Play("whoosh");
 
         if (GameManager.mapInstance.getTile(x, y).IsPetardoAttivo())
         {

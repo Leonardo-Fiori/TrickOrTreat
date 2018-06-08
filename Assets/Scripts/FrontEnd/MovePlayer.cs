@@ -16,6 +16,8 @@ public class MovePlayer : MonoBehaviour {
     public float raiseHeight = 3f;
     public static bool moving;
     public SOEvent playerMovedEvent;
+    public float speed = 1f;
+    public float jumpMultiplier = 1f;
 
     private void Start()
     {
@@ -41,26 +43,82 @@ public class MovePlayer : MonoBehaviour {
 
         Vector3 originalPos = transform.position;
 
-        while (transform.position != finalPos)
+        Vector3 upPosition = transform.position + Vector3.up * jumpMultiplier;
+
+        /* // EFFETTO PEDINA QUADRATO
+        while(transform.position != upPosition)
         {
-            counter += Time.deltaTime;
+            counter += Time.deltaTime * 1f;
 
-            float x = Mathf.Lerp(transform.position.x, finalPos.x, counter * 2f);//Mathf.MoveTowards(transform.position.x, finalPos.x, speed);
-            float z = Mathf.Lerp(transform.position.z, finalPos.z, counter * 2f);//Mathf.MoveTowards(transform.position.z, finalPos.z, speed);
+            transform.position = Vector3.Lerp(transform.position, upPosition, Mathf.Abs(Mathf.Sin(counter)));
 
-            Vector3 newTransform = new Vector3(x, transform.position.y, z);
-
-            if (Mathf.Abs(Vector3.Distance(transform.position, newTransform)) <= 0.01f)
-            {
-                transform.position = finalPos;
-            }
-            else
-            {
-                transform.position = newTransform;
-            }
+            if (Vector3.Distance(transform.position, upPosition) < 0.001f)
+                transform.position = upPosition;
 
             yield return new WaitForFixedUpdate();
         }
+
+        counter = 0f;
+        
+        Vector3 upFinalPos = finalPos + Vector3.up;
+
+        while (transform.position != upFinalPos)
+        {
+            counter += Time.deltaTime * 10f;
+
+            transform.position = Vector3.Lerp(transform.position, upFinalPos, Mathf.Abs(Mathf.Sin(counter)));
+
+            if (Vector3.Distance(transform.position, upFinalPos) < 0.001f)
+                transform.position = upFinalPos;
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        counter = 0f;
+
+        while (transform.position != finalPos)
+        {
+            counter += Time.deltaTime * 1f;
+
+            transform.position = Vector3.Lerp(transform.position, finalPos, Mathf.Abs(Mathf.Sin(counter)));
+
+            if (Vector3.Distance(transform.position, finalPos) < 0.001f)
+                transform.position = finalPos;
+
+            yield return new WaitForFixedUpdate();
+        }
+        */
+
+        // PEDINA SMOOTH
+
+        counter = 0f;
+
+        float distanceOriginal = Vector3.Distance(new Vector3(transform.position.x, 0f, transform.position.z), finalPos);
+
+        while (transform.position != finalPos)
+        {
+            counter += Time.deltaTime * speed;
+
+            transform.position = Vector3.Lerp(transform.position, finalPos, Mathf.Abs(Mathf.Sin(counter)));
+
+            if(Vector3.Distance(new Vector3(transform.position.x,0f,transform.position.z), finalPos) >= distanceOriginal/2f)
+            {
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, upPosition.y, transform.position.z), Mathf.Abs(Mathf.Sin(counter)));
+            }
+            else
+            {
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, originalPos.y, transform.position.z), Mathf.Abs(Mathf.Sin(counter)));
+            }
+
+            if (Vector3.Distance(transform.position, finalPos) < 0.01f)
+                transform.position = finalPos;
+
+            if(transform.position.y == finalPos.y)
+                SoundManager.instance.Play("playermove");
+
+            yield return new WaitForFixedUpdate();
+        }
+
         moving = false;
 
         playerMovedEvent.Raise();
