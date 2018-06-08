@@ -64,6 +64,9 @@ public class MoveWitch : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         }
 
+        moving = false;
+
+        eventEndAnim.Raise();
 
         /* // RAISE AND MOVE
         Vector3 upPos = transform.position + Vector3.up * jumpMultiplier;
@@ -144,10 +147,6 @@ public class MoveWitch : MonoBehaviour {
 
             yield return new WaitForFixedUpdate();
         }*/
-
-        moving = false;
-
-        eventEndAnim.Raise();
     }
 
     public void Move(int x, int z, Movement mov)
