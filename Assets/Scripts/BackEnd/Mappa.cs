@@ -211,7 +211,11 @@ namespace UnityEngine
             {
                 int y = Random.Range(0, dim - 1);
                 int x = Random.Range(0, dim - 1);
-                while (!LocationIsOk(x, y) || scarpette[x,y] || caramelle[x,y] )
+                bool keyNord = !getNextTile(x, y, Direction.nord).HasKey();
+                bool keySud = !getNextTile(x, y, Direction.nord).HasKey();
+                bool keyEst = !getNextTile(x, y, Direction.nord).HasKey();
+                bool keyOvest = !getNextTile(x, y, Direction.nord).HasKey();
+                while (!LocationIsOk(x, y) && (keyNord || keySud || keyEst || keyOvest))
                 {
                     y = Random.Range(0, dim - 1);
                     x = Random.Range(0, dim - 1);
