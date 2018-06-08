@@ -30,7 +30,7 @@ public class FloatAnimation : MonoBehaviour {
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
         if (randomizeSpeed)
         {

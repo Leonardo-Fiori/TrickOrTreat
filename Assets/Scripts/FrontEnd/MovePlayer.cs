@@ -113,6 +113,9 @@ public class MovePlayer : MonoBehaviour {
             if (Vector3.Distance(transform.position, finalPos) < 0.01f)
                 transform.position = finalPos;
 
+            if(transform.position.y == finalPos.y)
+                SoundManager.instance.Play("playermove");
+
             yield return new WaitForFixedUpdate();
         }
 
