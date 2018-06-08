@@ -103,4 +103,11 @@ public class ListTurniUI : MonoBehaviour {
 
         j = 1;
     }
+
+    public void PassaTurno()
+    {
+        //print("Turno passato");
+        if (GameManager.turno == Turno.giocatore) GameManager.instance.SwitchTurn();
+
+    }
 }
