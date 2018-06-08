@@ -705,12 +705,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &1388529040 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114074321988162688, guid: 22bd356e073b0d647b9ba90386dfadf0,
-    type: 2}
-  m_PrefabInternal: {fileID: 1689695781}
-  m_Script: {fileID: 11500000, guid: fe15b60510eda964d9c30581c21af60b, type: 3}
 --- !u!1001 &1412583810
 Prefab:
   m_ObjectHideFlags: 0
@@ -952,11 +946,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114057817073682802, guid: 22bd356e073b0d647b9ba90386dfadf0,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1388529040}
     - target: {fileID: 114823836294597020, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -967,20 +956,10 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1769690659}
-    - target: {fileID: 224826324472622490, guid: 22bd356e073b0d647b9ba90386dfadf0,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -150
-      objectReference: {fileID: 0}
-    - target: {fileID: 224826324472622490, guid: 22bd356e073b0d647b9ba90386dfadf0,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -150
-      objectReference: {fileID: 0}
     - target: {fileID: 224921202812442564, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 61.79712
+      value: 61.797302
       objectReference: {fileID: 0}
     - target: {fileID: 224248297374947164, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
@@ -1021,11 +1000,6 @@ Prefab:
         type: 2}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114057817073682802, guid: 22bd356e073b0d647b9ba90386dfadf0,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PassaTurno
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22bd356e073b0d647b9ba90386dfadf0, type: 2}
