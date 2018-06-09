@@ -56,7 +56,7 @@ public class RaycastManager : MonoBehaviour
 
                 MapTile tileBackEnd = GameManager.mapInstance.getTile(clickedTile.GetTileX(), clickedTile.GetTileY());
 
-                print(tileBackEnd.getTileType()+" "+tileBackEnd.getTileRotation());
+                //print(tileBackEnd.getTileType()+" "+tileBackEnd.getTileRotation());
 
                 // VUOLE PIAZZARE UN PETARDO
                 if (AttivaPetardo.toggle)

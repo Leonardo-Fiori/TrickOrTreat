@@ -28,6 +28,7 @@ public class CameraManagerIsometric : MonoBehaviour
 
     public void SwitchSubject()
     {
+        print("SWITCH!");
         if (GameManager.turno == Turno.strega)
         {
             subject = subject2;
@@ -38,17 +39,6 @@ public class CameraManagerIsometric : MonoBehaviour
             subject = subject1;
             turno = Turno.strega;
         }
-    }
-
-    public void SwitchSubjectDelay(float delay)
-    {
-        Invoke("SwitchSubject", delay);
-    }
-
-    public void SwitchToPlayer()
-    {
-        subject = subject1;
-        turno = Turno.giocatore;
     }
 
     private void Start()
@@ -91,7 +81,11 @@ public class CameraManagerIsometric : MonoBehaviour
         // Trovo la posizione tra centro e soggetto
         Vector3 destination = subject.transform.position + ((center.transform.position - subject.transform.position) / 2);
 
+        //Vector3 destination = subject.transform.position;
+
         fantoccio.transform.position = Vector3.Lerp(fantoccio.transform.position, destination, Time.deltaTime * snappyness);
+
+        print(subject);
 
         transform.LookAt(fantoccio.transform);
     }
@@ -121,9 +115,9 @@ public class CameraManagerIsometric : MonoBehaviour
             cameraOffset = camTurnY * cameraOffset; // altrimenti roteo solo intorno al giocatore
         }
 
-        Vector3 newPos = fantoccio.transform.position + cameraOffset;
+        //Vector3 newPos = fantoccio.transform.position + cameraOffset;
 
-        transform.position = Vector3.Lerp(transform.position, newPos, rotationSpeed);
+        //transform.position = Vector3.Lerp(transform.position, newPos, rotationSpeed);
 
         /*
         transform.RotateAround(fantoccio.transform.position, Vector3.up, rotationSpeed * Time.deltaTime * Input.GetAxis("Mouse X"));

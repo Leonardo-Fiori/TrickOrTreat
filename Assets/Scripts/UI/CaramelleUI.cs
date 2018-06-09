@@ -54,7 +54,7 @@ public class CaramelleUI : MonoBehaviour {
             if (images[i].CompareTag("CaramellaAttiva")) controllo++;            
             
         }
-        print("controllo vale " + controllo);
+        //print("controllo vale " + controllo);
         if (controllo == images.Length) ResetUiCaramelle();
     }
 

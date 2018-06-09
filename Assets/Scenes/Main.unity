@@ -159,6 +159,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 1268366958036658, guid: 4eac4801120c6bf4abbaa19be8c1b947, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4eac4801120c6bf4abbaa19be8c1b947, type: 2}
   m_IsPrefabParent: 0
@@ -357,6 +361,16 @@ Prefab:
       propertyPath: playerPrefabMov
       value: 
       objectReference: {fileID: 1294737614}
+    - target: {fileID: 114043269797619038, guid: b8b461e7174daa5478c2d9891b0ef89f,
+        type: 2}
+      propertyPath: newTextureCursor
+      value: 
+      objectReference: {fileID: 2800000, guid: b6eba53687ededd49a2b3e3fb64796b2, type: 3}
+    - target: {fileID: 114043269797619038, guid: b8b461e7174daa5478c2d9891b0ef89f,
+        type: 2}
+      propertyPath: defaultCursor
+      value: 
+      objectReference: {fileID: 2800000, guid: 96bb3edb8c28da14ea1a8378eca6f648, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b8b461e7174daa5478c2d9891b0ef89f, type: 2}
   m_IsPrefabParent: 0

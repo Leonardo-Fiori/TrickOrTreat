@@ -201,7 +201,7 @@ public class GameManager : MonoBehaviour {
 
             witchInstance.ResetPetardo();
 
-            cameraManager.SwitchSubject();
+            //cameraManagerInstance.SwitchSubject(playerPrefabInstance);
         }
         else
         {
@@ -213,8 +213,11 @@ public class GameManager : MonoBehaviour {
 
             witchPrefabInstance.GetComponent<MoveWitch>().InvokeMovement();
 
-            cameraManagerInstance.SwitchSubjectDelay(instance.witchDelay / 2f);
+            //cameraManagerInstance.SwitchSubject(witchPrefabInstance);
         }
+
+        cameraManager.SwitchSubject();
+
     }
 
     private GameObject RandomFromList(List<GameObject> list)

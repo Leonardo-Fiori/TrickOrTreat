@@ -6,8 +6,12 @@ public class CursorChange : MonoBehaviour
 {
 
     public Texture2D newTextureCursor;
+    public Texture2D defaultCursor;
 
- 
+    private void Start()
+    {
+        Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.ForceSoftware);
+    }
 
     private void Update()
     {
@@ -37,13 +41,11 @@ public class CursorChange : MonoBehaviour
     // Update is called once per frame
     void ChangeCursor()
     {
-
-        //print("Cambio cursore");
-        Cursor.SetCursor(newTextureCursor, Vector2.zero, CursorMode.Auto);
+        Cursor.SetCursor(newTextureCursor, Vector2.zero, CursorMode.ForceSoftware);
     }
 
     private void ResetCursor()
     {
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.ForceSoftware);
     }
 }
