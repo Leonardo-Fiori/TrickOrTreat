@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b53bcc72309806418860d5c55d86f7b, type: 3}
   m_Name: Strega Normal  Petardo
   m_EditorClassIdentifier: 
-  x: 3
-  y: 3
+  x: 1
+  y: 2
   mosseFatte: 0
   chanceMossaRandom: 0
   chanceMossaRandomAttuale: 0
