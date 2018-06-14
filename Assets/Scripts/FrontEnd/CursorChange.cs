@@ -10,7 +10,7 @@ public class CursorChange : MonoBehaviour
 
     private void Start()
     {
-        Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.ForceSoftware);
+        Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
     }
 
     private void Update()
@@ -41,11 +41,11 @@ public class CursorChange : MonoBehaviour
     // Update is called once per frame
     void ChangeCursor()
     {
-        Cursor.SetCursor(newTextureCursor, Vector2.zero, CursorMode.ForceSoftware);
+        Cursor.SetCursor(newTextureCursor, Vector2.zero, CursorMode.Auto);
     }
 
     private void ResetCursor()
     {
-        Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.ForceSoftware);
+        Cursor.SetCursor(defaultCursor, Vector2.zero, CursorMode.Auto);
     }
 }

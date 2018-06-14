@@ -257,6 +257,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9335d214ba34dd64cb6541d9eccffb72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fogPrefab: {fileID: 1268366958036658, guid: 4eac4801120c6bf4abbaa19be8c1b947, type: 2}
+  fogPrefab: {fileID: 1734745612233654, guid: 7641ebaaf6889e84592dc8fcb1864dc0, type: 2}
   fogDisappearedEvent: {fileID: 11400000, guid: 026b3c4905c26ba4d80e884bf534d562,
     type: 2}

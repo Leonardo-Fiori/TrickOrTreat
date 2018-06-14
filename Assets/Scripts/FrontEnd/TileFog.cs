@@ -34,26 +34,28 @@ public class TileFog : MonoBehaviour {
     private IEnumerator deactivateAnimation()
     {
         float counter = 0f;
-
+        
         while(fogPrefab.transform.localScale != Vector3.zero)
         {
             counter += Time.deltaTime;
 
-            fogPrefab.transform.GetChild(0).transform.localScale = Vector3.Lerp(fogPrefab.transform.GetChild(0).transform.localScale, Vector3.zero, Mathf.Abs(Mathf.Sin(counter)) * 0.7f);
+            fogPrefab.transform.localScale = Vector3.Lerp(fogPrefab.transform.localScale, Vector3.zero, Mathf.Abs(Mathf.Sin(counter)));
 
-            if (Vector3.Distance(fogPrefab.transform.GetChild(0).transform.localScale, Vector3.zero) < 0.001f)
-                fogPrefab.transform.GetChild(0).transform.localScale = Vector3.zero;
+            if (fogPrefab.transform.localScale.x < 0.01f)
+                break;
 
             yield return new WaitForFixedUpdate();
         }
 
         //gameObject.GetComponentInChildren<ParticleSystem>().Play();
 
-        fogPrefab.transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
+        fogPrefab.GetComponent<ParticleSystem>().Stop();
 
-        fogPrefab.transform.GetChild(0).gameObject.SetActive(false);
+        fogPrefab.gameObject.SetActive(false);
 
         fogPrefab.SetActive(false);
+
+        yield return null;
     }
 
     private void deactivateFog()
@@ -77,7 +79,7 @@ public class TileFog : MonoBehaviour {
     private void activateFog()
     {
         fogPrefab.SetActive(true);
-        fogPrefab.GetComponentInChildren<ParticleSystem>().Play();
+        fogPrefab.GetComponent<ParticleSystem>().Play();
         return;
     }
 

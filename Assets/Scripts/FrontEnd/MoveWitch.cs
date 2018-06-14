@@ -47,8 +47,8 @@ public class MoveWitch : MonoBehaviour {
         {
             counter += Time.deltaTime;
 
-            float x = Mathf.Lerp(transform.position.x, finalPos.x, counter * 2f);
-            float z = Mathf.Lerp(transform.position.z, finalPos.z, counter * 2f);
+            float x = Mathf.Lerp(transform.position.x, finalPos.x, Mathf.Abs(Mathf.Sin(counter)));
+            float z = Mathf.Lerp(transform.position.z, finalPos.z, Mathf.Abs(Mathf.Sin(counter)));
 
             Vector3 newTransform = new Vector3(x, transform.position.y, z);
 
@@ -61,7 +61,7 @@ public class MoveWitch : MonoBehaviour {
                 transform.position = newTransform;
             }
 
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
         }
 
         moving = false;

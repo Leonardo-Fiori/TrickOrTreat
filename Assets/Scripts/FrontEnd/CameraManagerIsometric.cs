@@ -85,7 +85,7 @@ public class CameraManagerIsometric : MonoBehaviour
 
         fantoccio.transform.position = Vector3.Lerp(fantoccio.transform.position, destination, Time.deltaTime * snappyness);
 
-        print(subject);
+        //print(subject);
 
         transform.LookAt(fantoccio.transform);
     }
@@ -115,9 +115,9 @@ public class CameraManagerIsometric : MonoBehaviour
             cameraOffset = camTurnY * cameraOffset; // altrimenti roteo solo intorno al giocatore
         }
 
-        //Vector3 newPos = fantoccio.transform.position + cameraOffset;
+        Vector3 newPos = fantoccio.transform.position + cameraOffset;
 
-        //transform.position = Vector3.Lerp(transform.position, newPos, rotationSpeed);
+        transform.position = Vector3.Lerp(transform.position, newPos, rotationSpeed);
 
         /*
         transform.RotateAround(fantoccio.transform.position, Vector3.up, rotationSpeed * Time.deltaTime * Input.GetAxis("Mouse X"));
