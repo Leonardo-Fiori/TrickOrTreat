@@ -26,9 +26,14 @@ public class AttivaPetardo : MonoBehaviour
                 print("Modalità petardo: " + toggle);
 
                 if (toggle)
-                    SoundManager.instance.Play("pickpetardo", 0.5f);
+                {
+                    GameManager.instance.eventoModalitaPetardoToggled.Raise();
+                }
                 else
-                    SoundManager.instance.Play("clicksimple", 0.5f);
+                {
+                    GameManager.instance.eventoModalitaPetardoUntoggled.Raise();
+                }
+                //SoundManager.instance.Play("clicksimple", 0.5f);
             }
         }
     }

@@ -3,139 +3,149 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/* Richiede un Tileset per generare la mappa ed un Giocatore (scriptable object)
- * Prepara la partita generando la mappa e posizionando il giocatore
- * Mantiene delle reference statiche pubbliche per accedere a mappa, movement manager e giocatore.
-*/
-
 public class GameManager : MonoBehaviour {
 
-    // Riferimenti statici pubblici ai componenti
+    // Riferimenti statici pubblici ai componenti & altri valori interni
     public static GameManager instance;
-
     public static Mappa mapInstance;
     public static MovementManager movementManagerInstance;
-
     public static Giocatore playerInstance;
     public static GameObject playerPrefabInstance;
-
     public static GameObject witchPrefabInstance;
     public static Strega witchInstance;
-
     public static Turno turno;
-
-    public static SOEvent playerMovementEvent;
-
     public static float tileDistance;
-
+    public static bool debugMode;
+    public static bool cheatMode;
     public static CameraManagerIsometric cameraManagerInstance;
+    private static GameObject[] frontEndTileInstances;
+    private int dimensioneMappa = 0;
 
     // Valori pubblici di configurazione
+    [Header("Moduli di Gioco in ordine di Difficoltà")]
     public SDifficulty difficulty;
     public int[] dimensioniMappa;
     public Tileset[] tilesets;
     public Giocatore[] moduliGiocatore;
     public Strega[] moduliStrega;
 
-    private int dimensioneMappa = 7;     // diff
-    private Tileset tileset;             // diff
-
-    private Giocatore giocatore;         // diff
-    public GameObject prefabGiocatore;
-
+    [Header("Configurazioni Mappa")]
     public float distanzaTraTile;
     public float scalaTiles;
-
     public float witchDelay;
 
-    public static bool debugMode;
-    public static bool cheatMode;
-
-    public GameObject prefabStrega;
-    private Strega strega;               // diff
-
-    public SOEvent eventoMovimento;
-
+    [Header("Reference a Componenti in Scena")]
     public CameraManagerIsometric cameraManager;
+    public GameObject prefabGiocatore;
+    public GameObject prefabStrega;
 
     // Prefabs per generazione mappa
+    [Header("Prefabs Mappa")]
     public List<GameObject> prefabsQuadrivia;
     public List<GameObject> prefabsCorridoio;
     public List<GameObject> prefabsTrivia;
     public List<GameObject> prefabsAngolo;
 
-    // Lista dei prefab front end delle tile
-    private static GameObject[] frontEndTileInstances;
-
+    // Roba petardi
     private int turniPassati = 0;
     private List<MapTile> petardiDaDespawnare;
-    public SOEvent eventoScoppioPetardo;
+    [Header("Particles Petardo")]
     public GameObject particlePetardoPiazzato;
     public GameObject particlePetardoEsploso;
 
-
     // Centralizzazione comandi
+    [Header("Centralizzazione Comandi")]
     public SOControls controlli;
     public static SOControls controls;
 
-    void OnEnable () {
+    // Eventi
+    [Header("Eventi di Gioco")]
+    public SOEvent eventoMorteGiocatore;
+    public SOEvent eventoVittoriaGiocatore;
+    public SOEvent eventoFineAnimazioneGiocatore;
+    public SOEvent eventoMovimentoGiocatore;
+    public SOEvent eventoMovimentoStrega;
+    public SOEvent eventoScarpettaPresa;
+    public SOEvent eventoCaramellaPresa;
+    public SOEvent eventoChiavePresa;
+    public SOEvent eventoPetardoPreso;
+    public SOEvent eventoPetardoScoppiato;
+    public SOEvent eventoPetardoUsato;
+    public SOEvent eventoScomparsaNebbia;
+    public SOEvent eventoFineAnimazioneStrega;
+    public SOEvent eventoTilePericoloseAggiornate;
+    public SOEvent eventoTurnoGiocatore;
+    public SOEvent eventoTurnoStrega;
+    public SOEvent eventoHoveringTile;
+    public SOEvent eventoRisalitaTileIniziata;
+    public SOEvent eventoRisalitaTileFinita;
+    public SOEvent eventoDiscesaTileIniziata;
+    public SOEvent eventoDiscesaTileFinita;
+    public SOEvent eventoHoveringStrega;
+    public SOEvent eventoWitchUntoggled;
+    public SOEvent eventoWitchToggled;
+    public SOEvent eventoPortaSbloccata;
+    public SOEvent eventoWarpTile;
+    public SOEvent eventoModalitaPetardoUntoggled;
+    public SOEvent eventoModalitaPetardoToggled;
 
+    // Inizializzazioni varie
+    void OnEnable ()
+    {
+        // Inizializzo alcuni riferimenti pubbllici statici:
         instance = this;
-
         controls = controlli;
-
         petardiDaDespawnare = new List<MapTile>();
-
         cameraManagerInstance = cameraManager;
-
         tileDistance = distanzaTraTile;
 
-        playerMovementEvent = eventoMovimento;
-
-        // Inizializzo il player
+        // Inizializzo il Player:
         playerInstance = moduliGiocatore[difficulty.value];
         playerPrefabInstance = prefabGiocatore;
         playerInstance.SetFrontEndPrefab(playerPrefabInstance);
         playerPrefabInstance.SetActive(false);
 
-        // Inizializzo la strega 
+        // Inizializzo la Strega:
         witchInstance = moduliStrega[difficulty.value];
         witchPrefabInstance = prefabStrega;
         witchInstance.SetFrontEndPrefab(witchPrefabInstance);
         witchPrefabInstance.SetActive(false);
 
-        // Inizializzo la mappa
-        mapInstance = new Mappa(dimensioniMappa[difficulty.value]);
+        // Inizializzo la Mappa:
+        dimensioneMappa = dimensioniMappa[difficulty.value];
+        mapInstance = new Mappa(dimensioneMappa);
 
-        // Inizializzo il movement manager
+        // Inizializzo il Movement Manager:
         movementManagerInstance = new MovementManager();
 
-        // Imposto la mappa
+        // Finisco di inizializzare la Mappa:
         mapInstance.setTileSet(tilesets[difficulty.value]);
         mapInstance.randomize();
 
-        // Spawno il front end della mappa
+        // Spawno il Front End:
         spawnFrontEnd();
     }
 
+    // Invoca il ReloadScene in 1 secondo
     public void Restart()
     {
         Invoke("ReloadScene", 1f);
     }
 
-    public void Quit()  
+    // Ricarica la scena dopo averla distrutta e chiama la resetcomponents
+    private void ReloadScene()
     {
-        #if UNITY_EDITOR       
+        ResetComponents();
 
-        UnityEditor.EditorApplication.isPlaying = false;        // levo la playermode se fossi da editor
-        
-        #else
-     
-        Application.Quit();
+        foreach (GameObject tile in frontEndTileInstances)
+        {
+            Destroy(tile);
+        }
 
-        #endif
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    // Resetta i componenti che persistono al reload
     private void ResetComponents()
     {
         witchInstance.ResetMosseFatte();
@@ -149,18 +159,21 @@ public class GameManager : MonoBehaviour {
         MoveWarpTiles.animating = false;
     }
 
-    private void ReloadScene()
+    // Chiude il gioco
+    public void Quit()  
     {
-        ResetComponents();
+        #if UNITY_EDITOR       
 
-        foreach (GameObject tile in frontEndTileInstances)
-        {
-            Destroy(tile);
-        }
+        UnityEditor.EditorApplication.isPlaying = false;        // levo la playermode se fossi da editor
+        
+        #else
+     
+        Application.Quit();
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        #endif
     }
 
+    // Cambia il turno e calcoli annessi
     public void SwitchTurn()
     {
         // Respawna scarpette
@@ -193,7 +206,8 @@ public class GameManager : MonoBehaviour {
         {
             DespawnPetardi();
 
-            SoundManager.instance.Play("playerturn");
+            //SoundManager.instance.Play("playerturn");
+            eventoTurnoGiocatore.Raise();
 
             turno = Turno.giocatore;
 
@@ -205,7 +219,8 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
-            SoundManager.instance.Play("witchturn");
+            //SoundManager.instance.Play("witchturn");
+            eventoTurnoStrega.Raise();
 
             turno = Turno.strega;
 
@@ -220,12 +235,14 @@ public class GameManager : MonoBehaviour {
 
     }
 
+    // Utilità: restituisce un gameobject random da una lista di gameobject passata
     private GameObject RandomFromList(List<GameObject> list)
     {
         int random = Random.Range(0, list.Count);
         return list[random];
     }
 
+    // Restituisce un prefab da mettere nel front end in base al tiletype
     public GameObject GetFrontEndTilePrefab(TileType tileType)
     {
         GameObject prefab = null;
@@ -242,6 +259,7 @@ public class GameManager : MonoBehaviour {
         return prefab;
     }
 
+    // Restituisce un quaternione da assegnare al tile appena istanziato in base alla tilerotation
     public Quaternion GetFrontEndTileRotation(GameObject prefab, Rotation tileRotation)
     {
         Quaternion rotazione = prefab.transform.rotation;
@@ -307,6 +325,7 @@ public class GameManager : MonoBehaviour {
         Invoke("deactivateSpawnFog", 1f);
     }
 
+    // Disattiva le quattro nuvolette di fog da subito
     private void deactivateSpawnFog()
     {
         mapInstance.getTile(playerInstance.getX(), playerInstance.getY()).setFog(false);
@@ -316,6 +335,7 @@ public class GameManager : MonoBehaviour {
         mapInstance.getTile(playerInstance.getX(), playerInstance.getY() - 1).setFog(false);
     }
 
+    // Restituisce l'istanza di un tile front end date due coordinate
     public static GameObject GetFrontEndTile(int x, int y)
     {
         foreach (GameObject tile in frontEndTileInstances)
@@ -331,6 +351,7 @@ public class GameManager : MonoBehaviour {
         return null;
     }
 
+    // Controlla la pressione dei tasti
     private void Update()
     {
         if (Input.GetKey(controls.debugHold) && Input.GetKeyDown(controls.debugPress))
@@ -420,6 +441,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    // Despawna i petardi piazzati facendoli scoppiare
     private void DespawnPetardi()
     {
         if(turniPassati > tilesets[difficulty.value].despawnPetardi)
@@ -433,11 +455,13 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    // Aggiunge un petardo alla lista di quelli che scoppieranno
     public void AggiungiDespawnPetardo(MapTile tile)
     {
         petardiDaDespawnare.Add(tile);
     }
 
+    // Resetta i componenti quando si disabilita
     private void OnDisable()
     {
         ResetComponents();

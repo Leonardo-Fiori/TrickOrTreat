@@ -12,8 +12,6 @@ public class TileMovement : MonoBehaviour
     public float returnSpeed = 1f;
     public float rotationSpeed = 10f;
 
-    public SOEvent playerMovementEvent;
-
     public static bool canRot = true;
 
     public void StartTileRotation(int angleRot, int dir)
@@ -45,7 +43,8 @@ public class TileMovement : MonoBehaviour
     {
         canRot = false;
 
-        SoundManager.instance.Play("tilerotation");
+        GameManager.instance.eventoRisalitaTileIniziata.Raise();
+        //SoundManager.instance.Play("tilerotation");
 
         Vector3 startPosition = transform.position;
         Vector3 endPosition = startPosition + Vector3.up * height;
@@ -107,7 +106,8 @@ public class TileMovement : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        SoundManager.instance.Play("whoosh");
+        GameManager.instance.eventoRisalitaTileFinita.Raise();
+        //SoundManager.instance.Play("whoosh");
 
         for (float i = 0; i < rotationSpeed; i++)
         {
@@ -121,7 +121,8 @@ public class TileMovement : MonoBehaviour
 
         counter = 0f;
 
-        SoundManager.instance.Play("tilerotation");
+        GameManager.instance.eventoDiscesaTileIniziata.Raise();
+        //SoundManager.instance.Play("tilerotation");
 
         // Torna in posizione
         while (transform.position != startPosition)
@@ -171,6 +172,7 @@ public class TileMovement : MonoBehaviour
 
         canRot = true;
 
-        playerMovementEvent.Raise();
+        GameManager.instance.eventoDiscesaTileFinita.Raise();
+        GameManager.instance.eventoFineAnimazioneGiocatore.Raise();
     }
 }

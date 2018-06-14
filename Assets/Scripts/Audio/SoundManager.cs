@@ -53,7 +53,12 @@ public class SoundManager : MonoBehaviour {
         throw new System.Exception("Suono non trovato! " + "(" + name + ")");
     }
 
-    public void Play(string name, float volume = 1f)
+    public void Play(string name)
+    {
+        Play(name, 1f);
+    }
+
+    public void Play(string name, float volume)
     {
         //print("Playing " + name + " at volume " + volume + " ...");
         AudioClip clip = Find(name);

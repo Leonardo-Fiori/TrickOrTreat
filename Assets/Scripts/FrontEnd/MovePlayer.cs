@@ -15,7 +15,6 @@ public class MovePlayer : MonoBehaviour {
     public float raiseSpeed = 1f;
     public float raiseHeight = 3f;
     public static bool moving;
-    public SOEvent playerMovedEvent;
     public float speed = 1f;
     public float jumpMultiplier = 1f;
 
@@ -113,15 +112,15 @@ public class MovePlayer : MonoBehaviour {
             if (Vector3.Distance(transform.position, finalPos) < 0.01f)
                 transform.position = finalPos;
 
-            if(transform.position.y == finalPos.y)
-                SoundManager.instance.Play("playermove");
+            //if(transform.position.y == finalPos.y)
+                //SoundManager.instance.Play("playermove");
 
             yield return new WaitForFixedUpdate();
         }
 
         moving = false;
 
-        playerMovedEvent.Raise();
+        GameManager.instance.eventoFineAnimazioneGiocatore.Raise();
     }
 
     IEnumerator warpTowards(Vector3 destination)
@@ -203,7 +202,7 @@ public class MovePlayer : MonoBehaviour {
 
         moving = false;
 
-        playerMovedEvent.Raise();
+        GameManager.instance.eventoFineAnimazioneGiocatore.Raise();
     }
 
     public void move(int x, int z, Movement mov)

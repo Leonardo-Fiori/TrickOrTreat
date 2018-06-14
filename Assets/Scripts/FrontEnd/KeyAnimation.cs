@@ -8,10 +8,7 @@ public class KeyAnimation : MonoBehaviour
     protected int x;
     protected int y;
     private bool spawned;
-
     public float speed = 10f;
-
-    public SOEvent eventoChiavePresa;
 
     IEnumerator despawnAnimation()
     {

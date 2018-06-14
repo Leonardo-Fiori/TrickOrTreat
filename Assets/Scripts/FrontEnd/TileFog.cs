@@ -11,12 +11,6 @@ public class TileFog : MonoBehaviour {
 
     public GameObject fogPrefab;
 
-    public SOEvent fogDisappearedEvent;
-
-    //public GameObject spotLight;
-    //private float lightIntensity;
-    //private Light lightComponent;
-
     public bool GetStatus()
     {
         return active;
@@ -69,9 +63,9 @@ public class TileFog : MonoBehaviour {
 
         StartCoroutine(InflateTile());
 
-        SoundManager.instance.Play("tileappeared",0.25f);
+        //SoundManager.instance.Play("tileappeared",0.25f);
 
-        fogDisappearedEvent.Raise();
+        GameManager.instance.eventoScomparsaNebbia.Raise();
 
         return;
     }

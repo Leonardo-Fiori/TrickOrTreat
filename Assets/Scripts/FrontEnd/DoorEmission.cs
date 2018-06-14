@@ -27,7 +27,8 @@ public class DoorEmission : MonoBehaviour {
         }
         else
         {
-            SoundManager.instance.Play("dooropen");
+            GameManager.instance.eventoPortaSbloccata.Raise();
+            //SoundManager.instance.Play("dooropen");
             material.SetColor("_EmissionColor", Color.white * (chiavi / chiaviMassime));
         }
     }

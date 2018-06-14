@@ -29,12 +29,6 @@ public class Giocatore : ScriptableObject {
     private GameObject frontEndPrefab;
     private MovePlayer playerMover;
 
-    public SOEvent eventoScarpettaPresa;
-    public SOEvent eventoCaramellaPresa;
-    public SOEvent eventoChiavePresa;
-    public SOEvent eventoPetardoPreso;
-    public SOEvent eventoPetardoUsato;
-
     public void Reset()
     {
         mosseFatte = 0;
@@ -46,11 +40,11 @@ public class Giocatore : ScriptableObject {
 
     public void RaccogliScarpetta(MapTile tile)
     {
-        SoundManager.instance.Play("pickscarpetta");
+        //SoundManager.instance.Play("pickscarpetta");
 
         tile.PrendiScarpetta();
 
-        eventoScarpettaPresa.Raise();
+        GameManager.instance.eventoScarpettaPresa.Raise();
 
         mosseFatte--;
 
@@ -62,9 +56,9 @@ public class Giocatore : ScriptableObject {
         if (petardo)
             return;
 
-        eventoPetardoPreso.Raise();
+        GameManager.instance.eventoPetardoPreso.Raise();
 
-        SoundManager.instance.Play("pickpetardo");
+        //SoundManager.instance.Play("pickpetardo");
 
         tile.SetPetardo(false);
 
@@ -73,7 +67,7 @@ public class Giocatore : ScriptableObject {
 
     public void UsaPetardo()
     {
-        eventoPetardoUsato.Raise();
+        GameManager.instance.eventoPetardoUsato.Raise();
 
         petardo = false;
     }
@@ -85,13 +79,13 @@ public class Giocatore : ScriptableObject {
 
     public void RaccogliCaramella(MapTile tile)
     {
-        SoundManager.instance.Play("pickcaramella");
+        //SoundManager.instance.Play("pickcaramella");
 
         caramelleRaccolte++;
 
         tile.SetCaramella(false);
 
-        eventoCaramellaPresa.Raise();
+        GameManager.instance.eventoCaramellaPresa.Raise();
 
         if (caramelleRaccolte >= caramelleNecessarie)
         {
@@ -120,11 +114,11 @@ public class Giocatore : ScriptableObject {
 
     public void IncrementaChiavi(MapTile tile)
     {
-        SoundManager.instance.Play("pickchiave");
+        //SoundManager.instance.Play("pickchiave");
 
         tile.SetKey(false);
 
-        eventoChiavePresa.Raise();
+        GameManager.instance.eventoChiavePresa.Raise();
 
         chiaviRaccolte++;
     }
@@ -211,7 +205,7 @@ public class Giocatore : ScriptableObject {
 
         if (mov == Movement.smooth)
         {
-            GameManager.playerMovementEvent.Raise();
+            GameManager.instance.eventoMovimentoGiocatore.Raise();
 
             if(!tile.HasScarpetta())
                 IncrementaMosseFatte();
@@ -219,7 +213,8 @@ public class Giocatore : ScriptableObject {
 
         if (GameManager.mapInstance.getTile(x, y).IsUscita() && chiaviRaccolte >= GameManager.mapInstance.GetQuanteChiavi())
         {
-            SoundManager.instance.Play("win");
+            GameManager.instance.eventoVittoriaGiocatore.Raise();
+            //SoundManager.instance.Play("win");
             GameManager.instance.Restart();
             return;
         }

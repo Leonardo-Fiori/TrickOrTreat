@@ -72,8 +72,8 @@ public class MapTile
         GameObject.Instantiate(GameManager.instance.particlePetardoEsploso, frontEndPrefab.transform);
 
         petardoAttivo = false;
-        SoundManager.instance.Play("bangpetardo");
-        GameManager.instance.eventoScoppioPetardo.Raise();
+        //SoundManager.instance.Play("bangpetardo");
+        GameManager.instance.eventoPetardoScoppiato.Raise();
     }
 
     public void SetScarpettaFrontEnd(GameObject obj)

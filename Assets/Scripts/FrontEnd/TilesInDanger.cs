@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TilesInDanger : MonoBehaviour {
     public List<MapTile> tilesInDanger;
-    public SOEvent dangerousTilesUpdatedEvent;
     public bool mouseOverWitch;
     public bool toggled = false;
 
@@ -15,7 +14,8 @@ public class TilesInDanger : MonoBehaviour {
 
         mouseOverWitch = true;
 
-        SoundManager.instance.Play("tilehover");
+        GameManager.instance.eventoHoveringStrega.Raise();
+        //SoundManager.instance.Play("tilehover");
     }
 
     private void OnMouseExit()
@@ -31,11 +31,13 @@ public class TilesInDanger : MonoBehaviour {
 
             if (!toggled)
             {
-                SoundManager.instance.Play("clicksimple");
+                GameManager.instance.eventoWitchToggled.Raise();
+                //SoundManager.instance.Play("clicksimple");
             }
             else
             {
-                SoundManager.instance.Play("clickrisata");
+                GameManager.instance.eventoWitchUntoggled.Raise();
+                //SoundManager.instance.Play("clickrisata");
             }
         }
     }
@@ -72,7 +74,7 @@ public class TilesInDanger : MonoBehaviour {
 
         //print(tilesInDanger.Count);
 
-        dangerousTilesUpdatedEvent.Raise();
+        GameManager.instance.eventoTilePericoloseAggiornate.Raise();
     }
 
     private void Start()

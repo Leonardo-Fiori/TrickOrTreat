@@ -7,7 +7,6 @@ public class MoveWitch : MonoBehaviour {
     public float factor = 1f;
     public float offsetY = 1f;
     public static bool moving;
-    public SOEvent eventEndAnim;
     public float speed = 1f;
     public float jumpMultiplier = 1f;
 
@@ -66,7 +65,7 @@ public class MoveWitch : MonoBehaviour {
 
         moving = false;
 
-        eventEndAnim.Raise();
+        GameManager.instance.eventoFineAnimazioneStrega.Raise();
 
         /* // RAISE AND MOVE
         Vector3 upPos = transform.position + Vector3.up * jumpMultiplier;

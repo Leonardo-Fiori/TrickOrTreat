@@ -205,7 +205,8 @@ public class MoveWarpTiles : EventListener {
 
         if((latoDestro || latoSinistro || latoSopra || latoSotto) && (playerX == x && playerY == y))
         {
-            SoundManager.instance.Play("tilewarping");
+            GameManager.instance.eventoWarpTile.Raise();
+            //SoundManager.instance.Play("tilewarping");
             MoveMyOppositesToMe();
         }
     }

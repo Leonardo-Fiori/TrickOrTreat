@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileHghlight : MonoBehaviour {
+public class TileHilight : MonoBehaviour {
     public Color witchDangerColor;
     public Color hilightColor;
     public float multiplier = 0.5f;
@@ -84,7 +84,8 @@ public class TileHghlight : MonoBehaviour {
         {
             if (on || sud && canMoveSud || est && canMoveEst || ovest && canMoveOvest || nord && canMoveNord)
             {
-                SoundManager.instance.Play("tilehover");
+                GameManager.instance.eventoHoveringTile.Raise();
+                //SoundManager.instance.Play("tilehover");
                 canMoveHere = true;
             }
             else

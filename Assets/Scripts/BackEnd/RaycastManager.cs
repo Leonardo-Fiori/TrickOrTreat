@@ -56,8 +56,6 @@ public class RaycastManager : MonoBehaviour
 
                 MapTile tileBackEnd = GameManager.mapInstance.getTile(clickedTile.GetTileX(), clickedTile.GetTileY());
 
-                //print(tileBackEnd.getTileType()+" "+tileBackEnd.getTileRotation());
-
                 // VUOLE PIAZZARE UN PETARDO
                 if (AttivaPetardo.toggle)
                 {
@@ -74,7 +72,7 @@ public class RaycastManager : MonoBehaviour
 
                         GameManager.playerInstance.UsaPetardo();
 
-                        SoundManager.instance.Play("playermove");
+                        //SoundManager.instance.Play("playermove");
 
                         if (!GameManager.debugMode)
                             AttivaPetardo.toggle = false;
@@ -84,7 +82,7 @@ public class RaycastManager : MonoBehaviour
                 }
 
                 // VUOLE RUOTARE, O E' IN MODALITA' DEBUG
-                if ((equalX && equalY) || GameManager.debugMode == true)
+                if (((equalX && equalY) || GameManager.debugMode == true) && GameManager.turno == Turno.giocatore)
                 {
                     if(tileBackEnd.getTileType() != TileType.quadrivio)
                     {
