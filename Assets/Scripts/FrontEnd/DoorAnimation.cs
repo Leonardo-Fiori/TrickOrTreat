@@ -72,7 +72,12 @@ public class DoorAnimation : MonoBehaviour
     {
         transform.localScale = Vector3.zero;
         spawned = false;
-        x = GameManager.mapInstance.GetUscitaX();
-        y = GameManager.mapInstance.GetUscitaY();
+        Think();
+    }
+
+    public void Initialize(int x, int y)
+    {
+        this.x = x;
+        this.y = y;
     }
 }

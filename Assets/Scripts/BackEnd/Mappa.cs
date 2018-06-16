@@ -9,6 +9,7 @@ public class Mappa : ScriptableObject
     private Tileset internalTileset;
     public Tileset tileset;
     public int dimensione;
+    public int quanteUscite;
     private const int DEF_DIM = 7;
 
     // Prefabs della mappa
@@ -21,6 +22,7 @@ public class Mappa : ScriptableObject
     private MapTile[,] tiles;
     private int uscitaX = -1;
     private int uscitaY = -1;
+    private bool[,] uscite;
     private bool[,] keys;
     private int quanteChiavi;
     private bool[,] caramelle;
@@ -44,12 +46,20 @@ public class Mappa : ScriptableObject
 
     public int GetUscitaX()
     {
-        return uscitaX;
+        for (int i = 0; i < dimensione; i++)
+            for (int j = 0; j < dimensione; j++)
+                if (uscite[i, j] == true)
+                    return i;
+        return 0;
     }
 
     public int GetUscitaY()
     {
-        return uscitaY;
+        for (int i = 0; i < dimensione; i++)
+            for (int j = 0; j < dimensione; j++)
+                if (uscite[i, j] == true)
+                    return j;
+        return 0;
     }
 
     #endregion
@@ -63,6 +73,7 @@ public class Mappa : ScriptableObject
         scarpette = new bool[dimensione, dimensione];
         scarpetteDaRespawnare = new List<MapTile>();
         petardi = new bool[dimensione, dimensione];
+        uscite = new bool[dimensione, dimensione];
 
         setTileSet(tileset);
         randomize();
@@ -125,7 +136,7 @@ public class Mappa : ScriptableObject
         AntiLockdown();
 
         // Posizionamento uscita
-        SpawnUscita();
+        SpawnUscite();
 
         // Spawna le chiavi
         SpawnChiavi();
@@ -243,20 +254,22 @@ public class Mappa : ScriptableObject
         return;
     }
 
-    private void SpawnUscita()
+    private void SpawnUscite()
     {
-        int y = Random.Range(0, dimensione - 1);
-        int x = Random.Range(0, dimensione - 1);
-
-        while (!LocationIsOk(x, y) || scarpette[x, y] || caramelle[x, y] || keys[x, y])
+        for (int i = 0; i < quanteUscite; i++)
         {
-            y = Random.Range(0, dimensione - 1);
-            x = Random.Range(0, dimensione - 1);
+            int y = Random.Range(0, dimensione - 1);
+            int x = Random.Range(0, dimensione - 1);
+            while (!LocationIsOk(x, y))
+            {
+                y = Random.Range(0, dimensione - 1);
+                x = Random.Range(0, dimensione - 1);
+            }
+            uscite[x, y] = true;
+            tiles[x, y].SetUscita(true);
         }
 
-        uscitaX = x;
-        uscitaY = y;
-        tiles[x, y].SetUscita(true);
+        return;
     }
 
     private void AntiLockdown()
@@ -404,7 +417,7 @@ public class Mappa : ScriptableObject
         if (petardi[x, y])
             return false;
 
-        if (uscitaX == x && uscitaY == y)
+        if (uscite[x, y])
             return false;
 
         return true;

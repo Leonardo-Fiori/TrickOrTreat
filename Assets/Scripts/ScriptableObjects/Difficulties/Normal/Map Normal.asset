@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileset: {fileID: 11400000, guid: e477fdf070d3b58429dcf45b6f51216a, type: 2}
   dimensione: 7
+  quanteUscite: 2
   prefabsQuadrivia:
   - {fileID: 1537324731944860, guid: 645d11f6f7cae2f449bb3adb82a09c42, type: 2}
   prefabsCorridoio:

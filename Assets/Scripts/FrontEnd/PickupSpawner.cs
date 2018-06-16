@@ -42,6 +42,7 @@ public class PickupSpawner : MonoBehaviour {
     void SpawnUscita()
     {
         uscita = Instantiate(prefabUscita, transform.position, Quaternion.identity);
+        uscita.GetComponent<DoorAnimation>().Initialize(x, y);
 
         //uscita.transform.parent = gameObject.transform; // viene settato quando la fog despawna!!
     }
