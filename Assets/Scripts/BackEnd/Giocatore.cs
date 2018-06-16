@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
  * dal riferimento statico nel gamemanager sono accessibili le sue funzioni getter e setter.
 */
 
-[CreateAssetMenu(fileName = "Giocatore", menuName = "StatGiocatore", order = 2)]
+[CreateAssetMenu(fileName = "Giocatore", menuName = "Giocatore", order = 2)]
 public class Giocatore : ScriptableObject {
     private int x;
     private int y;

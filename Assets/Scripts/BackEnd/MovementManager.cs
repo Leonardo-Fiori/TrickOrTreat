@@ -41,23 +41,23 @@ public class MovementManager {
     {
         if (dir == Direction.nord)
         {
-            y = (y + 1) % map.dim;
+            y = (y + 1) % map.dimensione;
         }
         else if(dir == Direction.sud)
         {
-            y = (y - 1) % map.dim;
+            y = (y - 1) % map.dimensione;
         }
         else if (dir == Direction.est)
         {
-            x = (x + 1) % map.dim;
+            x = (x + 1) % map.dimensione;
         }
         else if (dir == Direction.ovest)
         {
-            x = (x - 1) % map.dim;
+            x = (x - 1) % map.dimensione;
         }
 
-        if (y == -1) y = map.dim-1;
-        if (x == -1) x = map.dim-1;
+        if (y == -1) y = map.dimensione-1;
+        if (x == -1) x = map.dimensione-1;
 
         //Debug.Log(x + " " + y);
         return map.getTile(x,y);
@@ -71,23 +71,23 @@ public class MovementManager {
         {
             if (dir == Direction.nord)
             {
-                y = (y + 1) % map.dim;
+                y = (y + 1) % map.dimensione;
             }
             else if (dir == Direction.sud)
             {
-                y = (y - 1) % map.dim;
+                y = (y - 1) % map.dimensione;
             }
             else if (dir == Direction.est)
             {
-                x = (x + 1) % map.dim;
+                x = (x + 1) % map.dimensione;
             }
             else if (dir == Direction.ovest)
             {
-                x = (x - 1) % map.dim;
+                x = (x - 1) % map.dimensione;
             }
 
-            if (y == -1) y = map.dim - 1;
-            if (x == -1) x = map.dim - 1;
+            if (y == -1) y = map.dimensione - 1;
+            if (x == -1) x = map.dimensione - 1;
 
             res.Add(map.getTile(x, y));
         }
@@ -116,9 +116,9 @@ public class MovementManager {
             if (right == x2)
                 break;
 
-            right = (right + 1) % map.dim;
+            right = (right + 1) % map.dimensione;
 
-            if (right == -1) right = map.dim - 1;
+            if (right == -1) right = map.dimensione - 1;
 
             countRight++;
         }
@@ -129,9 +129,9 @@ public class MovementManager {
             if (left == x2)
                 break;
 
-            left = (left - 1) % map.dim;
+            left = (left - 1) % map.dimensione;
 
-            if (left == -1) left = map.dim - 1;
+            if (left == -1) left = map.dimensione - 1;
 
             countLeft++;
         }
@@ -146,9 +146,9 @@ public class MovementManager {
             if (up == y2)
                 break;
 
-            up = (up + 1) % map.dim;
+            up = (up + 1) % map.dimensione;
 
-            if (up == -1) up = map.dim - 1;
+            if (up == -1) up = map.dimensione - 1;
 
             countUp++;
         }
@@ -159,9 +159,9 @@ public class MovementManager {
             if (down == y2)
                 break;
 
-            down = (down - 1) % map.dim;
+            down = (down - 1) % map.dimensione;
 
-            if (down == -1) down = map.dim - 1;
+            if (down == -1) down = map.dimensione - 1;
 
             countDown++;
         }
@@ -246,23 +246,23 @@ public class MovementManager {
         {
             if (dir == Direction.nord)
             {
-                y = (y + 1) % map.dim;
+                y = (y + 1) % map.dimensione;
             }
             else if (dir == Direction.sud)
             {
-                y = (y - 1) % map.dim;
+                y = (y - 1) % map.dimensione;
             }
             else if (dir == Direction.est)
             {
-                x = (x + 1) % map.dim;
+                x = (x + 1) % map.dimensione;
             }
             else if (dir == Direction.ovest)
             {
-                x = (x - 1) % map.dim;
+                x = (x - 1) % map.dimensione;
             }
 
-            if (y == -1) y = map.dim-1;
-            if (x == -1) x = map.dim-1;
+            if (y == -1) y = map.dimensione-1;
+            if (x == -1) x = map.dimensione-1;
 
             // Scopri i tile
 

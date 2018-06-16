@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16e31487214b50b4883fdd532887f66c, type: 3}
+  m_Name: Map Normal Petardo
+  m_EditorClassIdentifier: 
+  tileset: {fileID: 11400000, guid: 96170596b92976e4b8818f25b3cb157c, type: 2}
+  dimensione: 7
+  prefabsQuadrivia:
+  - {fileID: 1537324731944860, guid: 645d11f6f7cae2f449bb3adb82a09c42, type: 2}
+  prefabsCorridoio:
+  - {fileID: 1954467829343646, guid: 97a3ff7d7c302a343857ac63c6429cde, type: 2}
+  - {fileID: 1546236578170694, guid: 4116020392b0d2e429f20fb7b962f9df, type: 2}
+  - {fileID: 1898921215398350, guid: c755b8abdbe1ea14c9b2837a60da7df6, type: 2}
+  prefabsTrivia:
+  - {fileID: 1245326360863542, guid: 7cd46a553c285474899bfd2ec5356d1c, type: 2}
+  - {fileID: 1917410698634132, guid: 1dc76de9abf44004a887fee9aad97262, type: 2}
+  - {fileID: 1210569290010482, guid: 4b75f23243123e84aa6ddac76f31593b, type: 2}
+  prefabsAngolo:
+  - {fileID: 1460504689280058, guid: a08badfb2133f794fa6f96b13cbf9312, type: 2}
+  - {fileID: 1252614924372450, guid: 2a71676c0b8207645a6865dd359eb17a, type: 2}
+  - {fileID: 1730178197661464, guid: 9eba53c868e5b824f9e0ee5f10bdc24a, type: 2}

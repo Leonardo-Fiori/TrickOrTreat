@@ -33,7 +33,7 @@ public class MoveWarpTiles : EventListener {
 
         warpedTo = new Vector2();
 
-        dim = GameManager.mapInstance.dim - 1;
+        dim = GameManager.mapInstance.dimensione - 1;
         originalPosition = transform.position;
 
         x = TileCoords.GetX(gameObject);
@@ -157,8 +157,8 @@ public class MoveWarpTiles : EventListener {
         TileType tileType = GameManager.mapInstance.getTile(x, y).getTileType();
         Rotation tileRotation = GameManager.mapInstance.getTile(x, y).getTileRotation();
 
-        GameObject tile = GameManager.instance.GetFrontEndTilePrefab(tileType);
-        Quaternion rotation = GameManager.instance.GetFrontEndTileRotation(tile, tileRotation);
+        GameObject tile = GameManager.mapInstance.GetFrontEndTilePrefab(tileType);
+        Quaternion rotation = GameManager.mapInstance.GetFrontEndTileRotation(tile, tileRotation);
 
         //fantoccio = Instantiate(tile, transform.position, rotation);
 

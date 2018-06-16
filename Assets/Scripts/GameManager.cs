@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     // Riferimenti statici pubblici ai componenti & altri valori interni
     public static GameManager instance;
@@ -13,21 +14,21 @@ public class GameManager : MonoBehaviour {
     public static GameObject playerPrefabInstance;
     public static GameObject witchPrefabInstance;
     public static Strega witchInstance;
+    public static int howManyDifficultyLevels;
     public static Turno turno;
     public static float tileDistance;
     public static bool debugMode;
     public static bool cheatMode;
     public static CameraManagerIsometric cameraManagerInstance;
-    private static GameObject[] frontEndTileInstances;
+    public static GameObject[] frontEndTileInstances;
     private int dimensioneMappa = 0;
 
     // Valori pubblici di configurazione
     [Header("Moduli di Gioco in ordine di Difficoltà")]
     public SDifficulty difficulty;
-    public int[] dimensioniMappa;
-    public Tileset[] tilesets;
     public Giocatore[] moduliGiocatore;
     public Strega[] moduliStrega;
+    public Mappa[] moduliMappa;
 
     [Header("Configurazioni Mappa")]
     public float distanzaTraTile;
@@ -90,7 +91,7 @@ public class GameManager : MonoBehaviour {
     public SOEvent eventoModalitaPetardoToggled;
 
     // Inizializzazioni varie
-    void OnEnable ()
+    void OnEnable()
     {
         // Inizializzo alcuni riferimenti pubbllici statici:
         instance = this;
@@ -112,18 +113,12 @@ public class GameManager : MonoBehaviour {
         witchPrefabInstance.SetActive(false);
 
         // Inizializzo la Mappa:
-        dimensioneMappa = dimensioniMappa[difficulty.value];
-        mapInstance = new Mappa(dimensioneMappa);
+        mapInstance = moduliMappa[difficulty.value];
+        dimensioneMappa = moduliMappa[difficulty.value].dimensione;
+        mapInstance.Initialize();
 
-        // Inizializzo il Movement Manager:
+        // Inizializzo il Movement Manager (classe standard di utility per check su mappa):
         movementManagerInstance = new MovementManager();
-
-        // Finisco di inizializzare la Mappa:
-        mapInstance.setTileSet(tilesets[difficulty.value]);
-        mapInstance.randomize();
-
-        // Spawno il Front End:
-        spawnFrontEnd();
     }
 
     // Invoca il ReloadScene in 1 secondo
@@ -150,6 +145,7 @@ public class GameManager : MonoBehaviour {
     {
         witchInstance.ResetMosseFatte();
         witchInstance.ResetPetardo();
+        mapInstance.Reset();
         turno = Turno.giocatore;
         playerInstance.Reset();
         Giocatore.morto = false;
@@ -160,17 +156,17 @@ public class GameManager : MonoBehaviour {
     }
 
     // Chiude il gioco
-    public void Quit()  
+    public void Quit()
     {
-        #if UNITY_EDITOR       
+#if UNITY_EDITOR
 
         UnityEditor.EditorApplication.isPlaying = false;        // levo la playermode se fossi da editor
-        
-        #else
+
+#else
      
         Application.Quit();
 
-        #endif
+#endif
     }
 
     // Cambia il turno e calcoli annessi
@@ -235,106 +231,6 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    // Utilità: restituisce un gameobject random da una lista di gameobject passata
-    private GameObject RandomFromList(List<GameObject> list)
-    {
-        int random = Random.Range(0, list.Count);
-        return list[random];
-    }
-
-    // Restituisce un prefab da mettere nel front end in base al tiletype
-    public GameObject GetFrontEndTilePrefab(TileType tileType)
-    {
-        GameObject prefab = null;
-
-        if (tileType == TileType.quadrivio)
-            prefab = RandomFromList(prefabsQuadrivia);
-        if (tileType == TileType.trivio)
-            prefab = RandomFromList(prefabsTrivia);
-        if (tileType == TileType.angolo)
-            prefab = RandomFromList(prefabsAngolo);
-        if (tileType == TileType.corridoio)
-            prefab = RandomFromList(prefabsCorridoio);
-
-        return prefab;
-    }
-
-    // Restituisce un quaternione da assegnare al tile appena istanziato in base alla tilerotation
-    public Quaternion GetFrontEndTileRotation(GameObject prefab, Rotation tileRotation)
-    {
-        Quaternion rotazione = prefab.transform.rotation;
-
-        float rotazioneY = Mathf.Floor(prefab.transform.rotation.eulerAngles.y / 10f) * 10f;
-        if (tileRotation == Rotation.su)
-            rotazione = prefab.transform.rotation;
-        if (tileRotation == Rotation.giu)
-            rotazione = Quaternion.Euler(0, rotazioneY + 180, 0);
-        if (tileRotation == Rotation.destra)
-            rotazione = Quaternion.Euler(0, rotazioneY + 90, 0);
-        if (tileRotation == Rotation.sinistra)
-            rotazione = Quaternion.Euler(0, rotazioneY - 90, 0);
-
-        return rotazione;
-    }
-
-    // Spawna il frontend dopo aver preparato il back end
-    private void spawnFrontEnd()
-    {
-        for (int i = 0; i < dimensioneMappa; i++)
-        {
-            for (int j = 0; j < dimensioneMappa; j++)
-            {
-                TileType tileType = mapInstance.getTile(i, j).getTileType();
-                Rotation tileRotation = mapInstance.getTile(i, j).getTileRotation();
-
-                Vector3 posizione = new Vector3(i * distanzaTraTile, 0f, j * distanzaTraTile);
-
-                GameObject prefab = GetFrontEndTilePrefab(tileType);
-
-                Quaternion rotazione = GetFrontEndTileRotation(prefab, tileRotation);
-
-                //print(prefab + " " + rotazione + " " + posizione);
-                GameObject tile = Instantiate(prefab, posizione, rotazione);
-                mapInstance.getTile(i, j).setPrefab(tile);
-                //print(tile);
-
-                TileCoords.SetX(tile, i);
-                TileCoords.SetY(tile, j);
-
-                //print(tm.GetTileX() + " " + tm.GetTileY());
-
-                mapInstance.getTile(i, j).setFog(true);
-            }
-        }
-
-        frontEndTileInstances = GameObject.FindGameObjectsWithTag("Tile");
-
-        playerInstance.move((mapInstance.dim / 2), (mapInstance.dim / 2), Movement.teleport);
-        playerInstance.ResetMosseFatte();
-        playerPrefabInstance.SetActive(true);
-
-        witchInstance.Spawn();
-        witchPrefabInstance.SetActive(true);
-
-        /* Se disattivo una singola nebbia all'interno di questa funzione 
-         * o prima che questa finisca (chiamata interna ad un altra funzione), 
-         * tutte le nebbie vengono disattivate.
-         * Dunque uso la invoke... mah! DA RIVEDERE, BUG
-         */
-
-        Invoke("deactivateSpawnFog", 1f);
-    }
-
-    // Disattiva le quattro nuvolette di fog da subito
-    private void deactivateSpawnFog()
-    {
-        mapInstance.getTile(playerInstance.getX(), playerInstance.getY()).setFog(false);
-        mapInstance.getTile(playerInstance.getX() + 1, playerInstance.getY()).setFog(false);
-        mapInstance.getTile(playerInstance.getX() - 1, playerInstance.getY()).setFog(false);
-        mapInstance.getTile(playerInstance.getX(), playerInstance.getY() + 1).setFog(false);
-        mapInstance.getTile(playerInstance.getX(), playerInstance.getY() - 1).setFog(false);
-    }
-
     // Restituisce l'istanza di un tile front end date due coordinate
     public static GameObject GetFrontEndTile(int x, int y)
     {
@@ -373,16 +269,16 @@ public class GameManager : MonoBehaviour {
 
         if (Input.GetKeyDown(controls.passaTurno))
         {
-            if(turno == Turno.giocatore)
+            if (turno == Turno.giocatore)
                 SwitchTurn();
         }
 
         if (debugMode)
         {
-            if(Input.GetKeyDown(controls.debugFogOff))
+            if (Input.GetKeyDown(controls.debugFogOff))
             {
                 TileFog[] tfs = FindObjectsOfType<TileFog>();
-                foreach(TileFog tf in tfs)
+                foreach (TileFog tf in tfs)
                 {
                     tf.SetFog(false);
                 }
@@ -397,7 +293,7 @@ public class GameManager : MonoBehaviour {
             if (Input.GetKeyDown(controls.debugIncreaseDifficulty))
             {
                 difficulty.value++;
-                if (difficulty.value >= dimensioniMappa.Length) difficulty.value = dimensioniMappa.Length - 1;
+                if (difficulty.value >= moduliMappa.Length) difficulty.value = moduliMappa.Length - 1;
                 SoundManager.instance.Play("playermove");
                 print("Selected difficulty level: " + difficulty.value);
             }
@@ -410,9 +306,9 @@ public class GameManager : MonoBehaviour {
                 print("Selected difficulty level: " + difficulty.value);
             }
 
-            if(Input.GetKeyDown(KeyCode.F12) && Input.GetKeyDown(KeyCode.F11))
+            if (Input.GetKeyDown(KeyCode.F12) && Input.GetKeyDown(KeyCode.F11))
             {
-                foreach(GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
+                foreach (GameObject tile in GameObject.FindGameObjectsWithTag("Tile"))
                 {
                     tile.GetComponent<FloatAnimation>().enabled = true;
                     SoundManager.instance.Play("win");
@@ -444,10 +340,10 @@ public class GameManager : MonoBehaviour {
     // Despawna i petardi piazzati facendoli scoppiare
     private void DespawnPetardi()
     {
-        if(turniPassati > tilesets[difficulty.value].despawnPetardi)
+        if (turniPassati > moduliMappa[difficulty.value].tileset.despawnPetardi)
         {
             turniPassati = 0;
-            foreach(MapTile tile in petardiDaDespawnare)
+            foreach (MapTile tile in petardiDaDespawnare)
             {
                 tile.ScoppiaPetardo();
             }
@@ -465,5 +361,15 @@ public class GameManager : MonoBehaviour {
     private void OnDisable()
     {
         ResetComponents();
+    }
+
+    // Disattiva le quattro nuvolette di fog da subito
+    private void deactivateSpawnFog()
+    {
+        mapInstance.getTile(GameManager.playerInstance.getX(), GameManager.playerInstance.getY()).setFog(false);
+        mapInstance.getTile(GameManager.playerInstance.getX() + 1, GameManager.playerInstance.getY()).setFog(false);
+        mapInstance.getTile(GameManager.playerInstance.getX() - 1, GameManager.playerInstance.getY()).setFog(false);
+        mapInstance.getTile(GameManager.playerInstance.getX(), GameManager.playerInstance.getY() + 1).setFog(false);
+        mapInstance.getTile(GameManager.playerInstance.getX(), GameManager.playerInstance.getY() - 1).setFog(false);
     }
 }

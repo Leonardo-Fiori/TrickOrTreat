@@ -92,7 +92,7 @@ public class Strega : ScriptableObject {
         // Aggiorno front end
         witchMover.Move(x, y, Movement.teleport);
 
-        int dim = GameManager.mapInstance.dim;
+        int dim = GameManager.mapInstance.dimensione;
         visitedTiles = new bool[dim,dim];
         for (int i = 0; i < dim; i++)
             for (int j = 0; j < dim; j++)

@@ -51,7 +51,7 @@ public class CameraManagerIsometric : MonoBehaviour
         fantoccio.transform.position = subject.transform.position;
         cameraOffset = transform.position - fantoccio.transform.position;
 
-        int dim = GameManager.mapInstance.dim;
+        int dim = GameManager.mapInstance.dimensione;
         center = GameManager.mapInstance.getTile(dim / 2, dim / 2).getPrefab();
     }
 

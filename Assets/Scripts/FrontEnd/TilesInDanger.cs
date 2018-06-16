@@ -59,15 +59,15 @@ public class TilesInDanger : MonoBehaviour {
 
         for(int i = 1; i < mosseStrega; i++)
         {
-            int nextX = (witchX - i) % GameManager.movementManagerInstance.map.dim;
-            if(nextX == -1) nextX = GameManager.movementManagerInstance.map.dim - 1;
+            int nextX = (witchX - i) % GameManager.movementManagerInstance.map.dimensione;
+            if(nextX == -1) nextX = GameManager.movementManagerInstance.map.dimensione - 1;
             tilesInDanger.AddRange(GameManager.movementManagerInstance.getNextTiles(nextX, witchY, Direction.nord, mosseStrega - i));
             tilesInDanger.AddRange(GameManager.movementManagerInstance.getNextTiles(nextX, witchY, Direction.sud, mosseStrega - i));
         }
 
         for (int i = 1; i < mosseStrega; i++)
         {
-            int nextX = (witchX + i) % GameManager.movementManagerInstance.map.dim;
+            int nextX = (witchX + i) % GameManager.movementManagerInstance.map.dimensione;
             tilesInDanger.AddRange(GameManager.movementManagerInstance.getNextTiles(nextX, witchY, Direction.nord, mosseStrega - i));
             tilesInDanger.AddRange(GameManager.movementManagerInstance.getNextTiles(nextX, witchY, Direction.sud, mosseStrega - i));
         }

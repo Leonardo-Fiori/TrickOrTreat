@@ -1040,13 +1040,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: {fileID: 11400000, guid: 00c7633ce2dc34f44bc29c56c5b136a2, type: 2}
-  dimensioniMappa: 0700000007000000070000000700000007000000
-  tilesets:
-  - {fileID: 11400000, guid: ca27dd433891c6e448c975ae8573789e, type: 2}
-  - {fileID: 11400000, guid: c3811b14af5e1aa4b9691092869bb899, type: 2}
-  - {fileID: 11400000, guid: e477fdf070d3b58429dcf45b6f51216a, type: 2}
-  - {fileID: 11400000, guid: 8df75935dc75c2e4687bf6c1da6e14ff, type: 2}
-  - {fileID: 11400000, guid: 96170596b92976e4b8818f25b3cb157c, type: 2}
   moduliGiocatore:
   - {fileID: 11400000, guid: eb89f864ec7873545ab43a99343fef9c, type: 2}
   - {fileID: 11400000, guid: 1c36f32c06bdfa54f936a294b74c3812, type: 2}
@@ -1059,6 +1052,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7b78542fcd6cb494f9fed506bd9463ab, type: 2}
   - {fileID: 11400000, guid: 560df11afc2b67045887d5de44d31e77, type: 2}
   - {fileID: 11400000, guid: 401dba41ae2121c4096f3ed1e502658c, type: 2}
+  moduliMappa:
+  - {fileID: 11400000, guid: 747cbaeb6defe154abbeb9b735f1d48e, type: 2}
+  - {fileID: 11400000, guid: 5f15035d77cc748418ee29dc59deb4ca, type: 2}
+  - {fileID: 11400000, guid: f8d621e2fa0534641ab2181a5d82e814, type: 2}
+  - {fileID: 11400000, guid: f2aa922e28e3ac54fbaa5c5a4396ec9d, type: 2}
+  - {fileID: 11400000, guid: c36eec7c01b39984ca946f4c314a2623, type: 2}
   distanzaTraTile: 1.99
   scalaTiles: 1
   witchDelay: 1
@@ -1667,7 +1666,7 @@ Prefab:
     - target: {fileID: 224248297374947164, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -135
       objectReference: {fileID: 0}
     - target: {fileID: 224211633847597656, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
@@ -1687,7 +1686,7 @@ Prefab:
     - target: {fileID: 224211633847597656, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -245
       objectReference: {fileID: 0}
     - target: {fileID: 114412879728413292, guid: 22bd356e073b0d647b9ba90386dfadf0,
         type: 2}
