@@ -16,6 +16,8 @@ public class Strega : ScriptableObject {
     public float chanceMossaRandom;
     [HideInInspector]
     public float chanceMossaRandomAttuale;
+    [HideInInspector]
+    public int id;
 
     public int mossePerTurno;
 
@@ -86,8 +88,8 @@ public class Strega : ScriptableObject {
         chanceMossaRandomAttuale = chanceMossaRandom;
 
         // da rivedere la posizione iniziale!
-        x = GameManager.mapInstance.GetUscitaX();
-        y = GameManager.mapInstance.GetUscitaY();
+        x = GameManager.mapInstance.getUscita(id)[0];
+        y = GameManager.mapInstance.getUscita(id)[1];
 
         // Aggiorno front end
         witchMover.Move(x, y, Movement.teleport);

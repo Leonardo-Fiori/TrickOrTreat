@@ -6,53 +6,18 @@ public class PickupAnimation : MonoBehaviour {
 
     int x;
     int y;
-    public float speed = 10f;
-
-    IEnumerator despawnAnimation()
-    {
-        while (transform.localScale != Vector3.zero)
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * speed);
-            if (transform.localScale.x <= 0.01f)
-                transform.localScale = Vector3.zero;
-            yield return null;
-        }
-    }
-
-    IEnumerator destroyAnimation()
-    {
-        while (transform.localScale != Vector3.zero)
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * speed);
-            if (transform.localScale.x <= 0.01f)
-                transform.localScale = Vector3.zero;
-            yield return new WaitForFixedUpdate();
-        }
-
-        Destroy(gameObject);
-    }
-
-    IEnumerator spawnAnimation()
-    {
-        while (transform.localScale != Vector3.one)
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Time.deltaTime * speed);
-            if (transform.localScale.x >= 0.99f)
-                transform.localScale = Vector3.one;
-            yield return new WaitForFixedUpdate();
-        }
-    }
+    public SOAnimation spawnAnim;
+    public SOAnimation despawnAnim;
+    public SOAnimation destroyAnim;
 
     public void Spawn()
     {
-        StopCoroutine(despawnAnimation());
-        StartCoroutine(spawnAnimation());
+        spawnAnim.Play(gameObject, this);
     }
 
     public void Despawn()
     {
-        StopCoroutine(spawnAnimation());
-        StartCoroutine(despawnAnimation());
+        despawnAnim.Play(gameObject, this);
     }
 
     public void Initialize(int xx, int yy)
@@ -101,6 +66,6 @@ public class PickupAnimation : MonoBehaviour {
 
         // Non faccio ulteriori controlli come nella think perchè questa viene chiamata dall'evento specifico di pick
         if (player)
-            StartCoroutine(destroyAnimation());
+            destroyAnim.Play(gameObject, this);
     }
 }

@@ -8,42 +8,19 @@ public class DoorAnimation : MonoBehaviour
     protected int y;
     private bool spawned;
 
-    public float speed = 10f;
-
-    IEnumerator despawnAnimation()
-    {
-        while (transform.localScale != Vector3.zero)
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * speed);
-            if (transform.localScale.x <= 0.01f)
-                transform.localScale = Vector3.zero;
-            yield return new WaitForFixedUpdate();
-        }
-    }
-
-    IEnumerator spawnAnimation()
-    {
-        while (transform.localScale != Vector3.one)
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Time.deltaTime * speed);
-            if (transform.localScale.x >= 0.99f)
-                transform.localScale = Vector3.one;
-            yield return new WaitForFixedUpdate();
-        }
-    }
+    public SOAnimation spawnAnim;
+    public SOAnimation despawnAnim;
 
     protected void Spawn()
     {
         spawned = true;
-        StopCoroutine(despawnAnimation());
-        StartCoroutine(spawnAnimation());
+        spawnAnim.Play(gameObject, this);
     }
 
     protected void Despawn()
     {
         spawned = false;
-        StopCoroutine(spawnAnimation());
-        StartCoroutine(despawnAnimation());
+        despawnAnim.Play(gameObject, this);
     }
 
     public void Think()

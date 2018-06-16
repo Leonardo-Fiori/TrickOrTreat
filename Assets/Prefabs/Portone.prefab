@@ -333,7 +333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77112aa7a4684c4d9a01c1bc5bc496e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  spawnAnim: {fileID: 11400000, guid: 200009a75ea15ca4182ade0269dfcd9c, type: 2}
+  despawnAnim: {fileID: 11400000, guid: d089b54831b57344d98f6a9a49705eda, type: 2}
 --- !u!114 &114456339869112042
 MonoBehaviour:
   m_ObjectHideFlags: 1

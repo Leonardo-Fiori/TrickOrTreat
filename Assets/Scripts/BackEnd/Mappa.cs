@@ -10,6 +10,7 @@ public class Mappa : ScriptableObject
     public Tileset tileset;
     public int dimensione;
     public int quanteUscite;
+    //public int quanteStreghe;
     private const int DEF_DIM = 7;
 
     // Prefabs della mappa
@@ -31,6 +32,7 @@ public class Mappa : ScriptableObject
     private int quanteScarpette;
     private bool[,] petardi;
     private int quantiPetardi;
+    private List<List<int>> listaUscite;
 
     // Per il respawn dei pickup scarpetta
     // Pubblico per velocizzare accesso
@@ -44,22 +46,9 @@ public class Mappa : ScriptableObject
         return quanteChiavi;
     }
 
-    public int GetUscitaX()
+    public List<int> getUscita(int number)
     {
-        for (int i = 0; i < dimensione; i++)
-            for (int j = 0; j < dimensione; j++)
-                if (uscite[i, j] == true)
-                    return i;
-        return 0;
-    }
-
-    public int GetUscitaY()
-    {
-        for (int i = 0; i < dimensione; i++)
-            for (int j = 0; j < dimensione; j++)
-                if (uscite[i, j] == true)
-                    return j;
-        return 0;
+        return listaUscite[number];
     }
 
     #endregion
@@ -74,6 +63,7 @@ public class Mappa : ScriptableObject
         scarpetteDaRespawnare = new List<MapTile>();
         petardi = new bool[dimensione, dimensione];
         uscite = new bool[dimensione, dimensione];
+        listaUscite = new List<List<int>>();
 
         setTileSet(tileset);
         randomize();
@@ -265,8 +255,13 @@ public class Mappa : ScriptableObject
                 y = Random.Range(0, dimensione - 1);
                 x = Random.Range(0, dimensione - 1);
             }
+
             uscite[x, y] = true;
             tiles[x, y].SetUscita(true);
+
+            List<int> xy = new List<int>();
+            xy.Add(x); xy.Add(y);
+            listaUscite.Add(xy);
         }
 
         return;
@@ -561,6 +556,7 @@ public class Mappa : ScriptableObject
         GameManager.playerInstance.ResetMosseFatte();
         GameManager.playerPrefabInstance.SetActive(true);
 
+        GameManager.witchInstance.id = 0;
         GameManager.witchInstance.Spawn();
         GameManager.witchPrefabInstance.SetActive(true);
 

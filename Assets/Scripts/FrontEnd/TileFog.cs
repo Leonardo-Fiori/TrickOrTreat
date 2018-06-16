@@ -6,8 +6,12 @@ public class TileFog : MonoBehaviour {
     private int x;
     private int y;
 
-    private bool raised = false;
     private bool active = true;
+
+    public SOAnimation deactivateFogAnim;
+    public SOAnimation spawnTileAnim;
+    public SOAnimation secondarySpawnAnim;
+    public bool useSecondarySpawnAnim = false;
 
     public GameObject fogPrefab;
 
@@ -25,45 +29,38 @@ public class TileFog : MonoBehaviour {
         else if (status == true) activateFog();
     }
 
-    private IEnumerator deactivateAnimation()
+    public void AfterFogDisabled()
     {
-        float counter = 0f;
-        
-        while(fogPrefab.transform.localScale != Vector3.zero)
-        {
-            counter += Time.deltaTime;
-
-            fogPrefab.transform.localScale = Vector3.Lerp(fogPrefab.transform.localScale, Vector3.zero, Mathf.Abs(Mathf.Sin(counter)));
-
-            if (fogPrefab.transform.localScale.x < 0.01f)
-                break;
-
-            yield return new WaitForFixedUpdate();
-        }
-
-        //gameObject.GetComponentInChildren<ParticleSystem>().Play();
-
         fogPrefab.GetComponent<ParticleSystem>().Stop();
-
-        fogPrefab.gameObject.SetActive(false);
 
         fogPrefab.SetActive(false);
 
-        yield return null;
+        deactivateFogAnim.executeAtEnd.RemoveListener(AfterFogDisabled);
+    }
+
+    public void AfterTileInflated()
+    {
+        GameObject uscita = gameObject.GetComponent<PickupSpawner>().GetPickup("uscita");
+        if (uscita != null) uscita.gameObject.transform.parent = gameObject.transform;
+
+        GameObject chiave = gameObject.GetComponent<PickupSpawner>().GetPickup("chiave");
+        if (chiave != null) chiave.gameObject.transform.parent = gameObject.transform;
+
+        deactivateFogAnim.executeAtEnd.RemoveListener(AfterTileInflated);
     }
 
     private void deactivateFog()
     {
-        StartCoroutine(deactivateAnimation());
+        deactivateFogAnim.executeAtEnd.AddListener(AfterFogDisabled);
+        deactivateFogAnim.Play(fogPrefab, this);
 
-        if(!raised)
-            //StartCoroutine(RaiseTile());
+        if (useSecondarySpawnAnim)
+        {
+            secondarySpawnAnim.Play(gameObject, this);
+        }
 
-        //raised = true;
-
-        StartCoroutine(InflateTile());
-
-        //SoundManager.instance.Play("tileappeared",0.25f);
+        spawnTileAnim.executeAtEnd.AddListener(AfterTileInflated);
+        spawnTileAnim.Play(gameObject, this);
 
         GameManager.instance.eventoScomparsaNebbia.Raise();
 
@@ -75,64 +72,6 @@ public class TileFog : MonoBehaviour {
         fogPrefab.SetActive(true);
         fogPrefab.GetComponent<ParticleSystem>().Play();
         return;
-    }
-
-    public IEnumerator RaiseTile()
-    {
-        raised = true;
-        Vector3 destination = transform.position;
-        transform.position += Vector3.down * 10;
-
-        float counter = 0f;
-        
-        while(transform.position != destination)
-        {
-            counter += Time.deltaTime;
-
-            transform.position = Vector3.Lerp(transform.position, destination, Mathf.Abs(Mathf.Sin(counter)));
-
-            if (Vector3.Distance(transform.position, destination) < 0.001f)
-                transform.position = destination;
-
-            yield return new WaitForFixedUpdate();
-        }
-    }
-
-    public IEnumerator InflateTile()
-    {
-        Vector3 destination = new Vector3(1f, 1f, 1f);
-
-        float counter = 0f;
-
-        while (transform.localScale != destination + Vector3.up)
-        {
-            counter += Time.deltaTime;
-
-            transform.localScale = Vector3.Lerp(transform.localScale, destination + Vector3.up, Mathf.Abs(Mathf.Sin(counter)));
-
-            if (Vector3.Distance(transform.localScale, destination + Vector3.up) < 0.001f)
-                transform.localScale = destination + Vector3.up;
-
-            yield return new WaitForFixedUpdate();
-        }
-
-        while (transform.localScale != destination)
-        {
-            counter += Time.deltaTime;
-
-            transform.localScale = Vector3.Lerp(transform.localScale, destination, Mathf.Abs(Mathf.Sin(counter)));
-
-            if (Vector3.Distance(transform.localScale, destination) < 0.001f)
-                transform.localScale = destination;
-
-            yield return new WaitForFixedUpdate();
-        }
-
-        GameObject uscita = gameObject.GetComponent<PickupSpawner>().GetPickup("uscita");
-        if(uscita != null) uscita.gameObject.transform.parent = gameObject.transform;
-
-        GameObject chiave = gameObject.GetComponent<PickupSpawner>().GetPickup("chiave");
-        if(chiave != null) chiave.gameObject.transform.parent = gameObject.transform;
     }
 
     // Spawna la nebbia
