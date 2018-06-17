@@ -19,7 +19,10 @@ MonoBehaviour:
   speedMultiplier: 1
   positionTollerance: 0.01
   destination: {x: 0, y: 0, z: 0}
-  destinationIsActualPosition: 0
-  startFrom: {x: 0, y: 0, z: 0}
+  destinationIsActualPosition: 1
+  startFrom: {x: 0, y: -10, z: 0}
   startFromMultiplier: 1
   startFromIsRelative: 1
+  destinationScale: {x: 1, y: 1, z: 1}
+  sizeTollerance: 0.01
+  alsoScale: 1

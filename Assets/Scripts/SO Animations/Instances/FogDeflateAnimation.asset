@@ -11,11 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e070485ccd617428a9859e0f6d4b10, type: 3}
   m_Name: FogDeflateAnimation
   m_EditorClassIdentifier: 
+  speedMultiplier: 1
+  tollerance: 0.01
+  destination: {x: 0, y: 0, z: 0}
+  heightMultiplier: 0
+  startFrom: {x: 0, y: 0, z: 0}
+  destinationIsActual: 1
+  startFromIsRelative: 1
   executeAtEnd:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  speedMultiplier: 1
-  sizeTollerance: 0.01
-  destinationSize: {x: 0, y: 0, z: 0}

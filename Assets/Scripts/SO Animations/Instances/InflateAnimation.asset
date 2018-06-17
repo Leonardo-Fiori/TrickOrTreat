@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Name: InflateAnimation
   m_EditorClassIdentifier: 
   speedMultiplier: 1
-  sizeTollerance: 0.01
-  destinationSize: {x: 1, y: 1, z: 1}
+  tollerance: 0.01
+  destination: {x: 1, y: 1, z: 1}
+  heightMultiplier: 0
+  startFrom: {x: 0, y: 0, z: 0}
+  destinationIsActual: 1
+  startFromIsRelative: 1
+  executeAtEnd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

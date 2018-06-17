@@ -11,12 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49ce7c27a6e77424aa641fa2ec507f5d, type: 3}
   m_Name: TileOverscaleAnimation
   m_EditorClassIdentifier: 
+  speedMultiplier: 1
+  tollerance: 0.01
+  destination: {x: 1, y: 1, z: 1}
+  heightMultiplier: 0
+  startFrom: {x: 0, y: 0, z: 0}
+  destinationIsActual: 1
+  startFromIsRelative: 1
   executeAtEnd:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  speedMultiplier: 1
-  sizeTollerance: 0.01
-  destinationSize: {x: 1, y: 1, z: 1}
-  overscaleSize: {x: 0, y: 1, z: 0}

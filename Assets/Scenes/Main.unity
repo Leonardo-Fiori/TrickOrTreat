@@ -870,6 +870,12 @@ Prefab:
       propertyPath: offsetY
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114274487019081034, guid: 319a60dd905a9754797eb0b9956124eb,
+        type: 2}
+      propertyPath: moveAnim
+      value: 
+      objectReference: {fileID: 11400000, guid: 7ff8f5371077bf04f9905d054d432de6,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 319a60dd905a9754797eb0b9956124eb, type: 2}
   m_IsPrefabParent: 0
@@ -1481,6 +1487,18 @@ Prefab:
       propertyPath: jumpMultiplier
       value: 3.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114364505913369090, guid: 2af5d245b226f3140a87ff39049c15a7,
+        type: 2}
+      propertyPath: pawnMoveAnim
+      value: 
+      objectReference: {fileID: 11400000, guid: 8701f5bfbe78fa14ea60f2ed1c117970,
+        type: 2}
+    - target: {fileID: 114364505913369090, guid: 2af5d245b226f3140a87ff39049c15a7,
+        type: 2}
+      propertyPath: warpAnim
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d0c91cede058394ba17e9643baabf58,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 114659217673108324, guid: 2af5d245b226f3140a87ff39049c15a7, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 2af5d245b226f3140a87ff39049c15a7, type: 2}

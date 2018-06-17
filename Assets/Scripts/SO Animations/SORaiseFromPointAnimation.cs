@@ -4,29 +4,26 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "Animations/Raise From Point")]
 public class SORaiseFromPointAnimation : SOAnimation {
+    /*
     public float speedMultiplier = 1f;
-    public float positionTollerance = 0.01f;
+    public float tollerance = 0.01f;
     public Vector3 destination;
-    public bool destinationIsActualPosition = true;
     public Vector3 startFrom;
-    public int startFromMultiplier = 1;
-    public bool startFromIsRelative = true;
-    public Vector3 destinationScale;
-    public float sizeTollerance = 0.01f;
-    public bool alsoScale = true;
+    public bool destinationIsActual = true;
+    public bool startFromIsRelative = true;*/
 
-    protected override IEnumerator Animation(GameObject subject)
+    protected override IEnumerator Animation(GameObject subject, MonoBehaviour playOn)
     {
         var localDestination = destination;
 
-        if (destinationIsActualPosition)
+        if (destinationIsActual)
         {
             localDestination = subject.transform.position;
         }
 
         if (startFromIsRelative)
         {
-            subject.transform.position += startFrom * startFromMultiplier;
+            subject.transform.position += startFrom;
         }
         else
         {
@@ -35,22 +32,14 @@ public class SORaiseFromPointAnimation : SOAnimation {
 
         float counter = 0f;
 
-        while (subject.transform.position != destination && (subject.transform.localScale != destinationScale && alsoScale))
+        while (subject.transform.position != destination)
         {
             counter += Time.deltaTime * speedMultiplier;
 
             subject.transform.position = Vector3.Lerp(subject.transform.position, localDestination, Mathf.Abs(Mathf.Sin(counter)));
 
-            if (Vector3.Distance(subject.transform.position, destination) < positionTollerance)
+            if (Vector3.Distance(subject.transform.position, destination) < tollerance)
                 subject.transform.position = localDestination;
-
-            if (alsoScale)
-            {
-                subject.transform.localScale = Vector3.Lerp(subject.transform.localScale, destinationScale, Mathf.Abs(Mathf.Sin(counter)));
-
-                if (Vector3.Distance(subject.transform.localScale, destinationScale) < sizeTollerance)
-                    subject.transform.localScale = destinationScale;
-            }
 
             yield return new WaitForFixedUpdate();
         }
