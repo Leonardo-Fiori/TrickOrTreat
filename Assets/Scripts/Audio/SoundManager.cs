@@ -63,5 +63,6 @@ public class SoundManager : MonoBehaviour {
         //print("Playing " + name + " at volume " + volume + " ...");
         AudioClip clip = Find(name);
         source.PlayOneShot(clip, volume);
+        //Debug.LogError("Playing " + name + " at volume " + volume + " ...");
     }
 }

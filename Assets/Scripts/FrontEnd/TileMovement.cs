@@ -85,17 +85,13 @@ public class TileMovement : MonoBehaviour
         {
             counter += Time.deltaTime;
 
-            float y = Mathf.Lerp(transform.position.y, endPosition.y, counter);
+            transform.position = Vector3.Lerp(transform.position, endPosition, Mathf.Abs(Mathf.Sin(counter)));
 
-            Vector3 newTransform = new Vector3(transform.position.x, y, transform.position.z);
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * 1.5f, Mathf.Abs(Mathf.Sin(counter)));
 
-            if (Mathf.Abs(Vector3.Distance(newTransform, endPosition)) <= 0.01f)
+            if (Vector3.Distance(transform.position, endPosition) <= 0.01f)
             {
                 transform.position = endPosition;
-            }
-            else
-            {
-                transform.position = newTransform;
             }
 
             if (playerIsOnTile)
@@ -104,9 +100,12 @@ public class TileMovement : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
+        counter = 0f;
+
         yield return new WaitForSeconds(0.1f);
 
         GameManager.instance.eventoRisalitaTileFinita.Raise();
+        //Debug.LogError("eventorisalitatilefinita");
         //SoundManager.instance.Play("whoosh");
 
         for (float i = 0; i < rotationSpeed; i++)
@@ -129,19 +128,13 @@ public class TileMovement : MonoBehaviour
         {
             counter += Time.deltaTime;
 
-            float y = Mathf.Lerp(transform.position.y, startPosition.y, counter);
+            transform.position = Vector3.Lerp(transform.position, startPosition, Mathf.Abs(Mathf.Sin(counter)));
 
-            Vector3 newTransform = new Vector3(transform.position.x, y, transform.position.z);
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Mathf.Abs(Mathf.Sin(counter)));
 
-            //print(Mathf.Abs(Vector3.Distance(newTransform, startPosition)));
-
-            if (Mathf.Abs(Vector3.Distance(newTransform, startPosition)) <= 0.01f)
+            if (Vector3.Distance(transform.position, startPosition) <= 0.01f)
             {
                 transform.position = startPosition;
-            }
-            else
-            {
-                transform.position = newTransform;
             }
 
             if (playerIsOnTile)
