@@ -8,6 +8,7 @@ ModelImporter:
     400000: //RootNode
     400002: pCylinder1
     2100000: lambert5SG
+    2100002: pCylinder1Mat
     2300000: pCylinder1
     3300000: pCylinder1
     4300000: pCylinder1

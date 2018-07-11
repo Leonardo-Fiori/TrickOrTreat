@@ -43,6 +43,8 @@ public class TileMovement : MonoBehaviour
     {
         canRot = false;
 
+        //gameObject.GetComponent<FloatAnimation>().enabled = false;
+
         GameManager.instance.eventoRisalitaTileIniziata.Raise();
         //SoundManager.instance.Play("tilerotation");
 
@@ -162,6 +164,8 @@ public class TileMovement : MonoBehaviour
         {
             backEnd.GetPetardoFrontEnd().GetComponent<PickupAnimation>().Despawn();
         }
+
+        //gameObject.GetComponent<FloatAnimation>().enabled = true;
 
         canRot = true;
 

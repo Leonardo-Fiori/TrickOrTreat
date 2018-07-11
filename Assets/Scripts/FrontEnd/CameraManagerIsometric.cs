@@ -28,7 +28,7 @@ public class CameraManagerIsometric : MonoBehaviour
 
     public void SwitchSubject()
     {
-        print("SWITCH!");
+        //print("SWITCH!");
         if (GameManager.turno == Turno.strega)
         {
             subject = subject2;

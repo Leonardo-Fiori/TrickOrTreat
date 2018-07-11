@@ -29,7 +29,9 @@ GameObject:
   - component: {fileID: 114038488033777158}
   - component: {fileID: 114196612821088080}
   - component: {fileID: 114692755858578964}
-  - component: {fileID: 114166377410683902}
+  - component: {fileID: 114965823479403024}
+  - component: {fileID: 114252443749906498}
+  - component: {fileID: 114676135059497246}
   m_Layer: 0
   m_Name: Corridoio 1
   m_TagString: Tile
@@ -63,6 +65,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: f01c9590fe4399d43bfefc26865654f7, type: 2}
   m_StaticBatchInfo:
@@ -131,24 +134,6 @@ MonoBehaviour:
   speed: 5
   returnSpeed: 7
   rotationSpeed: 10
---- !u!114 &114166377410683902
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1546236578170694}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed4414f3548427f4eac25c0cb04985b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ampiezza: 0.01
-  speed: 1
-  rotazione: 1
-  speedX: 1
-  speedY: 1
-  speedZ: 1
-  randomizeSpeed: 1
 --- !u!114 &114196612821088080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -207,6 +192,52 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   x: 0
   y: 0
+--- !u!114 &114252443749906498
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1546236578170694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd637ca8f1ad2be459f8ba321b1cc37c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventToListen: {fileID: 11400000, guid: f939886397e28a448bb7982e47a39e93, type: 2}
+  whatToDo:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114965823479403024}
+        m_MethodName: Think
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &114676135059497246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1546236578170694}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed4414f3548427f4eac25c0cb04985b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ampiezza: 0.48
+  speed: 1
+  rotazione: 1
+  speedX: 1
+  speedY: 1
+  speedZ: 1
+  randomizeSpeed: 1
 --- !u!114 &114692755858578964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -244,6 +275,18 @@ MonoBehaviour:
   witchDangerColor: {r: 1, g: 0, b: 0, a: 0}
   hilightColor: {r: 0.11724138, g: 1, b: 0, a: 0}
   multiplier: 0.5
+--- !u!114 &114965823479403024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1546236578170694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77eac47f5e719614ba29c561bf7217b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileAnim: {fileID: 11400000, guid: 41457c5606e92494f94874ade9ec0799, type: 2}
 --- !u!114 &114975358259377020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -255,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9335d214ba34dd64cb6541d9eccffb72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deactivateFogAnim: {fileID: 11400000, guid: 49734f849041c3a449278ddbd95e2cf0, type: 2}
+  deactivateFogAnim: {fileID: 11400000, guid: e49b6b4b2bf128145901ebb3a26cc5ba, type: 2}
   spawnTileAnim: {fileID: 11400000, guid: 9d1cfe048633ed64cb30b6b209816ad7, type: 2}
   secondarySpawnAnim: {fileID: 11400000, guid: aae792b05be04d84f92d33e2a456b7f6, type: 2}
   useSecondarySpawnAnim: 0

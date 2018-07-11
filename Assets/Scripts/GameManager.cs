@@ -360,7 +360,7 @@ public class GameManager : MonoBehaviour
     // Resetta i componenti quando si disabilita
     private void OnDisable()
     {
-        ResetComponents();
+        //ResetComponents();
     }
 
     // Disattiva le quattro nuvolette di fog da subito

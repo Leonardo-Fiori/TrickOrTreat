@@ -31,6 +31,8 @@ public class TileFog : MonoBehaviour {
 
     public void AfterFogDisabled()
     {
+        //Debug.Log("ciaooo");
+
         fogPrefab.GetComponent<ParticleSystem>().Stop();
 
         fogPrefab.SetActive(false);

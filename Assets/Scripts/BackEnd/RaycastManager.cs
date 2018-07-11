@@ -19,7 +19,7 @@ public class RaycastManager : MonoBehaviour
     // dir va cambiato perchè mi fa sia da controllo sia da velocità di rotazione
     void Update()
     {
-        if ((Input.GetMouseButtonUp(GameManager.controls.rotazioneAntioraria) || (Input.GetMouseButtonUp(GameManager.controls.rotazioneOraria))) && TileMovement.canRot && PlayerOnTileMovement.canRot && !MovePlayer.moving)
+        if ((Input.GetMouseButtonUp(GameManager.controls.rotazioneAntioraria) || (Input.GetMouseButtonUp(GameManager.controls.rotazioneOraria))) && TileMovement.canRot && !PlayerMovedOnTileAnimation.animating && !MovePlayer.moving)
         {
             bool clockwise = false;
 

@@ -215,6 +215,8 @@ public class MoveWarpTiles : EventListener {
     {
         animating = true;
 
+        //gameObject.GetComponent<FloatAnimation>().enabled = false;
+
         Vector3 endPosition = transform.position + (Vector3.up * 2f);
 
         float counter = 0f;
@@ -289,6 +291,8 @@ public class MoveWarpTiles : EventListener {
 
             yield return new WaitForFixedUpdate();
         }
+
+        //gameObject.GetComponent<FloatAnimation>().enabled = true;
 
         animating = false;
     }

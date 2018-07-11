@@ -90,6 +90,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 87c6a45f196988f4cbc0e7915ba67591, type: 2}
   m_StaticBatchInfo:
@@ -245,7 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnAnim: {fileID: 11400000, guid: 200009a75ea15ca4182ade0269dfcd9c, type: 2}
   despawnAnim: {fileID: 11400000, guid: d089b54831b57344d98f6a9a49705eda, type: 2}
-  destroyAnim: {fileID: 11400000, guid: 0db1e3eebce77194aad8972efe6f8a8c, type: 2}
+  destroyAnim: {fileID: 11400000, guid: 98fa5b25e2ebc3f418c4fed1a89f7ec5, type: 2}
 --- !u!114 &114979740927541552
 MonoBehaviour:
   m_ObjectHideFlags: 1

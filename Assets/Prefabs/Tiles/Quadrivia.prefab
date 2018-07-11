@@ -29,7 +29,9 @@ GameObject:
   - component: {fileID: 114576276863053084}
   - component: {fileID: 114560490288460952}
   - component: {fileID: 114599002261857152}
-  - component: {fileID: 114285790104889930}
+  - component: {fileID: 114938972218820784}
+  - component: {fileID: 114167410995305774}
+  - component: {fileID: 114295508133670344}
   m_Layer: 0
   m_Name: Quadrivia
   m_TagString: Tile
@@ -63,6 +65,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: c722eaec086124e47bac18c71de0736b, type: 2}
   m_StaticBatchInfo:
@@ -114,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9335d214ba34dd64cb6541d9eccffb72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deactivateFogAnim: {fileID: 11400000, guid: 49734f849041c3a449278ddbd95e2cf0, type: 2}
+  deactivateFogAnim: {fileID: 11400000, guid: e49b6b4b2bf128145901ebb3a26cc5ba, type: 2}
   spawnTileAnim: {fileID: 11400000, guid: 9d1cfe048633ed64cb30b6b209816ad7, type: 2}
   secondarySpawnAnim: {fileID: 11400000, guid: aae792b05be04d84f92d33e2a456b7f6, type: 2}
   useSecondarySpawnAnim: 0
@@ -149,7 +152,35 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   x: 0
   y: 0
---- !u!114 &114285790104889930
+--- !u!114 &114167410995305774
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1537324731944860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd637ca8f1ad2be459f8ba321b1cc37c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventToListen: {fileID: 11400000, guid: f939886397e28a448bb7982e47a39e93, type: 2}
+  whatToDo:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114938972218820784}
+        m_MethodName: Think
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &114295508133670344
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -160,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed4414f3548427f4eac25c0cb04985b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ampiezza: 0.01
+  ampiezza: 0.48
   speed: 1
   rotazione: 1
   speedX: 1
@@ -260,3 +291,15 @@ MonoBehaviour:
   speed: 5
   returnSpeed: 7
   rotationSpeed: 10
+--- !u!114 &114938972218820784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1537324731944860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77eac47f5e719614ba29c561bf7217b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileAnim: {fileID: 11400000, guid: 41457c5606e92494f94874ade9ec0799, type: 2}

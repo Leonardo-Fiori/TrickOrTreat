@@ -8,6 +8,7 @@ ModelImporter:
     400000: //RootNode
     400002: pCube3
     2100000: lambert6SG
+    2100002: pCube3Mat
     2300000: pCube3
     3300000: pCube3
     4300000: pCube3

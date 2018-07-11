@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa51ac8e6eeac5449d317dfb847f1cb, type: 3}
   m_Name: Tileset Normal Petardo
   m_EditorClassIdentifier: 
-  quantiCorridoi: 8
-  quantiAngoli: 8
-  quantiTrivia: 33
+  quantiCorridoi: 40
+  quantiAngoli: 40
+  quantiTrivia: 120
   quanteChiavi: 2
   quanteCaramelle: 14
   quanteScarpette: 5

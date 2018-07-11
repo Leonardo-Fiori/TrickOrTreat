@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Map Normal Petardo
   m_EditorClassIdentifier: 
   tileset: {fileID: 11400000, guid: 96170596b92976e4b8818f25b3cb157c, type: 2}
-  dimensione: 7
+  dimensione: 11
   quanteUscite: 1
   prefabsQuadrivia:
   - {fileID: 1537324731944860, guid: 645d11f6f7cae2f449bb3adb82a09c42, type: 2}
