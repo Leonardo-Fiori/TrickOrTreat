@@ -2,6 +2,7 @@
 ## An halloween-themed 3D board game
 
 # Screenshots
+## Ingame screenshots (ultra graphics)
 
 ![Screenshot Trick Or Treat][screen1]
 ![Screenshot Trick Or Treat][screen2]
