@@ -8,7 +8,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus viverra est u
 
 Morbi in ipsum lobortis, hendrerit diam nec, tempor felis. Curabitur non finibus nisl. Curabitur porttitor diam sed dignissim placerat. In non sapien urna. Phasellus ligula dui, iaculis sed consectetur tempus, pretium finibus arcu. In hendrerit, lectus vel fringilla efficitur, nisi metus lobortis dui, et bibendum felis arcu id lectus.
 
-![Screenshot Trick Or Treat][screen1] ![Screenshot Trick Or Treat][screen2] ![Screenshot Trick Or Treat][screen3]
+![Screenshot Trick Or Treat][screen1 | width=100] ![Screenshot Trick Or Treat][screen2 | width=100] ![Screenshot Trick Or Treat][screen3 | width=100]
 
 [screen1]: https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(2).jpg
 [screen2]: https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(3).jpg
