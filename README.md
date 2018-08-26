@@ -5,6 +5,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus viverra est u
 
 ---
 
+### Download
+#### For x32/64bit Windows 7/8/10
+
+- [Download build directly from GitHub](/docs/builds/TrickOrTreat.zip)
+- [Download build from Dropbox mirror](https://www.dropbox.com/s/mr01760c4xdvymu/TrickOrTreat.zip?dl=1)
+
+---
+
 ### Screenshots
 #### Ingame screenshots (ultra graphics)
 
@@ -20,14 +28,6 @@ Morbi in ipsum lobortis, hendrerit diam nec, tempor felis. Curabitur non finibus
 - Phasellus viverra est ut metus lacinia scelerisque.
 - Etiam at luctus diam.
 - Donec eu pretium risus, ut varius nisl.
-
----
-
-### Download
-#### For x32/64bit Windows 7/8/10
-
-- [Download build directly from GitHub](/docs/builds/TrickOrTreat.zip)
-- [Download build from Dropbox mirror](https://www.dropbox.com/s/mr01760c4xdvymu/TrickOrTreat.zip?dl=0)
 
 ---
 
