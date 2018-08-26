@@ -1,12 +1,10 @@
-## Trick Or Treat
-### An halloween-themed 3D board game
+### Trick Or Treat
+#### An halloween-themed 3D board game
 
-## Screenshots
-### Ingame screenshots (ultra graphics)
+### Screenshots
+#### Ingame screenshots (ultra graphics)
 
-![Screenshot Trick Or Treat][screen1]
-![Screenshot Trick Or Treat][screen2]
-![Screenshot Trick Or Treat][screen3]
+![Screenshot Trick Or Treat][screen1] ![Screenshot Trick Or Treat][screen2] ![Screenshot Trick Or Treat][screen3]
 
 [screen1]: https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(2).jpg
 [screen2]: https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(3).jpg
