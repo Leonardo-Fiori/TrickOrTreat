@@ -8,7 +8,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus viverra est u
 
 Morbi in ipsum lobortis, hendrerit diam nec, tempor felis. Curabitur non finibus nisl. Curabitur porttitor diam sed dignissim placerat. In non sapien urna. Phasellus ligula dui, iaculis sed consectetur tempus, pretium finibus arcu. In hendrerit, lectus vel fringilla efficitur, nisi metus lobortis dui, et bibendum felis arcu id lectus.
 
-![](https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(2).jpg | width=100) ![](https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(1).jpg | width=100) ![](https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(3).jpg | width=100)
+![](https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(2).jpg) ![](https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(1).jpg) ![](https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(3).jpg)
 
 # License
 
