@@ -7,9 +7,9 @@
 ![Screenshot Trick Or Treat][screen2]
 ![Screenshot Trick Or Treat][screen3]
 
-[screen1]: https://i.imgur.com/uZdnpWs.png
-[screen2]: https://i.imgur.com/Wd6Yd58.png
-[screen3]: https://i.imgur.com/0hkJkYt.png
+[screen1]: https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(2).jpg
+[screen2]: https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(3).jpg
+[screen3]: https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(1).jpg
 
 # License
 
