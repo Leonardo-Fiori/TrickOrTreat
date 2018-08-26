@@ -1,3 +1,5 @@
+{% seo %}
+
 ### Trick Or Treat
 #### An halloween-themed 3D board videogame
 
