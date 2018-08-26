@@ -14,6 +14,15 @@ Morbi in ipsum lobortis, hendrerit diam nec, tempor felis. Curabitur non finibus
 
 ---
 
-# License
+### Features
+#### Lorem ipsum dolor sit amet!
+- consectetur adipiscing elit.
+- Phasellus viverra est ut metus lacinia scelerisque.
+- Etiam at luctus diam.
+- Donec eu pretium risus, ut varius nisl.
+
+---
+
+### License
 
 Chiunque è libero di visionare il codice, ma il progetto appartiene in tutte le sue parti a coloro che lo possiedono (i contributori) e non può essere riutilizzato da esterni senza previa autorizzazione per scopi d'uso commerciali o privati.
