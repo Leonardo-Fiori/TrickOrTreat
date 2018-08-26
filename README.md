@@ -9,7 +9,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus viverra est u
 #### For x32/64bit Windows 7/8/10
 
 - [Download .zip build from Dropbox mirror](https://www.dropbox.com/s/mr01760c4xdvymu/TrickOrTreat.zip?dl=1)
-- [Download .zip build from Mediafire mirror](/docs/builds/TrickOrTreat.zip)
+- [Download .zip build from Mediafire mirror](http://www.mediafire.com/file/ptbej3loxth4775/TrickOrTreat.zip)
 
 ---
 
