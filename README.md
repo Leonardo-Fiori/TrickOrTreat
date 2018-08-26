@@ -1,7 +1,15 @@
 # Trick Or Treat
+## An halloween-themed 3D board game
 
-ToT - Progetto 1° Anno Event Horizon School.
-Repository in costruzione.
+# Screenshots
+
+![Screenshot Trick Or Treat][screen1]
+![Screenshot Trick Or Treat][screen2]
+![Screenshot Trick Or Treat][screen3]
+
+[screen1]: https://i.imgur.com/uZdnpWs.png
+[screen2]: https://i.imgur.com/Wd6Yd58.png
+[screen3]: https://i.imgur.com/0hkJkYt.png
 
 # License
 
