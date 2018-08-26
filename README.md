@@ -1,10 +1,8 @@
 # TrickOrTreat
 
-ToT - Progetto 1° Anno Event Horizon School.
+ToT - Progetto 1° Anno Event Horizon School
 
-Documentazione dei file della repo.
-
-Wiki in costruzione.
+In costruzione
 
 # License
 
