@@ -1,8 +1,7 @@
 # TrickOrTreat
 
 ToT - Progetto 1° Anno Event Horizon School
-
-In costruzione
+Repo in costruzione
 
 # License
 
