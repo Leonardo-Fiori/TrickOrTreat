@@ -23,6 +23,14 @@ Morbi in ipsum lobortis, hendrerit diam nec, tempor felis. Curabitur non finibus
 
 ---
 
+### Download
+#### For x32/64bit Windows 7/8/10
+
+- [Download build directly from GitHub](/docs/builds/TrickOrTreat.zip)
+- [Download build from Dropbox mirror](https://www.dropbox.com/s/mr01760c4xdvymu/TrickOrTreat.zip?dl=0)
+
+---
+
 ### License
 
 Chiunque è libero di visionare il codice, ma il progetto appartiene in tutte le sue parti a coloro che lo possiedono (i contributori) e non può essere riutilizzato da esterni senza previa autorizzazione per scopi d'uso commerciali o privati.
