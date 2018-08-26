@@ -1,4 +1,4 @@
-# TrickOrTreat
+# Trick Or Treat
 
 ToT - Progetto 1° Anno Event Horizon School
 Repo in costruzione
