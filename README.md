@@ -11,23 +11,23 @@
 Trick or Treat is the very first indie game developed by the guys in the 1# year (2017/2018) of The Sign Comics & Art Academy in Florence.
 
 **Game Design**:
-Comparoni Nicholas
-Paoli Marco
-Gasperini Francesco
-Corsini Nicolas
+- Comparoni Nicholas
+- Paoli Marco
+- Gasperini Francesco
+- Corsini Nicolas
 
 **Programming**:
-Atticciati Domiziano
-[Fiori Leonardo](www.fiorileonardo.it)
+- Atticciati Domiziano
+- [Fiori Leonardo](www.fiorileonardo.it)
 
 **Concept Art**:
-Fida Enrico
-Gagliardi Nicola
+- Fida Enrico
+- Gagliardi Nicola
 
 **Real-Time Graphics**:
-Agresti Andrea
-Baikov Elia
-De Marco Valerio
+- Agresti Andrea
+- Baikov Elia
+- De Marco Valerio
 
 ---
 
