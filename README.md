@@ -18,7 +18,7 @@ Trick or Treat is the very first indie game developed by the guys in the 1# year
 
 **Programming**:
 - Atticciati Domiziano
-- [Fiori Leonardo](www.fiorileonardo.it)
+- [Fiori Leonardo](https://www.fiorileonardo.com)
 
 **Concept Art**:
 - Fida Enrico
