@@ -62,6 +62,6 @@ Grahics effects quality is set by default to low.
 
 ### License
 
-(ENG) Anyone is free to view the code, but the project belongs in all its parts to those who own it (the contributors) and can not be reused by others without prior authorization for both commercial or private use.
+*(ENG)* Anyone is free to view the code, but the project belongs in all its parts to those who own it (the contributors) and can not be reused by others without prior authorization for both commercial or private use.
 
-(ITA) Chiunque è libero di visionare il codice, ma il progetto appartiene in tutte le sue parti a coloro che lo possiedono (i contributori) e non può essere riutilizzato da esterni senza previa autorizzazione per scopi d'uso commerciali o privati.
+*(ITA)* Chiunque è libero di visionare il codice, ma il progetto appartiene in tutte le sue parti a coloro che lo possiedono (i contributori) e non può essere riutilizzato da esterni senza previa autorizzazione per scopi d'uso commerciali o privati.
