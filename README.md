@@ -5,6 +5,32 @@
 
 ---
 
+### Screenshots
+#### Ingame screenshots (ultra graphics)
+
+General graphics quality can be tuned by the launcher.
+Quality of the graphics effects can be tuned ingame while in debug mode.
+Grahics effects quality is set by default to low.
+
+![](https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(2).jpg) 
+
+
+![](https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(3).jpg)
+
+
+![](https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(1).jpg)
+
+---
+
+### Download
+#### For x32/64bit Windows 7/8/10
+
+
+- [Build](https://drive.google.com/file/d/1tKydvMv1dVs__Z_01Ho3vmvq3Wys97_k/view?usp=sharing)
+
+
+---
+
 ### Team/Credits
 #### A game by the Hannibal team!
 
@@ -31,24 +57,9 @@ Trick or Treat is the very first indie game developed by the guys in the 1# year
 
 ---
 
-### Download
-#### For x32/64bit Windows 7/8/10
 
-- [Download .zip build from Dropbox mirror](https://www.dropbox.com/s/mr01760c4xdvymu/TrickOrTreat.zip?dl=1)
-- [Download .zip build from Mediafire mirror](http://www.mediafire.com/file/ptbej3loxth4775/TrickOrTreat.zip)
 
----
 
-### Screenshots
-#### Ingame screenshots (ultra graphics)
-
-General graphics quality can be tuned by the launcher.
-Quality of the graphics effects can be tuned ingame while in debug mode.
-Grahics effects quality is set by default to low.
-
-![](https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(2).jpg) ![](https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(3).jpg)![](https://raw.githubusercontent.com/Leonardo-Fiori/trickortreat/master/docs/images/Screenshot%20(1).jpg)
-
----
 
 ### Features/Rules
 #### Remember these few rules:
